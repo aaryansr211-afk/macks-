@@ -1048,39 +1048,17 @@ var _toastTimer = null;
 function openUPI(amount, note) {
   var pa = 'aaryansr05@okicici';
   var pn = 'Macks%20Fox%20Harvest%20Foods';
-  var am = amount;
-  var cu = 'INR';
-  var tn = note;
+  var params = 'pa=' + pa + '&pn=' + pn + '&am=' + amount + '&cu=INR&tn=' + note;
+  var upiLink = 'upi://pay?' + params;
 
-  var tezLink = 'tez://upi/pay?pa=' + pa + '&pn=' + pn + '&am=' + am + '&cu=' + cu + '&tn=' + tn;
-  var upiLink = 'upi://pay?pa=' + pa + '&pn=' + pn + '&am=' + am + '&cu=' + cu + '&tn=' + tn;
+  // Use anchor click — most reliable way to trigger UPI app picker on Android
+  var a = document.createElement('a');
+  a.href = upiLink;
+  a.style.display = 'none';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ document.body.removeChild(a); }, 500);
 
-  // Try GPay (tez://) first; fall back to generic upi://
-  var iframe = document.createElement('iframe');
-  iframe.style.display = 'none';
-  document.body.appendChild(iframe);
-
-  var appOpened = false;
-
-  // Attempt to open GPay
-  window.location.href = tezLink;
-
-  // After short delay, if page is still visible, fall back to upi://
-  var fallbackTimer = setTimeout(function() {
-    if (!document.hidden) {
-      window.location.href = upiLink;
-    }
-  }, 1500);
-
-  // If app opened (page becomes hidden), cancel fallback
-  document.addEventListener('visibilitychange', function onVis() {
-    if (document.hidden) {
-      clearTimeout(fallbackTimer);
-      document.removeEventListener('visibilitychange', onVis);
-    }
-  });
-
-  // Show toast
   showUPIToast();
 }
 
