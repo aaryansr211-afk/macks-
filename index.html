@@ -201,32 +201,32 @@ section{padding:100px 60px}
 .flav-footer{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .flav-price{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink)}
 .flav-price span{font-size:13px;color:rgba(16,12,4,0.35);font-family:'DM Sans',sans-serif;font-weight:400;margin-left:4px}
+.flav-add-wrap{position:relative;display:inline-flex}
 .flav-add{
   background:var(--ink);color:var(--cream);
   width:40px;height:40px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   font-size:20px;font-weight:300;
   transition:background 0.2s,transform 0.2s;
+  border:none;cursor:pointer;
 }
 .flav-add:hover{background:var(--gold);transform:scale(1.1)}
+.flav-add-badge{
+  position:absolute;top:-6px;right:-6px;
+  background:var(--gold);color:var(--ink);
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
+  width:18px;height:18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;
+  transition:transform 0.2s;
+}
+.flav-add-badge.hidden{display:none}
 .flav-tag{
   position:absolute;top:14px;left:14px;
   background:var(--ink);color:var(--gold2);
   font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   padding:4px 10px;border-radius:20px;z-index:2;
 }
-
-/* GPay Button */
-.btn-gpay{
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  width:100%;background:#1A73E8;color:#fff;
-  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;
-  padding:8px 16px;border-radius:6px;border:none;cursor:pointer;
-  transition:background 0.2s,box-shadow 0.2s,transform 0.2s;
-  margin-top:4px;
-}
-.btn-gpay:hover{background:#1558b0;transform:translateY(-1px);box-shadow:0 2px 8px rgba(26,115,232,0.3)}
-.btn-gpay-icon{font-size:13px;line-height:1}
 
 /* Flavour colour accents */
 .fc-pudina{background:linear-gradient(135deg,#D4EFC4,#A8D980)}
@@ -289,14 +289,16 @@ section{padding:100px 60px}
 .hi{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(250,247,240,0.65)}
 .hi::before{content:'✓';width:22px;height:22px;background:rgba(201,146,42,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold2);flex-shrink:0}
 .hamper-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.btn-gpay-hamper{
+
+/* Hamper UPI button */
+.btn-upi-hamper{
   display:inline-flex;align-items:center;gap:8px;
-  background:#1A73E8;color:#fff;
+  background:var(--ink);color:var(--gold2);
   font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;
-  padding:16px 28px;border-radius:8px;border:none;cursor:pointer;
+  padding:16px 28px;border-radius:8px;border:1px solid rgba(201,146,42,0.3);cursor:pointer;
   transition:background 0.2s,box-shadow 0.2s,transform 0.2s;
 }
-.btn-gpay-hamper:hover{background:#1558b0;transform:translateY(-2px);box-shadow:0 2px 8px rgba(26,115,232,0.3)}
+.btn-upi-hamper:hover{background:rgba(201,146,42,0.15);transform:translateY(-2px);box-shadow:0 2px 8px rgba(201,146,42,0.2)}
 
 /* ═══════════════════════════════════════════
    WHY MACKS
@@ -454,6 +456,153 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
 @keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.35)}50%{box-shadow:0 8px 32px rgba(37,211,102,0.55),0 0 0 8px rgba(37,211,102,0.08)}}
 
 /* ═══════════════════════════════════════════
+   FLOATING CART BUTTON
+═══════════════════════════════════════════ */
+.cart-float{
+  position:fixed;bottom:96px;left:28px;z-index:998;
+  width:56px;height:56px;border-radius:50%;
+  background:var(--gold);
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(201,146,42,0.45);
+  transition:transform 0.2s,box-shadow 0.2s;
+  border:none;cursor:pointer;
+}
+.cart-float.visible{display:flex}
+.cart-float:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(201,146,42,0.6)}
+.cart-float-icon{font-size:24px;line-height:1}
+.cart-float-badge{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--ink);color:var(--gold2);
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--gold);
+}
+
+/* ═══════════════════════════════════════════
+   CART OVERLAY
+═══════════════════════════════════════════ */
+.cart-overlay{
+  position:fixed;inset:0;z-index:1999;
+  background:rgba(0,0,0,0.55);
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s ease;
+}
+.cart-overlay.open{opacity:1;pointer-events:auto}
+
+/* ═══════════════════════════════════════════
+   CART DRAWER
+═══════════════════════════════════════════ */
+.cart-drawer{
+  position:fixed;top:0;right:0;bottom:0;z-index:2000;
+  width:380px;max-width:100vw;
+  background:var(--ink2);
+  border-left:2px solid var(--gold);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  box-shadow:-8px 0 40px rgba(0,0,0,0.5);
+}
+.cart-drawer.open{transform:translateX(0)}
+
+.cart-drawer-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 24px 20px;
+  border-bottom:1px solid rgba(201,146,42,0.15);
+  flex-shrink:0;
+}
+.cart-drawer-title{
+  font-family:'Syne',sans-serif;font-size:20px;font-weight:700;
+  color:var(--cream);letter-spacing:-0.3px;
+}
+.cart-drawer-close{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(250,247,240,0.06);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:rgba(250,247,240,0.5);
+  transition:background 0.2s,color 0.2s;
+}
+.cart-drawer-close:hover{background:rgba(250,247,240,0.12);color:var(--cream)}
+
+.cart-items{
+  flex:1;overflow-y:auto;padding:16px 24px;
+}
+.cart-items::-webkit-scrollbar{width:4px}
+.cart-items::-webkit-scrollbar-track{background:transparent}
+.cart-items::-webkit-scrollbar-thumb{background:rgba(201,146,42,0.3);border-radius:2px}
+
+.cart-empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;gap:12px;color:rgba(250,247,240,0.35);
+  font-family:'Syne',sans-serif;font-size:14px;
+}
+.cart-empty-icon{font-size:48px;opacity:0.4}
+
+.cart-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid rgba(201,146,42,0.08);
+}
+.cart-item:last-child{border-bottom:none}
+.cart-item-emoji{font-size:28px;flex-shrink:0;width:44px;height:44px;background:rgba(201,146,42,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--cream);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-item-price{font-size:13px;color:var(--gold2);font-weight:500}
+.cart-qty{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.cart-qty-btn{
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(201,146,42,0.12);border:1px solid rgba(201,146,42,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;color:var(--gold2);
+  cursor:pointer;transition:background 0.2s;
+  line-height:1;padding:0;
+}
+.cart-qty-btn:hover{background:rgba(201,146,42,0.25)}
+.cart-qty-num{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--cream);min-width:20px;text-align:center}
+
+/* Cart checkout section */
+.cart-checkout{
+  flex-shrink:0;
+  border-top:1px solid rgba(201,146,42,0.2);
+  padding:20px 24px 24px;
+  background:rgba(0,0,0,0.2);
+}
+.cart-subtotal{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;
+}
+.cart-subtotal-label{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:rgba(250,247,240,0.5);text-transform:uppercase;letter-spacing:1px}
+.cart-subtotal-amount{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold2)}
+
+.cart-pay-label{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(250,247,240,0.35);margin-bottom:10px;
+}
+.cart-pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.cart-pay-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  width:100%;padding:12px 0;border-radius:8px;border:none;cursor:pointer;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+  color:#fff;letter-spacing:0.3px;
+  transition:opacity 0.2s,transform 0.2s;
+}
+.cart-pay-btn:hover{opacity:0.88;transform:translateY(-1px)}
+.cart-pay-btn.gpay{background:#1A73E8}
+.cart-pay-btn.phonepe{background:#5F259F}
+.cart-pay-btn.paytm{background:#00BAF2}
+.cart-pay-btn.whatsapp{background:#25D366}
+.cart-pay-btn-icon{font-size:14px;line-height:1}
+
+.cart-upi-note{
+  font-size:11px;color:rgba(250,247,240,0.35);text-align:center;
+  line-height:1.5;margin-top:8px;
+  display:none;
+}
+.cart-upi-note.show{display:block}
+
+/* ═══════════════════════════════════════════
    UPI PAYMENT TOAST
 ═══════════════════════════════════════════ */
 .upi-toast{
@@ -480,6 +629,49 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
   transition:background 0.2s;
 }
 .upi-toast-wa:hover{background:#1db954}
+
+/* ═══════════════════════════════════════════
+   HAMPER UPI MODAL
+═══════════════════════════════════════════ */
+.hamper-modal-overlay{
+  position:fixed;inset:0;z-index:3000;
+  background:rgba(0,0,0,0.6);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s ease;
+  padding:24px;
+}
+.hamper-modal-overlay.open{opacity:1;pointer-events:auto}
+.hamper-modal{
+  background:var(--ink2);border:1px solid rgba(201,146,42,0.25);
+  border-radius:20px;padding:32px;width:100%;max-width:380px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.6);
+  transform:translateY(20px);
+  transition:transform 0.25s ease;
+}
+.hamper-modal-overlay.open .hamper-modal{transform:translateY(0)}
+.hamper-modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.hamper-modal-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--cream)}
+.hamper-modal-close{width:32px;height:32px;border-radius:50%;background:rgba(250,247,240,0.06);border:none;cursor:pointer;font-size:16px;color:rgba(250,247,240,0.5);display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+.hamper-modal-close:hover{background:rgba(250,247,240,0.12);color:var(--cream)}
+.hamper-modal-sub{font-size:13px;color:rgba(250,247,240,0.4);margin-bottom:24px}
+.hamper-modal-amount{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold2);margin-bottom:20px}
+.hamper-pay-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,247,240,0.35);margin-bottom:10px}
+.hamper-pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hamper-pay-btn{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  width:100%;padding:14px 0;border-radius:8px;border:none;cursor:pointer;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+  color:#fff;letter-spacing:0.3px;
+  transition:opacity 0.2s,transform 0.2s;
+}
+.hamper-pay-btn:hover{opacity:0.88;transform:translateY(-1px)}
+.hamper-pay-btn.gpay{background:#1A73E8}
+.hamper-pay-btn.phonepe{background:#5F259F}
+.hamper-pay-btn.paytm{background:#00BAF2}
+.hamper-pay-btn.whatsapp{background:#25D366}
+.hamper-upi-note{font-size:11px;color:rgba(250,247,240,0.35);text-align:center;line-height:1.5;margin-top:12px;display:none}
+.hamper-upi-note.show{display:block}
 
 /* ═══════════════════════════════════════════
    MOBILE NAV MENU
@@ -538,7 +730,10 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
   #story{padding:72px 24px}
   .pay-strip{padding:14px 24px;flex-direction:column;gap:6px}
   .hamper-actions{flex-direction:column;align-items:stretch}
-  .hamper-actions .btn-primary,.hamper-actions .btn-gpay-hamper{text-align:center;justify-content:center}
+  .hamper-actions .btn-primary,.hamper-actions .btn-upi-hamper{text-align:center;justify-content:center}
+  .cart-drawer{width:100vw}
+  .cart-pay-grid{grid-template-columns:1fr 1fr}
+  .hamper-pay-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
@@ -630,11 +825,11 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
         <p class="flav-desc">Cool, refreshing mint. Dangerously snackable — you will finish the jar.</p>
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Pudina%20Macks." target="_blank" class="flav-add">+</a>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Pudina','🌿')" aria-label="Add Pudina to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Pudina">0</span>
+          </div>
         </div>
-        <button class="btn-gpay" onclick="openUPI(199,'Pudina+Macks+1+Jar')">
-          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
-        </button>
       </div>
     </div>
     <div class="flav-card reveal reveal-d2">
@@ -644,11 +839,11 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
         <p class="flav-desc">Rich, indulgent, cheesy. Tastes like cheating. It is not cheating.</p>
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Smokey%20Cheese%20Macks." target="_blank" class="flav-add">+</a>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Smokey Cheese','🧀')" aria-label="Add Smokey Cheese to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Smokey Cheese">0</span>
+          </div>
         </div>
-        <button class="btn-gpay" onclick="openUPI(199,'Smokey+Cheese+Macks+1+Jar')">
-          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
-        </button>
       </div>
     </div>
     <div class="flav-card reveal reveal-d3">
@@ -658,11 +853,11 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
         <p class="flav-desc">Spicy, punchy, bold. Post-gym dopamine. Period.</p>
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Peri%20Peri%20Macks." target="_blank" class="flav-add">+</a>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Peri Peri','🔥')" aria-label="Add Peri Peri to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Peri Peri">0</span>
+          </div>
         </div>
-        <button class="btn-gpay" onclick="openUPI(199,'Peri+Peri+Macks+1+Jar')">
-          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
-        </button>
       </div>
     </div>
     <div class="flav-card reveal reveal-d4">
@@ -672,11 +867,11 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
         <p class="flav-desc">Masala-forward, bold, desi. Tastes like nani's kitchen — but crunchier.</p>
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Punjabi%20Tadka%20Macks." target="_blank" class="flav-add">+</a>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Punjabi Tadka','🫙')" aria-label="Add Punjabi Tadka to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Punjabi Tadka">0</span>
+          </div>
         </div>
-        <button class="btn-gpay" onclick="openUPI(199,'Punjabi+Tadka+Macks+1+Jar')">
-          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
-        </button>
       </div>
     </div>
   </div>
@@ -684,8 +879,8 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
 
 <!-- PAYMENT INFO STRIP -->
 <div class="pay-strip">
-  <span class="pay-strip-icon">💳</span>
-  <p class="pay-strip-text">Pay instantly via GPay / PhonePe / any UPI app &rarr; share payment screenshot on WhatsApp &rarr; order confirmed ✓</p>
+  <span class="pay-strip-icon">🛒</span>
+  <p class="pay-strip-text">Add to cart &rarr; choose GPay / PhonePe / Paytm / WhatsApp &rarr; done ✓</p>
 </div>
 
 <!-- HAMPER -->
@@ -718,8 +913,8 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
       </div>
       <div class="hamper-actions">
         <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20the%20All-Four%20Hamper." class="btn-primary" target="_blank">Order the Hamper →</a>
-        <button class="btn-gpay-hamper" onclick="openUPI(649,'All-Four+Macks+Hamper')">
-          <span style="font-size:15px">₹</span> Pay ₹649 via GPay
+        <button class="btn-upi-hamper" onclick="openHamperModal()">
+          <span style="font-size:15px">💳</span> Pay via UPI
         </button>
       </div>
     </div>
@@ -1017,6 +1212,51 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
   </svg>
 </a>
 
+<!-- FLOATING CART BUTTON -->
+<button class="cart-float" id="cart-float" onclick="openCart()" aria-label="View cart">
+  <span class="cart-float-icon">🛒</span>
+  <span class="cart-float-badge" id="cart-float-badge">0</span>
+</button>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <span class="cart-drawer-title">Your Cart 🛒</span>
+    <button class="cart-drawer-close" onclick="closeCart()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <span class="cart-empty-icon">🛒</span>
+      <span>Your cart is empty</span>
+    </div>
+  </div>
+  <div class="cart-checkout" id="cart-checkout" style="display:none">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-amount" id="cart-subtotal-amount">₹0</span>
+    </div>
+    <p class="cart-pay-label">How would you like to pay?</p>
+    <div class="cart-pay-grid">
+      <button class="cart-pay-btn gpay" onclick="cartPayUPI('gpay')">
+        <span class="cart-pay-btn-icon">G</span> GPay
+      </button>
+      <button class="cart-pay-btn phonepe" onclick="cartPayUPI('phonepe')">
+        <span class="cart-pay-btn-icon">P</span> PhonePe
+      </button>
+      <button class="cart-pay-btn paytm" onclick="cartPayUPI('paytm')">
+        <span class="cart-pay-btn-icon">₹</span> Paytm
+      </button>
+      <button class="cart-pay-btn whatsapp" onclick="cartPayWhatsApp()">
+        <span class="cart-pay-btn-icon">💬</span> WhatsApp
+      </button>
+    </div>
+    <p class="cart-upi-note" id="cart-upi-note">After payment, tap WhatsApp below to confirm your order</p>
+  </div>
+</div>
+
 <!-- UPI TOAST -->
 <div class="upi-toast" id="upi-toast">
   <p class="upi-toast-text">Payment opened! After paying, send your screenshot to WhatsApp to confirm your order.</p>
@@ -1026,49 +1266,236 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
   </a>
 </div>
 
+<!-- HAMPER UPI MODAL -->
+<div class="hamper-modal-overlay" id="hamper-modal-overlay" onclick="closeHamperModal(event)">
+  <div class="hamper-modal" onclick="event.stopPropagation()">
+    <div class="hamper-modal-header">
+      <span class="hamper-modal-title">Pay for Hamper 🎁</span>
+      <button class="hamper-modal-close" onclick="closeHamperModal(null)" aria-label="Close">✕</button>
+    </div>
+    <p class="hamper-modal-sub">All-Four Macks Hamper — 4 jars</p>
+    <p class="hamper-modal-amount">₹649</p>
+    <p class="hamper-pay-label">Choose payment method</p>
+    <div class="hamper-pay-grid">
+      <button class="hamper-pay-btn gpay" onclick="hamperPayUPI('gpay')">
+        <span>G</span> GPay
+      </button>
+      <button class="hamper-pay-btn phonepe" onclick="hamperPayUPI('phonepe')">
+        <span>P</span> PhonePe
+      </button>
+      <button class="hamper-pay-btn paytm" onclick="hamperPayUPI('paytm')">
+        <span>₹</span> Paytm
+      </button>
+      <button class="hamper-pay-btn whatsapp" onclick="hamperPayWhatsApp()">
+        <span>💬</span> WhatsApp
+      </button>
+    </div>
+    <p class="hamper-upi-note" id="hamper-upi-note">After payment, tap WhatsApp above to confirm your order</p>
+  </div>
+</div>
+
 <script>
-// Nav scroll
-window.addEventListener('scroll',()=>{
+/* ════════════════════════════════════════
+   NAV + MENU
+════════════════════════════════════════ */
+window.addEventListener('scroll',function(){
   document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60)
 })
 
-// Mobile menu
 function toggleMenu(){
   document.getElementById('mob-menu').classList.toggle('open')
 }
 
-// Scroll reveal
-const obs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})
 },{threshold:0.1,rootMargin:'0px 0px -40px 0px'})
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)})
 
-// UPI / GPay payment
+/* ════════════════════════════════════════
+   CART STATE
+════════════════════════════════════════ */
+var cart = {}; // { 'Pudina': {qty:2, emoji:'🌿'}, ... }
+var PRICE = 199;
+
+function cartTotal(){
+  var t = 0;
+  Object.keys(cart).forEach(function(k){ t += cart[k].qty * PRICE; });
+  return t;
+}
+
+function cartItemCount(){
+  var c = 0;
+  Object.keys(cart).forEach(function(k){ c += cart[k].qty; });
+  return c;
+}
+
+function addToCart(name, emoji){
+  if(!cart[name]) cart[name] = {qty:0, emoji:emoji};
+  cart[name].qty++;
+  updateCartUI();
+}
+
+function changeQty(name, delta){
+  if(!cart[name]) return;
+  cart[name].qty += delta;
+  if(cart[name].qty <= 0) delete cart[name];
+  updateCartUI();
+}
+
+function updateCartUI(){
+  // Update card badges
+  var flavours = ['Pudina','Smokey Cheese','Peri Peri','Punjabi Tadka'];
+  flavours.forEach(function(f){
+    var badge = document.getElementById('badge-' + f);
+    if(!badge) return;
+    var qty = cart[f] ? cart[f].qty : 0;
+    if(qty > 0){
+      badge.textContent = qty;
+      badge.classList.remove('hidden');
+    } else {
+      badge.classList.add('hidden');
+    }
+  });
+
+  // Update floating cart button
+  var total = cartItemCount();
+  var floatBtn = document.getElementById('cart-float');
+  var floatBadge = document.getElementById('cart-float-badge');
+  if(total > 0){
+    floatBtn.classList.add('visible');
+    floatBadge.textContent = total;
+  } else {
+    floatBtn.classList.remove('visible');
+  }
+
+  // Update cart drawer contents
+  renderCartDrawer();
+}
+
+function renderCartDrawer(){
+  var container = document.getElementById('cart-items');
+  var checkout = document.getElementById('cart-checkout');
+  var keys = Object.keys(cart);
+
+  if(keys.length === 0){
+    container.innerHTML = '<div class="cart-empty"><span class="cart-empty-icon">🛒</span><span>Your cart is empty</span></div>';
+    checkout.style.display = 'none';
+    return;
+  }
+
+  checkout.style.display = 'block';
+  var html = '';
+  keys.forEach(function(name){
+    var item = cart[name];
+    var linePrice = item.qty * PRICE;
+    html += '<div class="cart-item">'
+      + '<div class="cart-item-emoji">' + item.emoji + '</div>'
+      + '<div class="cart-item-info">'
+      + '<p class="cart-item-name">' + name + '</p>'
+      + '<p class="cart-item-price">₹' + linePrice + '</p>'
+      + '</div>'
+      + '<div class="cart-qty">'
+      + '<button class="cart-qty-btn" onclick="changeQty(\'' + name.replace(/'/g,"\\'") + '\',-1)" aria-label="Decrease">−</button>'
+      + '<span class="cart-qty-num">' + item.qty + '</span>'
+      + '<button class="cart-qty-btn" onclick="changeQty(\'' + name.replace(/'/g,"\\'") + '\',1)" aria-label="Increase">+</button>'
+      + '</div>'
+      + '</div>';
+  });
+  container.innerHTML = html;
+
+  // Update subtotal
+  document.getElementById('cart-subtotal-amount').textContent = '₹' + cartTotal();
+}
+
+/* ════════════════════════════════════════
+   CART DRAWER OPEN/CLOSE
+════════════════════════════════════════ */
+function openCart(){
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart(){
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ════════════════════════════════════════
+   UPI PAYMENT HELPERS
+════════════════════════════════════════ */
 var _toastTimer = null;
-function openUPI(amount, note) {
-  var pa = 'aaryansr05@okicici';
-  var pn = 'Macks%20Fox%20Harvest%20Foods';
-  var params = 'pa=' + pa + '&pn=' + pn + '&am=' + amount + '&cu=INR&tn=' + note;
-  var upiLink = 'upi://pay?' + params;
 
-  // Use anchor click — most reliable way to trigger UPI app picker on Android
+function openUPI(amount, note){
+  var upiUrl = 'upi://pay?pa=aaryansr05@okicici&pn=Macks%20Fox%20Harvest%20Foods&am=' + amount + '&cu=INR&tn=' + encodeURIComponent(note);
   var a = document.createElement('a');
-  a.href = upiLink;
+  a.href = upiUrl;
   a.style.display = 'none';
   document.body.appendChild(a);
   a.click();
   setTimeout(function(){ document.body.removeChild(a); }, 500);
-
   showUPIToast();
 }
 
-function showUPIToast() {
+function showUPIToast(){
   var toast = document.getElementById('upi-toast');
   toast.classList.add('show');
-  if (_toastTimer) clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(function() {
-    toast.classList.remove('show');
-  }, 6000);
+  if(_toastTimer) clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 6000);
+}
+
+/* ════════════════════════════════════════
+   CART PAYMENT ACTIONS
+════════════════════════════════════════ */
+function cartPayUPI(method){
+  var total = cartTotal();
+  if(total === 0) return;
+  openUPI(total, 'Macks+Order');
+  // Show note to also WhatsApp
+  var note = document.getElementById('cart-upi-note');
+  note.classList.add('show');
+}
+
+function cartPayWhatsApp(){
+  var keys = Object.keys(cart);
+  if(keys.length === 0) return;
+  var lines = keys.map(function(name){
+    var item = cart[name];
+    return '• ' + name + ' × ' + item.qty + ' — ₹' + (item.qty * PRICE);
+  });
+  var msg = 'Hi Macks! 🛒 My order:\n' + lines.join('\n') + '\nTotal: ₹' + cartTotal() + '\nPlease confirm my order!';
+  var url = 'https://wa.me/919310419066?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+
+/* ════════════════════════════════════════
+   HAMPER MODAL
+════════════════════════════════════════ */
+function openHamperModal(){
+  document.getElementById('hamper-modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeHamperModal(e){
+  if(e === null || e.target === document.getElementById('hamper-modal-overlay')){
+    document.getElementById('hamper-modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('hamper-upi-note').classList.remove('show');
+  }
+}
+
+function hamperPayUPI(method){
+  openUPI(649, 'All-Four+Macks+Hamper');
+  document.getElementById('hamper-upi-note').classList.add('show');
+}
+
+function hamperPayWhatsApp(){
+  var msg = 'Hi Macks! I want to order the All-Four Hamper for ₹649. Please confirm my order!';
+  window.open('https://wa.me/919310419066?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 </body>
