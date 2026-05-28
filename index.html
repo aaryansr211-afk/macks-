@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Macks — Premium Roasted Makhana. Snack Smart. Snack Loud.</title>
+<meta name="description" content="Premium hand-roasted foxnuts in four bold flavours. High protein, zero guilt. By Fox Harvest Foods.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#100C04;
+  --ink2:#2A1F0E;
+  --ink3:#5C4A2A;
+  --cream:#FAF7F0;
+  --cream2:#F2EDE0;
+  --cream3:#E8E0CC;
+  --gold:#C9922A;
+  --gold2:#E8B84B;
+  --gold3:#F5D070;
+  --gold-pale:#FDF6E3;
+  --white:#FFFFFF;
+  --r:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--cream);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ═══════════════════════════════════════════
+   NOISE TEXTURE OVERLAY
+═══════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-size:180px;pointer-events:none;z-index:9999;opacity:0.4;
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:20px 60px;display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.3s,padding 0.3s,backdrop-filter 0.3s;
+}
+nav.scrolled{background:rgba(16,12,4,0.85);backdrop-filter:blur(20px);padding:14px 60px;border-bottom:1px solid rgba(201,146,42,0.1)}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:16px;color:var(--ink);letter-spacing:-1px}
+.nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;color:var(--cream)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(250,247,240,0.55);transition:color 0.2s}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{background:var(--gold);color:var(--ink);font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:10px 22px;border-radius:6px;transition:background 0.2s,transform 0.2s}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.nav-ham span{width:24px;height:2px;background:var(--cream);border-radius:2px;transition:all 0.3s}
+
+/* ═══════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════ */
+.ticker{background:var(--gold);padding:10px 0;overflow:hidden;position:relative;z-index:2}
+.ticker-inner{display:flex;gap:0;width:max-content;animation:tick 28s linear infinite}
+.ticker-inner span{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ink);white-space:nowrap;padding:0 28px}
+.ticker-inner span::after{content:'✦';margin-left:28px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;padding:120px 60px 80px;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,146,42,0.12) 0%, transparent 60%),
+             radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,146,42,0.06) 0%, transparent 60%),
+             var(--ink);
+}
+.hero-circle{
+  position:absolute;right:-120px;top:50%;transform:translateY(-50%);
+  width:600px;height:600px;border-radius:50%;
+  border:1px solid rgba(201,146,42,0.08);
+}
+.hero-circle::before{content:'';position:absolute;inset:50px;border-radius:50%;border:1px solid rgba(201,146,42,0.06)}
+.hero-circle::after{content:'';position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(201,146,42,0.04)}
+.hero-content{position:relative;z-index:2;max-width:720px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:24px;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold2)}
+.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,7vw,96px);
+  line-height:0.95;letter-spacing:-3px;
+  color:var(--cream);margin-bottom:12px;
+  animation:fadeUp 0.8s 0.1s ease both;
+}
+.hero-h1 em{font-style:italic;color:var(--gold2)}
+.hero-h1 .stroke{-webkit-text-stroke:1px var(--cream);color:transparent}
+.hero-tagline{
+  font-size:clamp(14px,1.5vw,17px);color:rgba(250,247,240,0.5);
+  max-width:480px;line-height:1.75;margin-bottom:44px;
+  font-weight:300;
+  animation:fadeUp 0.8s 0.2s ease both;
+}
+.hero-actions{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  animation:fadeUp 0.8s 0.3s ease both;
+}
+.btn-primary{
+  background:var(--gold);color:var(--ink);
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:16px 36px;border-radius:8px;
+  transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,146,42,0.3)}
+.btn-ghost{
+  border:1px solid rgba(250,247,240,0.2);color:rgba(250,247,240,0.7);
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  padding:16px 36px;border-radius:8px;
+  transition:all 0.2s;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:48px;margin-top:72px;padding-top:40px;
+  border-top:1px solid rgba(201,146,42,0.12);
+  animation:fadeUp 0.8s 0.4s ease both;
+}
+.hs{display:flex;flex-direction:column;gap:4px}
+.hs-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold2);line-height:1}
+.hs-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,247,240,0.35)}
+.hero-float{
+  position:absolute;right:60px;top:50%;transform:translateY(-50%);
+  z-index:2;display:flex;flex-direction:column;gap:16px;align-items:center;
+}
+.hf-jar{
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, rgba(201,146,42,0.25), rgba(201,146,42,0.05));
+  border:1px solid rgba(201,146,42,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:72px;
+  animation:float 4s ease-in-out infinite;
+}
+.hf-badge{
+  background:rgba(201,146,42,0.12);border:1px solid rgba(201,146,42,0.25);
+  border-radius:40px;padding:8px 20px;
+  font-size:12px;font-weight:500;color:var(--gold2);letter-spacing:0.5px;
+  animation:float 4s 0.5s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE
+═══════════════════════════════════════════ */
+section{padding:100px 60px}
+.sec-eye{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sec-eye::before{content:'';width:24px;height:1px;background:var(--gold)}
+.sec-h2{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,56px);line-height:1.05;letter-spacing:-1.5px;color:var(--cream);margin-bottom:16px}
+.sec-h2 em{font-style:italic;color:var(--gold2)}
+.sec-body{font-size:15px;color:rgba(250,247,240,0.5);max-width:520px;line-height:1.8;font-weight:300}
+.sec-header{margin-bottom:56px}
+
+/* ═══════════════════════════════════════════
+   FLAVOURS
+═══════════════════════════════════════════ */
+#flavours{background:var(--cream);color:var(--ink)}
+#flavours .sec-eye{color:var(--gold)}
+#flavours .sec-h2{color:var(--ink)}
+#flavours .sec-body{color:rgba(16,12,4,0.5)}
+.flavours-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.flav-card{
+  background:#fff;border-radius:16px;overflow:hidden;
+  border:1px solid var(--cream3);
+  transition:transform 0.3s,box-shadow 0.3s;
+  cursor:pointer;position:relative;
+}
+.flav-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(16,12,4,0.12)}
+.flav-img{
+  height:220px;display:flex;align-items:center;justify-content:center;
+  font-size:80px;position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.flav-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,0.04));
+}
+.flav-body{padding:20px 22px 24px}
+.flav-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.flav-desc{font-size:13px;color:rgba(16,12,4,0.45);margin-bottom:18px;line-height:1.5}
+.flav-footer{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.flav-price{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink)}
+.flav-price span{font-size:13px;color:rgba(16,12,4,0.35);font-family:'DM Sans',sans-serif;font-weight:400;margin-left:4px}
+.flav-add{
+  background:var(--ink);color:var(--cream);
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:300;
+  transition:background 0.2s,transform 0.2s;
+}
+.flav-add:hover{background:var(--gold);transform:scale(1.1)}
+.flav-tag{
+  position:absolute;top:14px;left:14px;
+  background:var(--ink);color:var(--gold2);
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;z-index:2;
+}
+
+/* GPay Button */
+.btn-gpay{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  width:100%;background:#1A73E8;color:#fff;
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;
+  padding:8px 16px;border-radius:6px;border:none;cursor:pointer;
+  transition:background 0.2s,box-shadow 0.2s,transform 0.2s;
+  margin-top:4px;
+}
+.btn-gpay:hover{background:#1558b0;transform:translateY(-1px);box-shadow:0 2px 8px rgba(26,115,232,0.3)}
+.btn-gpay-icon{font-size:13px;line-height:1}
+
+/* Flavour colour accents */
+.fc-pudina{background:linear-gradient(135deg,#D4EFC4,#A8D980)}
+.fc-cheese{background:linear-gradient(135deg,#FCEBC8,#F5D080)}
+.fc-peri{background:linear-gradient(135deg,#FCCFCF,#F08080)}
+.fc-tadka{background:linear-gradient(135deg,#FFE4C4,#F5A855)}
+
+/* ═══════════════════════════════════════════
+   PAYMENT INFO STRIP
+═══════════════════════════════════════════ */
+.pay-strip{
+  background:var(--ink2);
+  border-top:1px solid rgba(201,146,42,0.15);
+  border-bottom:1px solid rgba(201,146,42,0.15);
+  padding:18px 60px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  text-align:center;
+}
+.pay-strip-text{
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.5px;
+  color:var(--gold2);
+}
+.pay-strip-icon{font-size:16px}
+
+/* ═══════════════════════════════════════════
+   HAMPER
+═══════════════════════════════════════════ */
+#hamper{
+  background:var(--ink2);
+  position:relative;overflow:hidden;
+}
+#hamper::before{
+  content:'';position:absolute;right:-200px;top:50%;transform:translateY(-50%);
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,146,42,0.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hamper-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hamper-visual{
+  background:radial-gradient(circle at 40% 40%,rgba(201,146,42,0.2),rgba(201,146,42,0.04));
+  border-radius:24px;border:1px solid rgba(201,146,42,0.15);
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.hamper-emoji{font-size:100px;animation:float 5s ease-in-out infinite}
+.hamper-badge{
+  position:absolute;top:24px;right:24px;
+  background:var(--gold);color:var(--ink);
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:6px 14px;border-radius:20px;
+}
+.hamper-jars{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+.hj{width:36px;height:44px;border-radius:6px;border:1px solid rgba(201,146,42,0.3);font-size:20px;display:flex;align-items:center;justify-content:center}
+.hamper-content .sec-h2{margin-bottom:20px}
+.hamper-price{margin:28px 0;display:flex;align-items:baseline;gap:12px}
+.hp-new{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--gold2);line-height:1}
+.hp-old{font-size:20px;color:rgba(250,247,240,0.3);text-decoration:line-through}
+.hp-save{background:rgba(201,146,42,0.15);border:1px solid rgba(201,146,42,0.3);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--gold2);font-weight:500}
+.hamper-includes{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.hi{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(250,247,240,0.65)}
+.hi::before{content:'✓';width:22px;height:22px;background:rgba(201,146,42,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold2);flex-shrink:0}
+.hamper-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-gpay-hamper{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#1A73E8;color:#fff;
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;
+  padding:16px 28px;border-radius:8px;border:none;cursor:pointer;
+  transition:background 0.2s,box-shadow 0.2s,transform 0.2s;
+}
+.btn-gpay-hamper:hover{background:#1558b0;transform:translateY(-2px);box-shadow:0 2px 8px rgba(26,115,232,0.3)}
+
+/* ═══════════════════════════════════════════
+   WHY MACKS
+═══════════════════════════════════════════ */
+#why{background:var(--cream);color:var(--ink);position:relative}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:60px;border-radius:20px;overflow:hidden}
+.why-card{
+  background:#fff;padding:44px 40px;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.why-card:hover{background:var(--gold-pale)}
+.why-card::before{content:attr(data-num);position:absolute;right:-16px;top:-20px;font-family:'Playfair Display',serif;font-size:140px;font-weight:900;color:rgba(16,12,4,0.03);line-height:1;user-select:none}
+.wc-icon{font-size:36px;margin-bottom:18px}
+.wc-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.wc-body{font-size:14px;color:rgba(16,12,4,0.5);line-height:1.75}
+.why-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px;padding:40px;background:var(--ink);border-radius:20px;color:var(--cream)}
+.wsr-item{text-align:center}
+.wsr-n{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--gold2);line-height:1;margin-bottom:6px}
+.wsr-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,247,240,0.35)}
+
+/* ═══════════════════════════════════════════
+   COMING SOON
+═══════════════════════════════════════════ */
+#coming{background:var(--ink);position:relative;overflow:hidden}
+#coming::before{content:'';position:absolute;left:-300px;bottom:-200px;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,42,0.06) 0%,transparent 60%);pointer-events:none}
+.coming-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.coming-card{
+  border:1px solid rgba(201,146,42,0.12);border-radius:16px;padding:32px;
+  display:flex;align-items:center;gap:24px;
+  background:rgba(201,146,42,0.03);
+  transition:border-color 0.3s,background 0.3s;
+}
+.coming-card:hover{border-color:rgba(201,146,42,0.3);background:rgba(201,146,42,0.06)}
+.coming-emoji{font-size:48px;flex-shrink:0;width:80px;height:80px;background:rgba(201,146,42,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.coming-info{}
+.coming-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.coming-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--cream);margin-bottom:4px}
+.coming-desc{font-size:13px;color:rgba(250,247,240,0.4)}
+.coming-notify{
+  margin-top:12px;display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--gold2);border-bottom:1px dashed rgba(232,184,75,0.4);padding-bottom:1px;
+}
+
+/* ═══════════════════════════════════════════
+   REVIEWS
+═══════════════════════════════════════════ */
+#reviews{background:var(--ink2);overflow:hidden;padding:100px 0}
+.reviews-header{padding:0 60px;margin-bottom:56px}
+.reviews-track{display:flex;gap:20px;width:max-content;animation:scroll 35s linear infinite}
+.reviews-track:hover{animation-play-state:paused}
+.rev-card{
+  background:rgba(250,247,240,0.04);border:1px solid rgba(201,146,42,0.1);
+  border-radius:16px;padding:32px 28px;width:320px;flex-shrink:0;
+}
+.rev-stars{color:var(--gold2);font-size:14px;letter-spacing:3px;margin-bottom:16px}
+.rev-text{font-size:14px;color:rgba(250,247,240,0.7);line-height:1.75;font-style:italic;margin-bottom:20px}
+.rev-author{display:flex;align-items:center;gap:12px}
+.rev-av{width:36px;height:36px;border-radius:50%;background:rgba(201,146,42,0.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--gold2)}
+.rev-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--cream)}
+.rev-loc{font-size:11px;color:rgba(250,247,240,0.3)}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════
+   WHERE TO FIND
+═══════════════════════════════════════════ */
+#find{background:var(--cream);color:var(--ink)}
+#find .sec-eye{color:var(--gold)}
+#find .sec-h2{color:var(--ink)}
+#find .sec-body{color:rgba(16,12,4,0.5)}
+.find-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.find-card{
+  border-radius:16px;padding:32px 28px;border:1px solid var(--cream3);background:#fff;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.find-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(16,12,4,0.08)}
+.find-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.find-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.find-list{display:flex;flex-direction:column;gap:6px}
+.find-list li{font-size:13px;color:rgba(16,12,4,0.55);list-style:none;display:flex;align-items:center;gap:8px}
+.find-list li::before{content:'→';color:var(--gold);font-size:11px}
+.find-badge{display:inline-block;margin-top:16px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;font-weight:600}
+
+/* ═══════════════════════════════════════════
+   STORY / ABOUT STRIP
+═══════════════════════════════════════════ */
+#story{background:var(--ink);position:relative;overflow:hidden;padding:100px 60px}
+.story-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.story-left{}
+.story-quote{
+  font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,44px);
+  font-style:italic;line-height:1.25;color:var(--cream);margin-bottom:32px;
+  position:relative;padding-left:28px;
+}
+.story-quote::before{content:'"';position:absolute;left:0;top:-8px;font-size:72px;color:var(--gold2);opacity:0.4;line-height:1}
+.story-founders{display:flex;gap:16px;margin-top:32px}
+.sf{display:flex;align-items:center;gap:12px;background:rgba(201,146,42,0.08);border:1px solid rgba(201,146,42,0.15);border-radius:12px;padding:14px 18px}
+.sf-av{width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--ink)}
+.sf-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--cream)}
+.sf-role{font-size:11px;color:rgba(250,247,240,0.35)}
+.story-right{display:flex;flex-direction:column;gap:20px}
+.story-fact{border-left:2px solid rgba(201,146,42,0.3);padding-left:24px}
+.story-fact h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--cream);margin-bottom:6px}
+.story-fact p{font-size:13px;color:rgba(250,247,240,0.45);line-height:1.7}
+
+/* ═══════════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════════ */
+#cta{
+  background:var(--gold);padding:80px 60px;text-align:center;
+  position:relative;overflow:hidden;
+}
+#cta::before{content:'MACKS';position:absolute;left:50%;transform:translateX(-50%);top:50%;margin-top:-80px;font-family:'Playfair Display',serif;font-size:280px;font-weight:900;color:rgba(16,12,4,0.05);white-space:nowrap;pointer-events:none;line-height:1}
+.cta-h{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,72px);font-style:italic;color:var(--ink);margin-bottom:16px;position:relative;z-index:2;line-height:1}
+.cta-sub{font-size:16px;color:rgba(16,12,4,0.55);margin-bottom:36px;position:relative;z-index:2}
+.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative;z-index:2}
+.btn-dark{background:var(--ink);color:var(--cream);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:16px 36px;border-radius:8px;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-dark:hover{background:var(--ink2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(16,12,4,0.3)}
+.btn-outline-dark{border:2px solid var(--ink);color:var(--ink);font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:14px 36px;border-radius:8px;transition:all 0.2s}
+.btn-outline-dark:hover{background:var(--ink);color:var(--gold2)}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:72px 60px 40px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
+.ft-brand .nav-logo{margin-bottom:16px;width:44px;height:44px;font-size:18px}
+.ft-brand .nav-name{font-size:22px;margin-bottom:10px;display:block}
+.ft-tagline{font-size:13px;color:rgba(250,247,240,0.35);line-height:1.7;max-width:260px}
+.ft-col h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(250,247,240,0.3);margin-bottom:18px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-col ul li a{font-size:13px;color:rgba(250,247,240,0.5);transition:color 0.2s}
+.ft-col ul li a:hover{color:var(--gold2)}
+.footer-bottom{border-top:1px solid rgba(250,247,240,0.05);padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fb-copy{font-size:12px;color:rgba(250,247,240,0.2)}
+.fb-right{display:flex;align-items:center;gap:20px}
+.fb-link{font-size:12px;color:rgba(250,247,240,0.25);transition:color 0.2s}
+.fb-link:hover{color:var(--gold2)}
+
+/* ═══════════════════════════════════════════
+   WHATSAPP FLOAT
+═══════════════════════════════════════════ */
+.wa-btn{
+  position:fixed;bottom:28px;right:28px;z-index:998;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,0.35);
+  transition:transform 0.2s,box-shadow 0.2s;
+  animation:waPulse 3s ease-in-out infinite;
+}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(37,211,102,0.5)}
+.wa-btn svg{width:28px;height:28px;fill:white}
+@keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(37,211,102,0.35)}50%{box-shadow:0 8px 32px rgba(37,211,102,0.55),0 0 0 8px rgba(37,211,102,0.08)}}
+
+/* ═══════════════════════════════════════════
+   UPI PAYMENT TOAST
+═══════════════════════════════════════════ */
+.upi-toast{
+  position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);
+  z-index:997;
+  background:#1A2A1A;border:1px solid rgba(201,146,42,0.3);
+  border-radius:12px;padding:14px 22px;
+  display:flex;align-items:center;gap:12px;
+  max-width:480px;width:calc(100% - 48px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s ease,transform 0.3s ease;
+}
+.upi-toast.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.upi-toast-text{
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.3px;
+  color:var(--gold2);flex:1;line-height:1.5;
+}
+.upi-toast-wa{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#25D366;color:#fff;
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.5px;
+  padding:7px 14px;border-radius:6px;white-space:nowrap;flex-shrink:0;
+  transition:background 0.2s;
+}
+.upi-toast-wa:hover{background:#1db954}
+
+/* ═══════════════════════════════════════════
+   MOBILE NAV MENU
+═══════════════════════════════════════════ */
+.mob-menu{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(16,12,4,0.97);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--cream);letter-spacing:-0.5px;transition:color 0.2s}
+.mob-menu a:hover{color:var(--gold2)}
+.mob-close{position:absolute;top:24px;right:24px;font-size:28px;color:rgba(250,247,240,0.4);cursor:pointer}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:0.1s}
+.reveal-d2{transition-delay:0.2s}
+.reveal-d3{transition-delay:0.3s}
+.reveal-d4{transition-delay:0.4s}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .flavours-grid{grid-template-columns:repeat(2,1fr)}
+  .hamper-inner{grid-template-columns:1fr;gap:48px}
+  .hamper-visual{max-width:400px;margin:0 auto}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  .story-inner{grid-template-columns:1fr;gap:48px}
+  .hero-float{display:none}
+}
+@media(max-width:768px){
+  nav{padding:16px 24px}
+  nav.scrolled{padding:12px 24px}
+  .nav-links{display:none}
+  .nav-ham{display:flex}
+  .hero{padding:100px 24px 64px}
+  .hero-stats{gap:28px;flex-wrap:wrap}
+  section{padding:72px 24px}
+  .reviews-header{padding:0 24px}
+  .find-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .coming-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  footer{padding:56px 24px 32px}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+  #cta{padding:60px 24px}
+  .story-founders{flex-direction:column}
+  .hero-stats{padding-top:28px;margin-top:48px}
+  .why-stat-row{grid-template-columns:1fr;gap:20px;padding:28px}
+  #hamper{padding:72px 24px}
+  #story{padding:72px 24px}
+  .pay-strip{padding:14px 24px;flex-direction:column;gap:6px}
+  .hamper-actions{flex-direction:column;align-items:stretch}
+  .hamper-actions .btn-primary,.hamper-actions .btn-gpay-hamper{text-align:center;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">M</div>
+    <span class="nav-name">Macks</span>
+  </a>
+  <div class="nav-links">
+    <a href="#flavours">Flavours</a>
+    <a href="#hamper">Hamper</a>
+    <a href="#find">Find Us</a>
+    <a href="#story">Our Story</a>
+    <a href="https://wa.me/919310419066?text=Hi%20Macks!%20I'd%20like%20to%20order." class="nav-cta" target="_blank">Order Now</a>
+  </div>
+  <div class="nav-ham" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <span class="mob-close" onclick="toggleMenu()">✕</span>
+  <a href="#flavours" onclick="toggleMenu()">Flavours</a>
+  <a href="#hamper" onclick="toggleMenu()">Hamper</a>
+  <a href="#find" onclick="toggleMenu()">Find Us</a>
+  <a href="#story" onclick="toggleMenu()">Our Story</a>
+  <a href="https://wa.me/919310419066" class="btn-primary" onclick="toggleMenu()" target="_blank">Order Now →</a>
+</div>
+
+<!-- TICKER -->
+<div class="ticker" style="margin-top:0;padding-top:72px">
+  <div class="ticker-inner">
+    <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
+    <span>Free Shipping ₹499+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
+    <span>Free Shipping ₹499+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
+    <span>Free Shipping ₹499+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
+    <span>Free Shipping ₹499+</span><span>Made in India</span><span>Zero Guilt</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">A Fox Harvest Foods Brand</p>
+    <h1 class="hero-h1">
+      Snack<br><em>Smart.</em><br>Snack <span class="stroke">Loud.</span>
+    </h1>
+    <p class="hero-tagline">Premium hand-roasted foxnuts in four bold flavours. High protein, zero guilt, beautifully jarred — made for the modern Indian snacker.</p>
+    <div class="hero-actions">
+      <a href="#flavours" class="btn-primary">Shop the Range →</a>
+      <a href="#hamper" class="btn-ghost">All-Four Hamper · ₹649</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><p class="hs-n">4</p><p class="hs-l">Bold Flavours</p></div>
+      <div class="hs"><p class="hs-n">70g</p><p class="hs-l">Per Jar</p></div>
+      <div class="hs"><p class="hs-n">₹199</p><p class="hs-l">Per Jar</p></div>
+      <div class="hs"><p class="hs-n">10g</p><p class="hs-l">Protein / Pack</p></div>
+    </div>
+  </div>
+  <div class="hero-float">
+    <div class="hf-jar">🫙</div>
+    <div class="hf-badge">Roasted, Not Fried ✦</div>
+    <div class="hf-badge">No Artificial Flavours ✦</div>
+  </div>
+</section>
+
+<!-- FLAVOURS -->
+<section id="flavours">
+  <div class="sec-header reveal">
+    <p class="sec-eye">The Lineup</p>
+    <h2 class="sec-h2">Pick your <em>Potion.</em></h2>
+    <p class="sec-body">Four distinct flavours, all roasted in small batches. Each jar is a full 70g of pure, unapologetic snacking.</p>
+  </div>
+  <div class="flavours-grid">
+    <div class="flav-card reveal reveal-d1">
+      <span class="flav-tag">Bestseller</span>
+      <div class="flav-img fc-pudina">🌿</div>
+      <div class="flav-body">
+        <p class="flav-name">Pudina</p>
+        <p class="flav-desc">Cool, refreshing mint. Dangerously snackable — you will finish the jar.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Pudina%20Macks." target="_blank" class="flav-add">+</a>
+        </div>
+        <button class="btn-gpay" onclick="openUPI(199,'Pudina+Macks+1+Jar')">
+          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
+        </button>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d2">
+      <div class="flav-img fc-cheese">🧀</div>
+      <div class="flav-body">
+        <p class="flav-name">Smokey Cheese</p>
+        <p class="flav-desc">Rich, indulgent, cheesy. Tastes like cheating. It is not cheating.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Smokey%20Cheese%20Macks." target="_blank" class="flav-add">+</a>
+        </div>
+        <button class="btn-gpay" onclick="openUPI(199,'Smokey+Cheese+Macks+1+Jar')">
+          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
+        </button>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d3">
+      <div class="flav-img fc-peri">🔥</div>
+      <div class="flav-body">
+        <p class="flav-name">Peri Peri</p>
+        <p class="flav-desc">Spicy, punchy, bold. Post-gym dopamine. Period.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Peri%20Peri%20Macks." target="_blank" class="flav-add">+</a>
+        </div>
+        <button class="btn-gpay" onclick="openUPI(199,'Peri+Peri+Macks+1+Jar')">
+          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
+        </button>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d4">
+      <div class="flav-img fc-tadka">🫙</div>
+      <div class="flav-body">
+        <p class="flav-name">Punjabi Tadka</p>
+        <p class="flav-desc">Masala-forward, bold, desi. Tastes like nani's kitchen — but crunchier.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20Punjabi%20Tadka%20Macks." target="_blank" class="flav-add">+</a>
+        </div>
+        <button class="btn-gpay" onclick="openUPI(199,'Punjabi+Tadka+Macks+1+Jar')">
+          <span class="btn-gpay-icon">₹</span> Pay ₹199 via GPay
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT INFO STRIP -->
+<div class="pay-strip">
+  <span class="pay-strip-icon">💳</span>
+  <p class="pay-strip-text">Pay instantly via GPay / PhonePe / any UPI app &rarr; share payment screenshot on WhatsApp &rarr; order confirmed ✓</p>
+</div>
+
+<!-- HAMPER -->
+<section id="hamper">
+  <div class="hamper-inner">
+    <div class="hamper-visual reveal">
+      <span class="hamper-badge">Best Value · Save ₹67</span>
+      <div class="hamper-emoji">🎁</div>
+      <div class="hamper-jars">
+        <div class="hj">🌿</div>
+        <div class="hj">🧀</div>
+        <div class="hj">🔥</div>
+        <div class="hj">🫙</div>
+      </div>
+    </div>
+    <div class="hamper-content reveal reveal-d2">
+      <p class="sec-eye">Best Value</p>
+      <h2 class="sec-h2">The All-Four <em>Hamper.</em></h2>
+      <p class="sec-body">Every Macks flavour, in one beautifully boxed hamper. Perfect to gift, or to stock your own shelf in serious style.</p>
+      <div class="hamper-price">
+        <span class="hp-new">₹649</span>
+        <span class="hp-old">₹796</span>
+        <span class="hp-save">Save ₹147</span>
+      </div>
+      <div class="hamper-includes">
+        <p class="hi">4 × 70g premium jars — all four flavours</p>
+        <p class="hi">Free shipping pan-India</p>
+        <p class="hi">Gift-ready packaging</p>
+        <p class="hi">Best price vs buying separately</p>
+      </div>
+      <div class="hamper-actions">
+        <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20the%20All-Four%20Hamper." class="btn-primary" target="_blank">Order the Hamper →</a>
+        <button class="btn-gpay-hamper" onclick="openUPI(649,'All-Four+Macks+Hamper')">
+          <span style="font-size:15px">₹</span> Pay ₹649 via GPay
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY MACKS -->
+<section id="why">
+  <div class="sec-header reveal" style="text-align:center;max-width:560px;margin:0 auto 0">
+    <p class="sec-eye" style="justify-content:center">Why Macks?</p>
+    <h2 class="sec-h2">Made from makhana.<br><em>Made for you.</em></h2>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card" data-num="01">
+      <p class="wc-icon">💪</p>
+      <p class="wc-title">High Protein</p>
+      <p class="wc-body">Up to 10g protein per pack. Snack that works as hard as you do — before the gym, after, or during a 3-hour Netflix session.</p>
+    </div>
+    <div class="why-card" data-num="02">
+      <p class="wc-icon">🔥</p>
+      <p class="wc-title">Roasted, Not Fried</p>
+      <p class="wc-body">Air-roasted in small batches. Every foxnut gets that perfect crunch without drowning in oil. The guilt stays out of the jar.</p>
+    </div>
+    <div class="why-card" data-num="03">
+      <p class="wc-icon">🌱</p>
+      <p class="wc-title">100% Natural</p>
+      <p class="wc-body">Real ingredients. Real Indian flavour. No artificial colours, no junk preservatives — nothing you can't pronounce without a chemistry degree.</p>
+    </div>
+    <div class="why-card" data-num="04">
+      <p class="wc-icon">🫙</p>
+      <p class="wc-title">Premium Jar Format</p>
+      <p class="wc-body">Not a sad crinkly pouch. A proper jar that lives on your desk, your counter, or your gift hamper. Shareable. Refillable. Shelf-worthy.</p>
+    </div>
+  </div>
+  <div class="why-stat-row reveal">
+    <div class="wsr-item"><p class="wsr-n">₹199</p><p class="wsr-l">Per 70g Jar</p></div>
+    <div class="wsr-item"><p class="wsr-n">&lt;4g</p><p class="wsr-l">Fat per Serving</p></div>
+    <div class="wsr-item"><p class="wsr-n">0</p><p class="wsr-l">Artificial Flavours</p></div>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section id="coming">
+  <div class="sec-header reveal">
+    <p class="sec-eye">Up Next</p>
+    <h2 class="sec-h2">What's <em>Brewing</em> Next ✦</h2>
+    <p class="sec-body">Two new flavours dropping in the next few months. Get notified the moment they land.</p>
+  </div>
+  <div class="coming-grid">
+    <div class="coming-card reveal reveal-d1">
+      <div class="coming-emoji">🍬</div>
+      <div class="coming-info">
+        <p class="coming-label">Coming Soon · Month 6–8</p>
+        <p class="coming-name">Golden Caramel</p>
+        <p class="coming-desc">Sweet meets crunch. A caramel-glazed foxnut that's dangerously addictive.</p>
+        <a href="https://wa.me/919310419066?text=Notify%20me%20when%20Caramel%20Macks%20launches!" class="coming-notify" target="_blank">Notify me when it drops →</a>
+      </div>
+    </div>
+    <div class="coming-card reveal reveal-d2">
+      <div class="coming-emoji">🧈</div>
+      <div class="coming-info">
+        <p class="coming-label">Coming Soon · Month 6–8</p>
+        <p class="coming-name">Butter Salt</p>
+        <p class="coming-desc">Classic done right. Buttery, lightly salted, impossibly moreish.</p>
+        <a href="https://wa.me/919310419066?text=Notify%20me%20when%20Butter%20Salt%20Macks%20launches!" class="coming-notify" target="_blank">Notify me when it drops →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header reveal">
+    <p class="sec-eye">Loved By Snackers</p>
+    <h2 class="sec-h2">What people are <em>saying.</em></h2>
+  </div>
+  <div style="overflow:hidden">
+    <div class="reviews-track">
+      <!-- Set 1 -->
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Pudina is dangerous. I finished an entire jar in one Netflix episode and I have zero regrets."</p>
+        <div class="rev-author"><div class="rev-av">A</div><div><p class="rev-name">Aanya S.</p><p class="rev-loc">Mumbai</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Smokey Cheese tastes like cheating on your diet. It absolutely is not cheating. 10/10."</p>
+        <div class="rev-author"><div class="rev-av">R</div><div><p class="rev-name">Rohan K.</p><p class="rev-loc">Bengaluru</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Peri Peri = post-gym dopamine hit. This is now a non-negotiable part of my routine."</p>
+        <div class="rev-author"><div class="rev-av">M</div><div><p class="rev-name">Meher P.</p><p class="rev-loc">Delhi</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Punjabi Tadka literally tastes like nani's kitchen. In a jar. I've ordered thrice already."</p>
+        <div class="rev-author"><div class="rev-av">K</div><div><p class="rev-name">Karan M.</p><p class="rev-loc">Pune</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"The hamper is the move. Gifted three already and everyone asks where it's from."</p>
+        <div class="rev-author"><div class="rev-av">I</div><div><p class="rev-name">Ishita R.</p><p class="rev-loc">Hyderabad</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Finally a healthy snack that doesn't taste like cardboard. The jar is gorgeous too."</p>
+        <div class="rev-author"><div class="rev-av">S</div><div><p class="rev-name">Sanya G.</p><p class="rev-loc">Noida</p></div></div>
+      </div>
+      <!-- Set 2 (duplicate for infinite scroll) -->
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Pudina is dangerous. I finished an entire jar in one Netflix episode and I have zero regrets."</p>
+        <div class="rev-author"><div class="rev-av">A</div><div><p class="rev-name">Aanya S.</p><p class="rev-loc">Mumbai</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Smokey Cheese tastes like cheating on your diet. It absolutely is not cheating. 10/10."</p>
+        <div class="rev-author"><div class="rev-av">R</div><div><p class="rev-name">Rohan K.</p><p class="rev-loc">Bengaluru</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Peri Peri = post-gym dopamine hit. This is now a non-negotiable part of my routine."</p>
+        <div class="rev-author"><div class="rev-av">M</div><div><p class="rev-name">Meher P.</p><p class="rev-loc">Delhi</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Punjabi Tadka literally tastes like nani's kitchen. In a jar. I've ordered thrice already."</p>
+        <div class="rev-author"><div class="rev-av">K</div><div><p class="rev-name">Karan M.</p><p class="rev-loc">Pune</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"The hamper is the move. Gifted three already and everyone asks where it's from."</p>
+        <div class="rev-author"><div class="rev-av">I</div><div><p class="rev-name">Ishita R.</p><p class="rev-loc">Hyderabad</p></div></div>
+      </div>
+      <div class="rev-card">
+        <p class="rev-stars">★★★★★</p>
+        <p class="rev-text">"Finally a healthy snack that doesn't taste like cardboard. The jar is gorgeous too."</p>
+        <div class="rev-author"><div class="rev-av">S</div><div><p class="rev-name">Sanya G.</p><p class="rev-loc">Noida</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE TO FIND -->
+<section id="find">
+  <div class="sec-header reveal">
+    <p class="sec-eye">Availability</p>
+    <h2 class="sec-h2">Find <em>Macks</em> Near You.</h2>
+    <p class="sec-body">On campus, on shelves, and on your phone. Three ways to get your fix.</p>
+  </div>
+  <div class="find-grid">
+    <div class="find-card reveal reveal-d1">
+      <div class="find-icon" style="background:#EAF3DE">🎓</div>
+      <p class="find-title">Colleges & Campus</p>
+      <ul class="find-list">
+        <li>Amity University, Noida</li>
+        <li>Sharda University, GN</li>
+        <li>Galgotias University</li>
+        <li>Bennett University</li>
+        <li>GL Bajaj, NIET & more</li>
+      </ul>
+      <span class="find-badge" style="background:#EAF3DE;color:#27500A">Live Now</span>
+    </div>
+    <div class="find-card reveal reveal-d2">
+      <div class="find-icon" style="background:#E6F1FB">🏪</div>
+      <p class="find-title">Premium Retail</p>
+      <ul class="find-list">
+        <li>Nature's Basket</li>
+        <li>Le Marché</li>
+        <li>Spar Hypermarket</li>
+        <li>Gourmet & organic stores</li>
+        <li>Select delis, NCR</li>
+      </ul>
+      <span class="find-badge" style="background:#E6F1FB;color:#185FA5">Coming Month 2–3</span>
+    </div>
+    <div class="find-card reveal reveal-d3">
+      <div class="find-icon" style="background:#EEEDFE">⚡</div>
+      <p class="find-title">Quick Commerce</p>
+      <ul class="find-list">
+        <li>Blinkit — Delhi NCR</li>
+        <li>Zepto — Delhi NCR</li>
+        <li>10-min delivery</li>
+        <li>All 4 flavours available</li>
+        <li>Swiggy Instamart — soon</li>
+      </ul>
+      <span class="find-badge" style="background:#EEEDFE;color:#534AB7">Coming Month 6</span>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-inner">
+    <div class="story-left reveal">
+      <p class="sec-eye">Our Story</p>
+      <blockquote class="story-quote">
+        We built Macks because India's best snack — makhana — deserved a brand worthy of it.
+      </blockquote>
+      <p style="font-size:14px;color:rgba(250,247,240,0.45);line-height:1.8;max-width:440px">Fox Harvest Foods was founded with a simple belief: that foxnuts — one of India's oldest superfoods — were being sold short. Loose pouches, generic flavours, no story. We changed that. Hand-roasted in small batches, packed in beautiful jars, Macks is what premium makhana looks like.</p>
+      <div class="story-founders">
+        <div class="sf">
+          <div class="sf-av">AS</div>
+          <div><p class="sf-name">Aaryan Singh</p><p class="sf-role">Co-Founder, Fox Harvest Foods</p></div>
+        </div>
+        <div class="sf">
+          <div class="sf-av">VG</div>
+          <div><p class="sf-name">Vedant Garg</p><p class="sf-role">Co-Founder, Fox Harvest Foods</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="story-right reveal reveal-d2">
+      <div class="story-fact">
+        <h4>Made in Darbhanga</h4>
+        <p>Manufactured by The Healthy Crunch, Bihar — the heartland of India's finest foxnut crop. Sourced close to origin, roasted with care.</p>
+      </div>
+      <div class="story-fact">
+        <h4>Small Batches Only</h4>
+        <p>We don't mass-produce. Every batch is roasted to order, ensuring the crunch and flavour you get in jar #1 is identical to jar #1,000.</p>
+      </div>
+      <div class="story-fact">
+        <h4>The Superfood India Forgot</h4>
+        <p>Foxnuts have been part of Indian cuisine for centuries. High protein, low fat, naturally gluten-free. Macks just made them impossible to put down.</p>
+      </div>
+      <div class="story-fact">
+        <h4>Building Toward Own Plant</h4>
+        <p>We're scaling fast. A dedicated Fox Harvest Foods manufacturing plant is in the works — more control, better margins, same great product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2 class="cta-h">Four flavours.<br>Zero guilt.<br>All Macks.</h2>
+  <p class="cta-sub">Build your own box or grab the hamper. Your snack shelf will thank you.</p>
+  <div class="cta-actions">
+    <a href="#flavours" class="btn-dark">Shop All Flavours →</a>
+    <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20the%20All-Four%20Hamper." class="btn-outline-dark" target="_blank">Get the Hamper · ₹649</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="ft-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div class="nav-logo">M</div>
+        <span class="nav-name">Macks</span>
+      </div>
+      <p class="ft-tagline">Premium hand-roasted foxnuts. Four bold flavours. Zero guilt. By Fox Harvest Foods — bringing India's superfood to your snack shelf.</p>
+    </div>
+    <div class="ft-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#flavours">Pudina</a></li>
+        <li><a href="#flavours">Smokey Cheese</a></li>
+        <li><a href="#flavours">Peri Peri</a></li>
+        <li><a href="#flavours">Punjabi Tadka</a></li>
+        <li><a href="#hamper">All-Four Hamper</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Brand</h4>
+      <ul>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#why">Why Macks</a></li>
+        <li><a href="#coming">Coming Soon</a></li>
+        <li><a href="#find">Find Us</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://wa.me/919310419066" target="_blank">WhatsApp Us</a></li>
+        <li><a href="mailto:hello@foxharvestfoods.com">Email Us</a></li>
+        <li><a href="#" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="fb-copy">© 2025 Macks. All rights reserved. A Fox Harvest Foods brand.</p>
+    <div class="fb-right">
+      <a href="#" class="fb-link">Privacy Policy</a>
+      <a href="#" class="fb-link">Terms</a>
+      <a href="mailto:hello@foxharvestfoods.com" class="fb-link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919310419066?text=Hi%20Macks!%20I'd%20like%20to%20know%20more." class="wa-btn" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<!-- UPI TOAST -->
+<div class="upi-toast" id="upi-toast">
+  <p class="upi-toast-text">Payment opened! After paying, send your screenshot to WhatsApp to confirm your order.</p>
+  <a href="https://wa.me/919310419066?text=Hi!%20I%20just%20paid%20via%20UPI.%20Here's%20my%20payment%20screenshot%20to%20confirm%20my%20order." class="upi-toast-wa" target="_blank">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    Send Screenshot →
+  </a>
+</div>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60)
+})
+
+// Mobile menu
+function toggleMenu(){
+  document.getElementById('mob-menu').classList.toggle('open')
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'})
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el))
+
+// UPI / GPay payment
+var _toastTimer = null;
+function openUPI(amount, note) {
+  var pa = '9310419066@ybl';
+  var pn = 'Macks%20Fox%20Harvest%20Foods';
+  var am = amount;
+  var cu = 'INR';
+  var tn = note;
+
+  var tezLink = 'tez://upi/pay?pa=' + pa + '&pn=' + pn + '&am=' + am + '&cu=' + cu + '&tn=' + tn;
+  var upiLink = 'upi://pay?pa=' + pa + '&pn=' + pn + '&am=' + am + '&cu=' + cu + '&tn=' + tn;
+
+  // Try GPay (tez://) first; fall back to generic upi://
+  var iframe = document.createElement('iframe');
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  var appOpened = false;
+
+  // Attempt to open GPay
+  window.location.href = tezLink;
+
+  // After short delay, if page is still visible, fall back to upi://
+  var fallbackTimer = setTimeout(function() {
+    if (!document.hidden) {
+      window.location.href = upiLink;
+    }
+  }, 1500);
+
+  // If app opened (page becomes hidden), cancel fallback
+  document.addEventListener('visibilitychange', function onVis() {
+    if (document.hidden) {
+      clearTimeout(fallbackTimer);
+      document.removeEventListener('visibilitychange', onVis);
+    }
+  });
+
+  // Show toast
+  showUPIToast();
+}
+
+function showUPIToast() {
+  var toast = document.getElementById('upi-toast');
+  toast.classList.add('show');
+  if (_toastTimer) clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(function() {
+    toast.classList.remove('show');
+  }, 6000);
+}
+</script>
+</body>
+</html>
