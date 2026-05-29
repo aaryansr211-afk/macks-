@@ -1440,13 +1440,19 @@ function cartItemCount(){
   Object.keys(cart).forEach(function(k){ c += cart[k].qty; });
   return c;
 }
-function calcDelivery(sub){ return sub >= DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE; }
+function calcDelivery(sub, method){
+  if(!method) method = selectedPayMethod;
+  if(method !== 'cod') return 0; // UPI and Card always free
+  return sub >= DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+}
+function calcCODFee(sub){ return selectedPayMethod==='cod' && sub < DELIVERY_THRESHOLD ? COD_FEE : 0; }
 function calcDiscount(sub){ return couponApplied ? Math.round(sub * 0.1) : 0; }
 function calcGrandTotal(isCOD){
   var sub = cartSubtotal();
   var disc = calcDiscount(sub);
   var del = calcDelivery(sub - disc);
-  return (sub - disc) + del + (isCOD ? COD_FEE : 0);
+  var codFee = calcCODFee(sub - disc);
+  return (sub - disc) + del + codFee;
 }
 
 function addToCart(name, emoji){
@@ -1505,9 +1511,10 @@ function renderCartDrawer(){
 function updatePriceBreakdown(){
   var sub = cartSubtotal();
   var disc = calcDiscount(sub);
-  var del = calcDelivery(sub - disc);
-  var isCOD = selectedPayMethod==='cod';
-  var grand = (sub - disc) + del + (isCOD ? COD_FEE : 0);
+  var net = sub - disc;
+  var del = calcDelivery(net);
+  var codFee = calcCODFee(net);
+  var grand = net + del + codFee;
 
   document.getElementById('cpb-subtotal').textContent='₹'+sub;
   var discRow = document.getElementById('cpb-discount-row');
@@ -1520,12 +1527,12 @@ function updatePriceBreakdown(){
   else{ delEl.textContent='₹'+del; delRow.className='cpb-row'; }
 
   var codRow = document.getElementById('cpb-cod-row');
-  codRow.style.display = isCOD ? 'flex' : 'none';
+  codRow.style.display = codFee > 0 ? 'flex' : 'none';
 
   document.getElementById('cpb-total').textContent='₹'+grand;
 
   var hint = document.getElementById('free-del-hint');
-  if(del>0){ var need=DELIVERY_THRESHOLD-(sub-disc); hint.textContent='Add ₹'+need+' more for free delivery!'; }
+  if(selectedPayMethod==='cod' && del>0){ var need=DELIVERY_THRESHOLD-net; hint.textContent='Add ₹'+need+' more for free delivery & no COD fee!'; }
   else hint.textContent='';
 }
 
@@ -1583,14 +1590,14 @@ function hideCheckoutForm(){
 function buildOrderText(formData){
   var keys=Object.keys(cart);
   var lines=keys.map(function(n){return '• '+n+' × '+cart[n].qty+' — ₹'+(cart[n].qty*PRICE);});
-  var sub=cartSubtotal(), disc=calcDiscount(sub), del=calcDelivery(sub-disc);
-  var isCOD=selectedPayMethod==='cod';
-  var grand=(sub-disc)+del+(isCOD?COD_FEE:0);
+  var sub=cartSubtotal(), disc=calcDiscount(sub), net=sub-disc;
+  var del=calcDelivery(net), codFee=calcCODFee(net);
+  var grand=net+del+codFee;
   return '🛒 Order Summary:\n'+lines.join('\n')
     +'\n\nSubtotal: ₹'+sub
     +(disc>0?'\nDiscount (MACKS10): -₹'+disc:'')
     +'\nDelivery: '+(del===0?'FREE':'₹'+del)
-    +(isCOD?'\nCOD Charge: ₹'+COD_FEE:'')
+    +(codFee>0?'\nCOD Charge: ₹'+codFee:'')
     +'\nGrand Total: ₹'+grand
     +'\n\nPayment: '+({upi:'UPI',card:'Card (send payment link)',cod:'Cash on Delivery'}[selectedPayMethod])
     +'\n\nDelivery Address:\n'+formData.flat+', '+formData.addr+', '+formData.area+', '+formData.city+' - '+formData.pin
@@ -1611,9 +1618,9 @@ function placeOrder(){
   }
   var formData={name:name,phone:phone,email:email,flat:flat,addr:addr,area:area,city:city,pin:pin};
   var orderText=buildOrderText(formData);
-  var sub=cartSubtotal(),disc=calcDiscount(sub),del=calcDelivery(sub-disc);
-  var isCOD=selectedPayMethod==='cod';
-  var grand=(sub-disc)+del+(isCOD?COD_FEE:0);
+  var sub=cartSubtotal(),disc=calcDiscount(sub),net=sub-disc;
+  var del=calcDelivery(net),codFee=calcCODFee(net);
+  var grand=net+del+codFee;
 
   // 1. Send email via EmailJS
   if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
@@ -1625,7 +1632,7 @@ function placeOrder(){
       order_subtotal:'₹'+sub,
       order_discount:disc>0?'-₹'+disc:'None',
       order_delivery:del===0?'FREE':'₹'+del,
-      order_cod:isCOD?'₹'+COD_FEE:'N/A',
+      order_cod:codFee>0?'₹'+codFee:'N/A',
       order_total:'₹'+grand,
       payment_method:{upi:'UPI',card:'Card',cod:'Cash on Delivery'}[selectedPayMethod],
       coupon_used:couponApplied?'MACKS10':'None'
