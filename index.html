@@ -640,8 +640,45 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
 .order-success-sub{font-size:13px;color:rgba(44,26,14,0.5);line-height:1.6}
 
 /* ═══════════════════════════════════════════
-   UPI PAYMENT TOAST
+   UPI QR MODAL
 ═══════════════════════════════════════════ */
+.upi-qr-overlay{
+  position:fixed;inset:0;z-index:4000;
+  background:rgba(0,0,0,0.65);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;pointer-events:none;transition:opacity 0.25s ease;
+}
+.upi-qr-overlay.open{opacity:1;pointer-events:auto}
+.upi-qr-modal{
+  background:var(--white);border-radius:20px;padding:32px 28px;
+  width:100%;max-width:340px;text-align:center;
+  box-shadow:0 24px 80px rgba(44,26,14,0.25);
+  transform:translateY(16px);transition:transform 0.25s ease;
+}
+.upi-qr-overlay.open .upi-qr-modal{transform:translateY(0)}
+.upi-qr-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.upi-qr-sub{font-size:13px;color:rgba(44,26,14,0.5);margin-bottom:4px}
+.upi-qr-amount{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:16px}
+.upi-qr-box{background:#f8f8f8;border-radius:12px;padding:16px;display:inline-block;margin-bottom:14px}
+.upi-qr-id{
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);
+  margin-bottom:10px;padding:8px 16px;background:rgba(212,101,26,0.08);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.upi-copy-btn{background:none;border:none;cursor:pointer;font-size:16px;transition:transform 0.2s}
+.upi-copy-btn:hover{transform:scale(1.2)}
+.upi-qr-steps{font-size:12px;color:rgba(44,26,14,0.5);line-height:1.8;margin-bottom:16px;text-align:left}
+.upi-qr-wa{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:#25D366;color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
+  padding:13px;border-radius:10px;width:100%;border:none;cursor:pointer;margin-bottom:10px;
+  transition:background 0.2s;
+}
+.upi-qr-wa:hover{background:#1da851}
+.upi-qr-close{background:none;border:none;font-size:13px;color:rgba(44,26,14,0.4);cursor:pointer;font-family:'Syne',sans-serif}
+
+
 .upi-toast{
   position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);
   z-index:997;
@@ -1335,6 +1372,23 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
   </div>
 </div>
 
+<!-- UPI QR MODAL -->
+<div class="upi-qr-overlay" id="upi-qr-overlay" onclick="closeUPIModal(event)">
+  <div class="upi-qr-modal" onclick="event.stopPropagation()">
+    <p class="upi-qr-title">Scan & Pay via UPI</p>
+    <p class="upi-qr-sub">Open any UPI app and scan</p>
+    <p class="upi-qr-amount" id="upi-qr-amount">₹0</p>
+    <div class="upi-qr-box"><div id="upi-qr-canvas"></div></div>
+    <div class="upi-qr-id">
+      aaryansr05@okicici
+      <button class="upi-copy-btn" onclick="copyUPIId()" title="Copy UPI ID">📋</button>
+    </div>
+    <div class="upi-qr-steps">1. Open GPay / PhonePe / Paytm<br>2. Tap <b>Scan QR</b> or <b>Pay UPI ID</b><br>3. Enter amount <b id="upi-qr-amount2">₹0</b> &amp; pay<br>4. Send screenshot on WhatsApp ✓</div>
+    <button class="upi-qr-wa" id="upi-qr-wa-btn">💬 Confirm Order on WhatsApp →</button>
+    <button class="upi-qr-close" onclick="closeUPIModal(null)">Close ✕</button>
+  </div>
+</div>
+
 <!-- UPI TOAST -->
 <div class="upi-toast" id="upi-toast">
   <p class="upi-toast-text">Payment opened! After paying, send your screenshot to WhatsApp to confirm your order.</p>
@@ -1642,8 +1696,7 @@ function placeOrder(){
   // 2. Open payment / WhatsApp
   var waMsg='Hi Macks! 🛒\n'+name+'\n'+orderText;
   if(selectedPayMethod==='upi'){
-    openUPI(grand,'Macks+Order');
-    setTimeout(function(){window.open('https://wa.me/919310419066?text='+encodeURIComponent(waMsg),'_blank');},1000);
+    openUPI(grand,'Macks Order', waMsg);
   } else if(selectedPayMethod==='card'){
     var cardMsg='Hi Macks! I\'d like to pay by card.\n'+orderText+'\nPlease send me a payment link.';
     window.open('https://wa.me/919310419066?text='+encodeURIComponent(cardMsg),'_blank');
@@ -1660,21 +1713,37 @@ function placeOrder(){
 }
 
 /* ════════════════════════════════════════
-   UPI HELPER
+   UPI QR MODAL
 ════════════════════════════════════════ */
-var _toastTimer=null;
-function openUPI(amount,note){
-  var url='upi://pay?pa=aaryansr05@okicici&pn=Macks%20Fox%20Harvest%20Foods&am='+amount+'&cu=INR&tn='+encodeURIComponent(note);
-  var a=document.createElement('a');a.href=url;a.style.display='none';
-  document.body.appendChild(a);a.click();
-  setTimeout(function(){document.body.removeChild(a);},500);
-  showUPIToast();
+var _upiWAMsg='';
+function openUPI(amount, note, waMsg){
+  var upiUrl='upi://pay?pa=aaryansr05@okicici&pn=Macks%20Fox%20Harvest%20Foods&am='+amount+'&cu=INR&tn='+encodeURIComponent(note);
+  _upiWAMsg = waMsg || 'Hi Macks! I just paid ₹'+amount+' via UPI. Please confirm my order!';
+  document.getElementById('upi-qr-amount').textContent='₹'+amount;
+  document.getElementById('upi-qr-amount2').textContent='₹'+amount;
+  var waBtn=document.getElementById('upi-qr-wa-btn');
+  waBtn.onclick=function(){window.open('https://wa.me/919310419066?text='+encodeURIComponent(_upiWAMsg),'_blank');};
+  // Generate QR
+  var canvas=document.getElementById('upi-qr-canvas');
+  canvas.innerHTML='';
+  var c=document.createElement('canvas');
+  canvas.appendChild(c);
+  if(typeof QRCode!=='undefined'){
+    QRCode.toCanvas(c, upiUrl, {width:180,margin:1,color:{dark:'#2C1A0E',light:'#f8f8f8'}}, function(){});
+  }
+  document.getElementById('upi-qr-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
 }
-function showUPIToast(){
-  var t=document.getElementById('upi-toast');
-  t.classList.add('show');
-  if(_toastTimer)clearTimeout(_toastTimer);
-  _toastTimer=setTimeout(function(){t.classList.remove('show');},6000);
+function closeUPIModal(e){
+  if(e===null||e.target===document.getElementById('upi-qr-overlay')){
+    document.getElementById('upi-qr-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+function copyUPIId(){
+  navigator.clipboard&&navigator.clipboard.writeText('aaryansr05@okicici');
+  var btn=document.querySelector('.upi-copy-btn');
+  btn.textContent='✅';setTimeout(function(){btn.textContent='📋';},1500);
 }
 
 /* ════════════════════════════════════════
@@ -1729,8 +1798,7 @@ function hamperPlaceOrder(){
   }
 
   if(method==='upi'){
-    openUPI(total,'All-Four+Macks+Hamper');
-    setTimeout(function(){window.open('https://wa.me/919310419066?text='+encodeURIComponent(orderText),'_blank');},1000);
+    openUPI(total,'Macks Hamper', orderText);
   } else if(method==='card'){
     window.open('https://wa.me/919310419066?text='+encodeURIComponent(orderText+'\nPlease send a payment link.'),'_blank');
   } else {
@@ -1740,6 +1808,7 @@ function hamperPlaceOrder(){
   document.getElementById('hamper-upi-note').classList.add('show');
 }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
