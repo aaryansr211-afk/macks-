@@ -640,7 +640,7 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
 .order-success-sub{font-size:13px;color:rgba(44,26,14,0.5);line-height:1.6}
 
 /* ═══════════════════════════════════════════
-   UPI QR MODAL
+   UPI APP PICKER MODAL
 ═══════════════════════════════════════════ */
 .upi-qr-overlay{
   position:fixed;inset:0;z-index:4000;
@@ -651,24 +651,34 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
 }
 .upi-qr-overlay.open{opacity:1;pointer-events:auto}
 .upi-qr-modal{
-  background:var(--white);border-radius:20px;padding:32px 28px;
-  width:100%;max-width:340px;text-align:center;
+  background:var(--white);border-radius:20px;padding:28px 24px;
+  width:100%;max-width:320px;text-align:center;
   box-shadow:0 24px 80px rgba(44,26,14,0.25);
   transform:translateY(16px);transition:transform 0.25s ease;
 }
 .upi-qr-overlay.open .upi-qr-modal{transform:translateY(0)}
 .upi-qr-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px}
-.upi-qr-sub{font-size:13px;color:rgba(44,26,14,0.5);margin-bottom:4px}
-.upi-qr-amount{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:16px}
-.upi-qr-box{background:#f8f8f8;border-radius:12px;padding:16px;display:inline-block;margin-bottom:14px}
-.upi-qr-id{
-  font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);
-  margin-bottom:10px;padding:8px 16px;background:rgba(212,101,26,0.08);
-  border-radius:8px;display:flex;align-items:center;justify-content:center;gap:8px;
+.upi-qr-sub{font-size:13px;color:rgba(44,26,14,0.45);margin-bottom:6px}
+.upi-qr-amount{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:20px}
+.upi-app-btns{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.upi-app-btn{
+  display:flex;align-items:center;gap:14px;
+  width:100%;padding:14px 20px;border-radius:12px;border:2px solid transparent;
+  cursor:pointer;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;
+  transition:transform 0.15s,box-shadow 0.15s;text-align:left;
 }
-.upi-copy-btn{background:none;border:none;cursor:pointer;font-size:16px;transition:transform 0.2s}
-.upi-copy-btn:hover{transform:scale(1.2)}
-.upi-qr-steps{font-size:12px;color:rgba(44,26,14,0.5);line-height:1.8;margin-bottom:16px;text-align:left}
+.upi-app-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.12)}
+.upi-app-btn .app-logo{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.upi-app-btn .app-label{display:flex;flex-direction:column;gap:1px}
+.upi-app-btn .app-name{font-size:15px;font-weight:700}
+.upi-app-btn .app-hint{font-size:11px;font-weight:400;opacity:0.6}
+.upi-app-btn.gpay{background:#e8f0fe;border-color:#4285F4;color:#1a1a1a}
+.upi-app-btn.gpay .app-logo{background:#4285F4}
+.upi-app-btn.phonepe{background:#f0e8fe;border-color:#5F259F;color:#1a1a1a}
+.upi-app-btn.phonepe .app-logo{background:#5F259F}
+.upi-app-btn.paytm{background:#e6f7ff;border-color:#00BAF2;color:#1a1a1a}
+.upi-app-btn.paytm .app-logo{background:#00BAF2}
+.upi-app-divider{font-size:11px;color:rgba(44,26,14,0.35);margin-bottom:10px}
 .upi-qr-wa{
   display:flex;align-items:center;justify-content:center;gap:8px;
   background:#25D366;color:#fff;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;
@@ -677,7 +687,8 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
 }
 .upi-qr-wa:hover{background:#1da851}
 .upi-qr-close{background:none;border:none;font-size:13px;color:rgba(44,26,14,0.4);cursor:pointer;font-family:'Syne',sans-serif}
-
+.upi-paid-hint{font-size:11px;color:rgba(44,26,14,0.4);margin-bottom:10px;display:none}
+.upi-paid-hint.show{display:block}
 
 .upi-toast{
   position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);
@@ -1372,20 +1383,29 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
   </div>
 </div>
 
-<!-- UPI QR MODAL -->
+<!-- UPI APP PICKER MODAL -->
 <div class="upi-qr-overlay" id="upi-qr-overlay" onclick="closeUPIModal(event)">
   <div class="upi-qr-modal" onclick="event.stopPropagation()">
-    <p class="upi-qr-title">Scan & Pay via UPI</p>
-    <p class="upi-qr-sub">Open any UPI app and scan</p>
+    <p class="upi-qr-title">Pay via UPI</p>
+    <p class="upi-qr-sub">Choose your app — it opens directly</p>
     <p class="upi-qr-amount" id="upi-qr-amount">₹0</p>
-    <div class="upi-qr-box"><div id="upi-qr-canvas"></div></div>
-    <div class="upi-qr-id">
-      aaryansr05@okicici
-      <button class="upi-copy-btn" onclick="copyUPIId()" title="Copy UPI ID">📋</button>
+    <div class="upi-app-btns">
+      <button class="upi-app-btn gpay" onclick="openUPIApp('gpay')">
+        <div class="app-logo">G</div>
+        <div class="app-label"><span class="app-name">Google Pay</span><span class="app-hint">Opens GPay directly</span></div>
+      </button>
+      <button class="upi-app-btn phonepe" onclick="openUPIApp('phonepe')">
+        <div class="app-logo">P</div>
+        <div class="app-label"><span class="app-name">PhonePe</span><span class="app-hint">Opens PhonePe directly</span></div>
+      </button>
+      <button class="upi-app-btn paytm" onclick="openUPIApp('paytm')">
+        <div class="app-logo">₹</div>
+        <div class="app-label"><span class="app-name">Paytm</span><span class="app-hint">Opens Paytm directly</span></div>
+      </button>
     </div>
-    <div class="upi-qr-steps">1. Open GPay / PhonePe / Paytm<br>2. Tap <b>Scan QR</b> or <b>Pay UPI ID</b><br>3. Enter amount <b id="upi-qr-amount2">₹0</b> &amp; pay<br>4. Send screenshot on WhatsApp ✓</div>
+    <p class="upi-paid-hint" id="upi-paid-hint">✓ App opened — complete payment there, then confirm below</p>
     <button class="upi-qr-wa" id="upi-qr-wa-btn">💬 Confirm Order on WhatsApp →</button>
-    <button class="upi-qr-close" onclick="closeUPIModal(null)">Close ✕</button>
+    <button class="upi-qr-close" onclick="closeUPIModal(null)">Cancel ✕</button>
   </div>
 </div>
 
@@ -1713,37 +1733,41 @@ function placeOrder(){
 }
 
 /* ════════════════════════════════════════
-   UPI QR MODAL
+   UPI APP PICKER
 ════════════════════════════════════════ */
-var _upiWAMsg='';
+var _upiAmount=0, _upiNote='', _upiWAMsg='';
 function openUPI(amount, note, waMsg){
-  var upiUrl='upi://pay?pa=aaryansr05@okicici&pn=Macks%20Fox%20Harvest%20Foods&am='+amount+'&cu=INR&tn='+encodeURIComponent(note);
+  _upiAmount=amount; _upiNote=note;
   _upiWAMsg = waMsg || 'Hi Macks! I just paid ₹'+amount+' via UPI. Please confirm my order!';
   document.getElementById('upi-qr-amount').textContent='₹'+amount;
-  document.getElementById('upi-qr-amount2').textContent='₹'+amount;
+  document.getElementById('upi-paid-hint').classList.remove('show');
   var waBtn=document.getElementById('upi-qr-wa-btn');
   waBtn.onclick=function(){window.open('https://wa.me/919310419066?text='+encodeURIComponent(_upiWAMsg),'_blank');};
-  // Generate QR
-  var canvas=document.getElementById('upi-qr-canvas');
-  canvas.innerHTML='';
-  var c=document.createElement('canvas');
-  canvas.appendChild(c);
-  if(typeof QRCode!=='undefined'){
-    QRCode.toCanvas(c, upiUrl, {width:180,margin:1,color:{dark:'#2C1A0E',light:'#f8f8f8'}}, function(){});
-  }
   document.getElementById('upi-qr-overlay').classList.add('open');
   document.body.style.overflow='hidden';
+}
+function openUPIApp(app){
+  var pa='aaryansr05@okicici';
+  var pn='Macks%20Fox%20Harvest%20Foods';
+  var params='pa='+pa+'&pn='+pn+'&am='+_upiAmount+'&cu=INR&tn='+encodeURIComponent(_upiNote);
+  var urls={
+    gpay:    'tez://upi/pay?'+params,
+    phonepe: 'phonepe://pay?'+params,
+    paytm:   'paytmmp://upi/pay?'+params
+  };
+  var a=document.createElement('a');
+  a.href=urls[app]||('upi://pay?'+params);
+  a.style.display='none';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){document.body.removeChild(a);},500);
+  document.getElementById('upi-paid-hint').classList.add('show');
 }
 function closeUPIModal(e){
   if(e===null||e.target===document.getElementById('upi-qr-overlay')){
     document.getElementById('upi-qr-overlay').classList.remove('open');
     document.body.style.overflow='';
   }
-}
-function copyUPIId(){
-  navigator.clipboard&&navigator.clipboard.writeText('aaryansr05@okicici');
-  var btn=document.querySelector('.upi-copy-btn');
-  btn.textContent='✅';setTimeout(function(){btn.textContent='📋';},1500);
 }
 
 /* ════════════════════════════════════════
@@ -1808,7 +1832,6 @@ function hamperPlaceOrder(){
   document.getElementById('hamper-upi-note').classList.add('show');
 }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
