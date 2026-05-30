@@ -1737,43 +1737,42 @@ function showOrderSuccess(){
 ════════════════════════════════════════ */
 var RZP_KEY = 'rzp_test_SvX4ls5zoZr4Qf';
 function launchRazorpay(amount, formData, orderText, method){
+  if(typeof Razorpay === 'undefined'){
+    alert('Payment gateway failed to load. Please refresh and try again.');
+    return;
+  }
   var options = {
     key: RZP_KEY,
-    amount: amount * 100, // paise
+    amount: amount * 100,
     currency: 'INR',
     name: 'Macks — Fox Harvest Foods',
     description: 'Premium Roasted Makhana',
-    image: '',
     prefill: {
       name: formData.name,
       email: formData.email,
       contact: formData.phone
     },
     notes: {
-      address: formData.flat+', '+formData.addr+', '+formData.area+', '+formData.city+' - '+formData.pin,
-      order_summary: orderText.substring(0, 250)
+      address: formData.flat+', '+formData.addr+', '+formData.area+', '+formData.city+' - '+formData.pin
     },
     theme: { color: '#D4651A' },
-    method: method === 'upi' ? { upi: true, card: false, netbanking: false, wallet: false } : {},
     handler: function(response){
-      // Payment successful — send WhatsApp confirmation + show success
       var successMsg = 'Hi Macks! 🎉 Payment successful!\n\n'
         + orderText
-        + '\n\n✅ Razorpay Payment ID: ' + response.razorpay_payment_id;
+        + '\n\n✅ Payment ID: ' + response.razorpay_payment_id;
       window.open('https://wa.me/919310419066?text='+encodeURIComponent(successMsg),'_blank');
       showOrderSuccess();
-    },
-    modal: {
-      ondismiss: function(){
-        // user closed without paying — do nothing
-      }
     }
   };
-  var rzp = new Razorpay(options);
-  rzp.on('payment.failed', function(resp){
-    alert('Payment failed: ' + resp.error.description + '. Please try again or choose COD.');
-  });
-  rzp.open();
+  try {
+    var rzp = new Razorpay(options);
+    rzp.on('payment.failed', function(resp){
+      alert('Payment failed: ' + resp.error.description + '. Please try again or choose COD.');
+    });
+    rzp.open();
+  } catch(e) {
+    alert('Could not open payment: ' + e.message);
+  }
 }
 
 /* ════════════════════════════════════════
