@@ -1713,27 +1713,67 @@ function placeOrder(){
     });
   }
 
-  // 2. Open payment / WhatsApp
+  // 2. Open payment
   var waMsg='Hi Macks! 🛒\n'+name+'\n'+orderText;
-  if(selectedPayMethod==='upi'){
-    var upiMsg='Hi Macks! 🛒 I\'d like to place this order and pay via UPI.\n\n'
-      +orderText
-      +'\n\n💳 I will pay ₹'+grand+' to UPI ID: aaryansr05@okicici'
-      +'\n\nPlease confirm once you receive the payment!';
-    window.open('https://wa.me/919310419066?text='+encodeURIComponent(upiMsg),'_blank');
-  } else if(selectedPayMethod==='card'){
-    var cardMsg='Hi Macks! I\'d like to pay by card.\n'+orderText+'\nPlease send me a payment link.';
-    window.open('https://wa.me/919310419066?text='+encodeURIComponent(cardMsg),'_blank');
-  } else {
+  if(selectedPayMethod==='cod'){
     window.open('https://wa.me/919310419066?text='+encodeURIComponent(waMsg),'_blank');
+    showOrderSuccess();
+  } else {
+    // Razorpay for UPI and Card
+    launchRazorpay(grand, formData, orderText, selectedPayMethod);
   }
+}
 
-  // 3. Show success
+function showOrderSuccess(){
   document.getElementById('order-success').style.display='block';
   document.querySelector('.checkout-form .cf-back').style.display='none';
   document.querySelector('.checkout-form .cf-title').style.display='none';
   document.querySelector('.checkout-form .cf-payment-tag').style.display='none';
   document.querySelectorAll('.cf-group,.cf-row,.place-order-btn').forEach(function(el){el.style.display='none';});
+}
+
+/* ════════════════════════════════════════
+   RAZORPAY
+════════════════════════════════════════ */
+var RZP_KEY = 'rzp_test_SvX4ls5zoZr4Qf';
+function launchRazorpay(amount, formData, orderText, method){
+  var options = {
+    key: RZP_KEY,
+    amount: amount * 100, // paise
+    currency: 'INR',
+    name: 'Macks — Fox Harvest Foods',
+    description: 'Premium Roasted Makhana',
+    image: '',
+    prefill: {
+      name: formData.name,
+      email: formData.email,
+      contact: formData.phone
+    },
+    notes: {
+      address: formData.flat+', '+formData.addr+', '+formData.area+', '+formData.city+' - '+formData.pin,
+      order_summary: orderText.substring(0, 250)
+    },
+    theme: { color: '#D4651A' },
+    method: method === 'upi' ? { upi: true, card: false, netbanking: false, wallet: false } : {},
+    handler: function(response){
+      // Payment successful — send WhatsApp confirmation + show success
+      var successMsg = 'Hi Macks! 🎉 Payment successful!\n\n'
+        + orderText
+        + '\n\n✅ Razorpay Payment ID: ' + response.razorpay_payment_id;
+      window.open('https://wa.me/919310419066?text='+encodeURIComponent(successMsg),'_blank');
+      showOrderSuccess();
+    },
+    modal: {
+      ondismiss: function(){
+        // user closed without paying — do nothing
+      }
+    }
+  };
+  var rzp = new Razorpay(options);
+  rzp.on('payment.failed', function(resp){
+    alert('Payment failed: ' + resp.error.description + '. Please try again or choose COD.');
+  });
+  rzp.open();
 }
 
 /* ════════════════════════════════════════
@@ -1825,18 +1865,17 @@ function hamperPlaceOrder(){
     });
   }
 
-  if(method==='upi'){
-    var hamperUpiMsg=orderText+'\n\n💳 I will pay ₹'+total+' to UPI ID: aaryansr05@okicici\nPlease confirm once received!';
-    window.open('https://wa.me/919310419066?text='+encodeURIComponent(hamperUpiMsg),'_blank');
-  } else if(method==='card'){
-    window.open('https://wa.me/919310419066?text='+encodeURIComponent(orderText+'\nPlease send a payment link.'),'_blank');
-  } else {
+  if(method==='cod'){
     window.open('https://wa.me/919310419066?text='+encodeURIComponent(orderText),'_blank');
+    document.getElementById('hamper-upi-note').textContent='Order placed! Check your WhatsApp. 🎉';
+    document.getElementById('hamper-upi-note').classList.add('show');
+  } else {
+    var hamperFormData={name:name,phone:phone,email:email,flat:flat,addr:addr,area:area,city:city,pin:pin};
+    launchRazorpay(total, hamperFormData, orderText, method);
   }
-  document.getElementById('hamper-upi-note').textContent='Order sent! Check your WhatsApp. 🎉';
-  document.getElementById('hamper-upi-note').classList.add('show');
 }
 </script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
