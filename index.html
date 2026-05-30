@@ -1347,7 +1347,7 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
       <p class="coupon-msg" id="coupon-msg"></p>
       <p class="cart-pay-label">How would you like to pay?</p>
       <div class="cart-pay-options">
-        <button class="cart-pay-btn upi" onclick="showCheckoutForm('upi')">₹ Pay via UPI <span style="font-size:10px;opacity:0.8">(GPay · PhonePe · Paytm)</span></button>
+        <button class="cart-pay-btn upi" onclick="showCheckoutForm('upi')">₹ Pay Online (UPI)</button>
         <button class="cart-pay-btn card" onclick="showCheckoutForm('card')">💳 Pay by Card</button>
         <button class="cart-pay-btn cod" onclick="showCheckoutForm('cod')">🚚 Cash on Delivery <span class="cod-fee">(+₹30)</span></button>
       </div>
@@ -1716,7 +1716,11 @@ function placeOrder(){
   // 2. Open payment / WhatsApp
   var waMsg='Hi Macks! 🛒\n'+name+'\n'+orderText;
   if(selectedPayMethod==='upi'){
-    openUPI(grand,'Macks Order', waMsg);
+    var upiMsg='Hi Macks! 🛒 I\'d like to place this order and pay via UPI.\n\n'
+      +orderText
+      +'\n\n💳 I will pay ₹'+grand+' to UPI ID: aaryansr05@okicici'
+      +'\n\nPlease confirm once you receive the payment!';
+    window.open('https://wa.me/919310419066?text='+encodeURIComponent(upiMsg),'_blank');
   } else if(selectedPayMethod==='card'){
     var cardMsg='Hi Macks! I\'d like to pay by card.\n'+orderText+'\nPlease send me a payment link.';
     window.open('https://wa.me/919310419066?text='+encodeURIComponent(cardMsg),'_blank');
@@ -1822,7 +1826,8 @@ function hamperPlaceOrder(){
   }
 
   if(method==='upi'){
-    openUPI(total,'Macks Hamper', orderText);
+    var hamperUpiMsg=orderText+'\n\n💳 I will pay ₹'+total+' to UPI ID: aaryansr05@okicici\nPlease confirm once received!';
+    window.open('https://wa.me/919310419066?text='+encodeURIComponent(hamperUpiMsg),'_blank');
   } else if(method==='card'){
     window.open('https://wa.me/919310419066?text='+encodeURIComponent(orderText+'\nPlease send a payment link.'),'_blank');
   } else {
