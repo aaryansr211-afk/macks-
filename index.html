@@ -173,10 +173,13 @@ section{padding:100px 60px}
 .sec-h2{font-family:'Playfair Display',serif;font-size:clamp(36px,4vw,56px);line-height:1.05;letter-spacing:-1.5px;color:var(--ink);margin-bottom:16px}
 .sec-h2 em{font-style:italic;color:var(--gold)}
 .sec-body{font-size:15px;color:rgba(44,26,14,0.55);max-width:520px;line-height:1.8;font-weight:300}
-/* Override for dark sections */
-#story .sec-h2,#coming .sec-h2,#reviews .sec-h2,#hamper .sec-h2{color:var(--cream)}
-#story .sec-h2 em,#coming .sec-h2 em,#reviews .sec-h2 em,#hamper .sec-h2 em{color:var(--gold2)}
-#story .sec-body,#coming .sec-body,#reviews .sec-body,#hamper .sec-body{color:rgba(255,248,238,0.55)}
+/* Override for sections with coloured backgrounds */
+#story .sec-h2,#hamper .sec-h2{color:var(--cream)}
+#story .sec-h2 em,#hamper .sec-h2 em{color:var(--gold2)}
+#story .sec-body,#hamper .sec-body{color:rgba(255,248,238,0.55)}
+#reviews .sec-h2{color:var(--ink)}
+#reviews .sec-h2 em{color:var(--gold)}
+#reviews .sec-body{color:rgba(44,26,14,0.55)}
 .sec-header{margin-bottom:56px}
 
 /* ═══════════════════════════════════════════
@@ -252,6 +255,25 @@ section{padding:100px 60px}
 /* ═══════════════════════════════════════════
    PAYMENT INFO STRIP
 ═══════════════════════════════════════════ */
+/* ===========================================
+   MACKS MOMENTS
+=========================================== */
+#moments{background:#FFFDF8;padding:100px 60px;overflow:hidden}
+.moments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.moment-card{border-radius:24px;padding:48px 32px;text-align:center;position:relative;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;cursor:default}
+.moment-card:hover{transform:translateY(-8px);box-shadow:0 32px 80px rgba(0,0,0,0.12)}
+.moment-figure{width:120px;height:140px;margin:0 auto 24px}
+.moment-tagline{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;font-style:italic;line-height:1.2;margin-bottom:10px}
+.moment-sub{font-size:13px;opacity:0.65;line-height:1.6}
+.moment-card.gym{background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
+.moment-card.cinema{background:linear-gradient(135deg,#E8F4FD,#D1ECF8)}
+.moment-card.office{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.moment-card.night{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+.moment-card.travel{background:linear-gradient(135deg,#FFF8E1,#FFECB3)}
+.moment-card.date{background:linear-gradient(135deg,#FCE4EC,#F8BBD9)}
+@media(max-width:1024px){.moments-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.moments-grid{grid-template-columns:1fr;gap:16px}#moments{padding:72px 24px}}
+
 .pay-strip{
   background:var(--gold);
   padding:14px 60px;
@@ -372,8 +394,8 @@ section{padding:100px 60px}
 .rev-text{font-size:14px;color:rgba(44,26,14,0.7);line-height:1.75;font-style:italic;margin-bottom:20px}
 .rev-author{display:flex;align-items:center;gap:12px}
 .rev-av{width:36px;height:36px;border-radius:50%;background:rgba(201,146,42,0.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--gold2)}
-.rev-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--cream)}
-.rev-loc{font-size:11px;color:rgba(250,247,240,0.3)}
+.rev-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--ink)}
+.rev-loc{font-size:11px;color:rgba(44,26,14,0.45)}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ═══════════════════════════════════════════
@@ -399,7 +421,7 @@ section{padding:100px 60px}
 /* ═══════════════════════════════════════════
    STORY / ABOUT STRIP
 ═══════════════════════════════════════════ */
-#story{background:var(--ink);position:relative;overflow:hidden;padding:100px 60px}
+#story{background:linear-gradient(135deg,#FF6B00,#E65C00);position:relative;overflow:hidden;padding:100px 60px}
 .story-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .story-left{}
 .story-quote{
@@ -437,7 +459,7 @@ section{padding:100px 60px}
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:72px 60px 40px}
+footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72px 60px 40px}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
 .ft-brand .nav-logo{margin-bottom:16px;width:44px;height:44px;font-size:18px}
 .ft-brand .nav-name{font-size:22px;margin-bottom:10px;display:block}
@@ -831,6 +853,42 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
   .cart-pay-grid{grid-template-columns:1fr 1fr}
   .hamper-pay-grid{grid-template-columns:1fr 1fr}
 }
+
+/* ═══════════════════════════════════════════
+   MACKS MOMENTS
+═══════════════════════════════════════════ */
+#moments{background:var(--warm-white);padding:100px 60px;overflow:hidden}
+#moments .sec-h2{text-align:center;margin-bottom:60px}
+.moments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.moment-card{
+  border-radius:24px;padding:48px 32px;text-align:center;
+  position:relative;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s;
+  cursor:default;
+}
+.moment-card:hover{transform:translateY(-8px);box-shadow:0 32px 80px rgba(0,0,0,0.12)}
+.moment-figure{
+  width:120px;height:160px;margin:0 auto 24px;
+  position:relative;
+}
+.moment-silhouette{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+}
+.moment-tagline{
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:700;font-style:italic;
+  line-height:1.2;margin-bottom:10px;
+}
+.moment-sub{font-size:13px;opacity:0.65;line-height:1.6}
+.moment-card.gym{background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
+.moment-card.cinema{background:linear-gradient(135deg,#E8F4FD,#D1ECF8)}
+.moment-card.office{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.moment-card.night{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
+.moment-card.travel{background:linear-gradient(135deg,#FFF8E1,#FFECB3)}
+.moment-card.date{background:linear-gradient(135deg,#FCE4EC,#F8BBD9)}
+@media(max-width:1024px){.moments-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.moments-grid{grid-template-columns:1fr;gap:16px}#moments{padding:72px 24px}}
 </style>
 </head>
 <body>
@@ -973,6 +1031,125 @@ footer{background:var(--ink);border-top:1px solid rgba(201,146,42,0.08);padding:
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+    <span style="background:#FFF3E0;border:1px solid rgba(212,101,26,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#D4651A;letter-spacing:1px">🏋️ Post-gym fuel</span>
+    <span style="background:#E8F4FD;border:1px solid rgba(37,99,235,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#1D4ED8;letter-spacing:1px">🎬 Movie night essential</span>
+    <span style="background:#F3E5F5;border:1px solid rgba(147,51,234,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#7C3AED;letter-spacing:1px">💻 Desk snack of champions</span>
+    <span style="background:#E8F5E9;border:1px solid rgba(34,197,94,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#16a34a;letter-spacing:1px">🌙 Midnight munchies solved</span>
+    <span style="background:#FFF8E1;border:1px solid rgba(234,179,8,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#B45309;letter-spacing:1px">✈️ Travel companion</span>
+  </div>
+</section>
+
+
+<!-- MACKS MOMENTS -->
+<section id="moments">
+  <div class="sec-header reveal" style="text-align:center">
+    <p class="sec-eye" style="justify-content:center">Snack Without Rules</p>
+    <h2 class="sec-h2">Every moment is a <em>Macks moment.</em></h2>
+  </div>
+  <div class="moments-grid">
+    <div class="moment-card gym reveal reveal-d1">
+      <div class="moment-figure">
+        <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="140">
+          <ellipse cx="50" cy="18" rx="12" ry="12" fill="rgba(212,101,26,0.7)"/>
+          <path d="M28 42 Q50 36 72 42 L68 90 Q50 82 32 90 Z" fill="rgba(212,101,26,0.65)"/>
+          <path d="M28 44 Q14 56 12 72 Q16 76 20 72 Q22 60 34 52 Z" fill="rgba(212,101,26,0.65)"/>
+          <path d="M72 44 Q86 56 88 72 Q84 76 80 72 Q78 60 66 52 Z" fill="rgba(212,101,26,0.65)"/>
+          <ellipse cx="16" cy="66" rx="6" ry="8" fill="rgba(212,101,26,0.5)"/>
+          <ellipse cx="84" cy="66" rx="6" ry="8" fill="rgba(212,101,26,0.5)"/>
+          <path d="M36 88 L30 128 Q38 132 42 128 L46 100 Z" fill="rgba(212,101,26,0.65)"/>
+          <path d="M64 88 L70 128 Q62 132 58 128 L54 100 Z" fill="rgba(212,101,26,0.65)"/>
+        </svg>
+      </div>
+      <p class="moment-tagline" style="color:#D4651A">Snacking is the<br>new building.</p>
+      <p class="moment-sub" style="color:#6B3F1F">Pre-workout. Post-workout.<br>Every workout.</p>
+    </div>
+    <div class="moment-card cinema reveal reveal-d2">
+      <div class="moment-figure">
+        <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="140">
+          <rect x="5" y="10" width="90" height="36" rx="6" fill="rgba(37,99,235,0.15)" stroke="rgba(37,99,235,0.3)" stroke-width="1"/>
+          <rect x="10" y="14" width="80" height="28" rx="4" fill="rgba(37,99,235,0.2)"/>
+          <rect x="20" y="70" width="60" height="40" rx="8" fill="rgba(37,99,235,0.3)"/>
+          <ellipse cx="50" cy="52" rx="14" ry="14" fill="rgba(37,99,235,0.6)"/>
+          <path d="M30 68 Q50 62 70 68 L68 82 Q50 78 32 82 Z" fill="rgba(37,99,235,0.55)"/>
+          <rect x="62" y="76" width="14" height="18" rx="4" fill="rgba(212,101,26,0.8)"/>
+          <rect x="60" y="72" width="18" height="6" rx="3" fill="rgba(212,101,26,0.9)"/>
+        </svg>
+      </div>
+      <p class="moment-tagline" style="color:#1D4ED8">Macks.<br>The experience.</p>
+      <p class="moment-sub" style="color:#1e3a5f">Better than popcorn.<br>Don't tell the cinema.</p>
+    </div>
+    <div class="moment-card night reveal reveal-d3">
+      <div class="moment-figure">
+        <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="140">
+          <ellipse cx="50" cy="44" rx="12" ry="12" fill="rgba(34,197,94,0.6)"/>
+          <path d="M32 58 Q50 52 68 58 L65 74 Q50 70 35 74 Z" fill="rgba(34,197,94,0.55)"/>
+          <rect x="15" y="76" width="70" height="44" rx="6" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.3)" stroke-width="1"/>
+          <rect x="20" y="80" width="60" height="34" rx="4" fill="rgba(34,197,94,0.2)"/>
+          <rect x="26" y="88" width="40" height="3" rx="1.5" fill="rgba(34,197,94,0.5)"/>
+          <rect x="26" y="95" width="28" height="3" rx="1.5" fill="rgba(34,197,94,0.4)"/>
+          <rect x="26" y="102" width="34" height="3" rx="1.5" fill="rgba(34,197,94,0.3)"/>
+          <text x="8" y="25" font-size="12" fill="rgba(34,197,94,0.6)">★</text>
+          <text x="78" y="18" font-size="10" fill="rgba(34,197,94,0.5)">★</text>
+          <text x="55" y="12" font-size="8" fill="rgba(34,197,94,0.4)">★</text>
+        </svg>
+      </div>
+      <p class="moment-tagline" style="color:#16a34a">2am. Dark screen.<br>Jar almost empty.</p>
+      <p class="moment-sub" style="color:#166534">The only deadline that<br>matters is the last makhana.</p>
+    </div>
+    <div class="moment-card office reveal reveal-d1">
+      <div class="moment-figure">
+        <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="140">
+          <ellipse cx="50" cy="28" rx="12" ry="12" fill="rgba(147,51,234,0.6)"/>
+          <path d="M33 42 Q50 36 67 42 L64 58 Q50 54 36 58 Z" fill="rgba(147,51,234,0.55)"/>
+          <rect x="30" y="60" width="40" height="28" rx="4" fill="rgba(147,51,234,0.2)" stroke="rgba(147,51,234,0.4)" stroke-width="1.5"/>
+          <rect x="46" y="88" width="8" height="8" rx="2" fill="rgba(147,51,234,0.3)"/>
+          <rect x="10" y="96" width="80" height="6" rx="3" fill="rgba(147,51,234,0.4)"/>
+          <rect x="18" y="102" width="6" height="24" rx="3" fill="rgba(147,51,234,0.3)"/>
+          <rect x="76" y="102" width="6" height="24" rx="3" fill="rgba(147,51,234,0.3)"/>
+          <rect x="72" y="80" width="12" height="16" rx="3" fill="rgba(212,101,26,0.8)"/>
+          <rect x="70" y="77" width="16" height="5" rx="2.5" fill="rgba(212,101,26,0.9)"/>
+        </svg>
+      </div>
+      <p class="moment-tagline" style="color:#7C3AED">Productivity hack<br>nobody tells you.</p>
+      <p class="moment-sub" style="color:#4C1D95">Meeting at 3pm.<br>Macks at 2:55pm.</p>
+    </div>
+    <div class="moment-card travel reveal reveal-d2">
+      <div class="moment-figure">
+        <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="140">
+          <ellipse cx="20" cy="22" rx="14" ry="8" fill="rgba(234,179,8,0.2)"/>
+          <ellipse cx="75" cy="28" rx="12" ry="7" fill="rgba(234,179,8,0.2)"/>
+          <rect x="10" y="50" width="80" height="60" rx="10" fill="rgba(234,179,8,0.15)" stroke="rgba(234,179,8,0.4)" stroke-width="1.5"/>
+          <rect x="18" y="58" width="28" height="22" rx="4" fill="rgba(234,179,8,0.25)"/>
+          <rect x="54" y="58" width="28" height="22" rx="4" fill="rgba(234,179,8,0.25)"/>
+          <circle cx="25" cy="114" r="8" fill="rgba(234,179,8,0.4)" stroke="rgba(234,179,8,0.6)" stroke-width="1.5"/>
+          <circle cx="75" cy="114" r="8" fill="rgba(234,179,8,0.4)" stroke="rgba(234,179,8,0.6)" stroke-width="1.5"/>
+          <ellipse cx="32" cy="64" rx="8" ry="8" fill="rgba(234,179,8,0.7)"/>
+          <rect x="56" y="66" width="12" height="16" rx="3" fill="rgba(212,101,26,0.8)"/>
+          <rect x="54" y="63" width="16" height="5" rx="2.5" fill="rgba(212,101,26,0.9)"/>
+        </svg>
+      </div>
+      <p class="moment-tagline" style="color:#B45309">Miles away from<br>home. Jar in bag.</p>
+      <p class="moment-sub" style="color:#78350F">Taste that travels<br>as far as you do.</p>
+    </div>
+    <div class="moment-card date reveal reveal-d3">
+      <div class="moment-figure">
+        <svg viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" height="140">
+          <text x="44" y="18" font-size="14" fill="rgba(219,39,119,0.7)">&#9829;</text>
+          <text x="28" y="10" font-size="9" fill="rgba(219,39,119,0.4)">&#9829;</text>
+          <text x="62" y="12" font-size="8" fill="rgba(219,39,119,0.4)">&#9829;</text>
+          <ellipse cx="34" cy="32" rx="11" ry="11" fill="rgba(219,39,119,0.6)"/>
+          <ellipse cx="66" cy="32" rx="11" ry="11" fill="rgba(219,39,119,0.5)"/>
+          <path d="M18 48 Q34 42 50 48 L48 84 Q34 80 20 84 Z" fill="rgba(219,39,119,0.55)"/>
+          <path d="M50 48 Q66 42 82 48 L80 84 Q66 80 52 84 Z" fill="rgba(219,39,119,0.5)"/>
+          <rect x="43" y="92" width="14" height="20" rx="3" fill="rgba(212,101,26,0.8)"/>
+          <rect x="41" y="88" width="18" height="6" rx="3" fill="rgba(212,101,26,0.9)"/>
+        </svg>
+      </div>
+      <p class="moment-tagline" style="color:#BE185D">Sharing is caring.<br>But share wisely.</p>
+      <p class="moment-sub" style="color:#831843">One jar, two people,<br>zero leftovers.</p>
     </div>
   </div>
 </section>
