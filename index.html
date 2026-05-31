@@ -55,7 +55,7 @@ nav{
   padding:20px 60px;display:flex;align-items:center;justify-content:space-between;
   transition:background 0.3s,padding 0.3s,backdrop-filter 0.3s;
 }
-nav.scrolled{background:rgba(255,248,238,0.95);backdrop-filter:blur(20px);padding:14px 60px;border-bottom:1px solid rgba(212,101,26,0.15);box-shadow:0 2px 20px rgba(44,26,14,0.08)}
+nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);padding:14px 60px;border-bottom:1px solid rgba(212,101,26,0.2);box-shadow:0 2px 20px rgba(44,26,14,0.1)}
 .nav-brand{display:flex;align-items:center;gap:10px}
 .nav-logo{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:16px;color:var(--ink);letter-spacing:-1px}
 .nav-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;color:var(--ink)}
@@ -85,7 +85,7 @@ nav.scrolled{background:rgba(255,248,238,0.95);backdrop-filter:blur(20px);paddin
 }
 .hero-bg{
   position:absolute;inset:0;z-index:0;
-  background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 50%, #FFD180 100%);
+  background: linear-gradient(135deg, #FF8C00 0%, #FFA500 40%, #FFD54F 100%);
 }
 .hero-circle{
   position:absolute;right:-120px;top:50%;transform:translateY(-50%);
@@ -95,24 +95,38 @@ nav.scrolled{background:rgba(255,248,238,0.95);backdrop-filter:blur(20px);paddin
 .hero-circle::before{content:'';position:absolute;inset:50px;border-radius:50%;border:1px solid rgba(212,101,26,0.12)}
 .hero-circle::after{content:'';position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(212,101,26,0.08)}
 .hero-content{position:relative;z-index:2;max-width:720px}
+.hero-brand-stamp{
+  display:inline-flex;align-items:baseline;gap:2px;margin-bottom:20px;
+  animation:fadeUp 0.6s ease both;
+}
+.hbs-m{
+  font-family:'Playfair Display',serif;font-size:clamp(72px,9vw,120px);
+  font-weight:900;font-style:italic;color:#FFFFFF;line-height:0.9;
+  text-shadow:4px 4px 0px rgba(0,0,0,0.15);letter-spacing:-4px;
+}
+.hbs-acks{
+  font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,52px);
+  font-weight:800;color:#FFF3CD;letter-spacing:8px;text-transform:uppercase;
+  align-self:flex-end;padding-bottom:8px;
+}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
   font-size:11px;letter-spacing:3px;text-transform:uppercase;
-  color:var(--gold2);margin-bottom:24px;
+  color:#FFF3CD;margin-bottom:24px;
   animation:fadeUp 0.8s ease both;
 }
-.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold2)}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:#FFF3CD}
 .hero-h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(52px,7vw,96px);
   line-height:0.95;letter-spacing:-3px;
-  color:var(--ink);margin-bottom:12px;
+  color:#FFFFFF;margin-bottom:12px;
   animation:fadeUp 0.8s 0.1s ease both;
 }
-.hero-h1 em{font-style:italic;color:var(--gold2)}
-.hero-h1 .stroke{-webkit-text-stroke:1px var(--ink);color:transparent}
+.hero-h1 em{font-style:italic;color:#FFF3CD}
+.hero-h1 .stroke{-webkit-text-stroke:2px #FFFFFF;color:transparent}
 .hero-tagline{
-  font-size:clamp(14px,1.5vw,17px);color:rgba(44,26,14,0.6);
+  font-size:clamp(14px,1.5vw,17px);color:rgba(255,255,255,0.85);
   max-width:480px;line-height:1.75;margin-bottom:44px;
   font-weight:300;
   animation:fadeUp 0.8s 0.2s ease both;
@@ -129,7 +143,7 @@ nav.scrolled{background:rgba(255,248,238,0.95);backdrop-filter:blur(20px);paddin
 }
 .btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,146,42,0.3)}
 .btn-ghost{
-  border:2px solid rgba(44,26,14,0.2);color:rgba(44,26,14,0.7);
+  border:2px solid rgba(255,255,255,0.5);color:rgba(255,255,255,0.9);
   font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
   padding:16px 36px;border-radius:8px;
   transition:all 0.2s;
@@ -137,12 +151,12 @@ nav.scrolled{background:rgba(255,248,238,0.95);backdrop-filter:blur(20px);paddin
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
 .hero-stats{
   display:flex;gap:48px;margin-top:72px;padding-top:40px;
-  border-top:1px solid rgba(44,26,14,0.1);
+  border-top:1px solid rgba(255,255,255,0.25);
   animation:fadeUp 0.8s 0.4s ease both;
 }
 .hs{display:flex;flex-direction:column;gap:4px}
-.hs-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold2);line-height:1}
-.hs-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(44,26,14,0.45)}
+.hs-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#FFFFFF;line-height:1}
+.hs-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.65)}
 .hero-float{
   position:absolute;right:60px;top:50%;transform:translateY(-50%);
   z-index:2;display:flex;flex-direction:column;gap:16px;align-items:center;
@@ -324,8 +338,8 @@ section{padding:100px 60px}
 .hamper-content .sec-h2{margin-bottom:20px}
 .hamper-price{margin:28px 0;display:flex;align-items:baseline;gap:12px}
 .hp-new{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--gold2);line-height:1}
-.hp-old{font-size:20px;color:rgba(255,255,255,0.5);text-decoration:line-through}
-.hp-save{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--cream);font-weight:500}
+.hp-old{font-size:20px;color:rgba(255,255,255,0.65);text-decoration:line-through}
+.hp-save{background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.6);border-radius:20px;padding:4px 12px;font-size:12px;color:#FFFFFF;font-weight:700}
 .hamper-includes{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
 .hi{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,0.85)}
 .hi::before{content:'✓';width:22px;height:22px;background:rgba(201,146,42,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold2);flex-shrink:0}
@@ -358,7 +372,7 @@ section{padding:100px 60px}
 .wc-body{font-size:14px;color:rgba(16,12,4,0.5);line-height:1.75}
 .why-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:24px;padding:40px;background:linear-gradient(135deg,#FF6B00,#FF8C00);border-radius:20px;color:var(--cream)}
 .wsr-item{text-align:center}
-.wsr-n{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--gold2);line-height:1;margin-bottom:6px}
+.wsr-n{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:#FFFFFF;line-height:1;margin-bottom:6px}
 .wsr-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7)}
 
 /* ═══════════════════════════════════════════
@@ -611,7 +625,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 /* Cart checkout section */
 .cart-checkout{
   flex-shrink:0;
-  border-top:1px solid rgba(44,26,14,0.1);
+  border-top:1px solid rgba(255,255,255,0.25);
   padding:20px 24px 24px;
   background:var(--cream);
   max-height:70vh;overflow-y:auto;
@@ -912,8 +926,11 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <div class="hero-circle"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">A Fox Harvest Foods Brand</p>
+    <div class="hero-brand-stamp">
+      <span class="hbs-m">M</span><span class="hbs-acks">ACKS</span>
+    </div>
     <h1 class="hero-h1">
-      Snack<br><em>Smart.</em><br>Snack <span class="stroke">Loud.</span>
+      Snack<br><em>Smarter.</em><br>Live <span class="stroke">Louder.</span>
     </h1>
     <p class="hero-tagline">Premium hand-roasted foxnuts in four bold flavours. High protein, zero guilt, beautifully jarred — made for the modern Indian snacker.</p>
     <div class="hero-actions">
@@ -933,86 +950,6 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     <div class="hf-badge">No Artificial Flavours ✦</div>
   </div>
 </section>
-
-<!-- FLAVOURS -->
-<section id="flavours">
-  <div class="sec-header reveal">
-    <p class="sec-eye">The Lineup</p>
-    <h2 class="sec-h2">Pick your <em>Potion.</em></h2>
-    <p class="sec-body">Four distinct flavours, all roasted in small batches. Each jar is a full 70g of pure, unapologetic snacking.</p>
-  </div>
-  <div class="flavours-grid">
-    <div class="flav-card reveal reveal-d1">
-      <span class="flav-tag">Bestseller</span>
-      <span class="flav-sold">1,200+ sold</span>
-      <div class="flav-img fc-pudina">🌿</div>
-      <div class="flav-body">
-        <p class="flav-name">Pudina</p>
-        <p class="flav-desc">One jar in. Zero left. The mint hit that haunts you at 2am.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Pudina','🌿')" aria-label="Add Pudina to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Pudina">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flav-card reveal reveal-d2">
-      <span class="flav-sold">850+ sold</span>
-      <div class="flav-img fc-cheese">🧀</div>
-      <div class="flav-body">
-        <p class="flav-name">Smokey Cheese</p>
-        <p class="flav-desc">Creamy. Smoky. Dangerously close to actual cheese. Your diet doesn't need to know.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Smokey Cheese','🧀')" aria-label="Add Smokey Cheese to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Smokey Cheese">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flav-card reveal reveal-d3">
-      <span class="flav-sold">970+ sold</span>
-      <div class="flav-img fc-peri">🔥</div>
-      <div class="flav-body">
-        <p class="flav-name">Peri Peri</p>
-        <p class="flav-desc">The burn you crave. The crunch you need. Post-gym. Pre-movie. Always.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Peri Peri','🔥')" aria-label="Add Peri Peri to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Peri Peri">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flav-card reveal reveal-d4">
-      <span class="flav-sold">720+ sold</span>
-      <div class="flav-img fc-tadka">🫙</div>
-      <div class="flav-body">
-        <p class="flav-name">Punjabi Tadka</p>
-        <p class="flav-desc">Nani's kitchen. Bottled. Bolder. And gone before you notice.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Punjabi Tadka','🫙')" aria-label="Add Punjabi Tadka to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Punjabi Tadka">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-    <span style="background:#FFF3E0;border:1px solid rgba(212,101,26,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#D4651A;letter-spacing:1px">🏋️ Post-gym fuel</span>
-    <span style="background:#E8F4FD;border:1px solid rgba(37,99,235,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#1D4ED8;letter-spacing:1px">🎬 Movie night essential</span>
-    <span style="background:#F3E5F5;border:1px solid rgba(147,51,234,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#7C3AED;letter-spacing:1px">💻 Desk snack of champions</span>
-    <span style="background:#E8F5E9;border:1px solid rgba(34,197,94,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#16a34a;letter-spacing:1px">🌙 Midnight munchies solved</span>
-    <span style="background:#FFF8E1;border:1px solid rgba(234,179,8,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#B45309;letter-spacing:1px">✈️ Travel companion</span>
-  </div>
-</section>
-
 
 <!-- PAYMENT INFO STRIP -->
 <div class="pay-strip">
@@ -1101,7 +1038,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         </svg>
       </div>
       <div class="mc-divider" style="background:#6366F1"></div>
-      <p class="mc-tagline" style="color:#4338CA">Macks. The experience.</p>
+      <p class="mc-tagline" style="color:#4338CA">Macks. Your experience.</p>
       <p class="mc-sub" style="color:#3730A3">Better than popcorn. Don't tell the cinema.</p>
     </div>
 
@@ -1261,6 +1198,86 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   </div>
 </section>
 
+<!-- FLAVOURS -->
+<section id="flavours">
+  <div class="sec-header reveal">
+    <p class="sec-eye">The Lineup</p>
+    <h2 class="sec-h2">Pick your <em>Potion.</em></h2>
+    <p class="sec-body">Four distinct flavours, all roasted in small batches. Each jar is a full 70g of pure, unapologetic snacking.</p>
+  </div>
+  <div class="flavours-grid">
+    <div class="flav-card reveal reveal-d1">
+      <span class="flav-tag">Bestseller</span>
+      <span class="flav-sold">1,200+ sold</span>
+      <div class="flav-img fc-pudina">🌿</div>
+      <div class="flav-body">
+        <p class="flav-name">Pudina</p>
+        <p class="flav-desc">One jar in. Zero left. The mint hit that haunts you at 2am.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Pudina','🌿')" aria-label="Add Pudina to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Pudina">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d2">
+      <span class="flav-sold">850+ sold</span>
+      <div class="flav-img fc-cheese">🧀</div>
+      <div class="flav-body">
+        <p class="flav-name">Smokey Cheese</p>
+        <p class="flav-desc">Creamy. Smoky. Dangerously close to actual cheese. Your diet doesn't need to know.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Smokey Cheese','🧀')" aria-label="Add Smokey Cheese to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Smokey Cheese">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d3">
+      <span class="flav-sold">970+ sold</span>
+      <div class="flav-img fc-peri">🔥</div>
+      <div class="flav-body">
+        <p class="flav-name">Peri Peri</p>
+        <p class="flav-desc">The burn you crave. The crunch you need. Post-gym. Pre-movie. Always.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Peri Peri','🔥')" aria-label="Add Peri Peri to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Peri Peri">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d4">
+      <span class="flav-sold">720+ sold</span>
+      <div class="flav-img fc-tadka">🫙</div>
+      <div class="flav-body">
+        <p class="flav-name">Punjabi Tadka</p>
+        <p class="flav-desc">Nani's kitchen. Bottled. Bolder. And gone before you notice.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Punjabi Tadka','🫙')" aria-label="Add Punjabi Tadka to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Punjabi Tadka">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+    <span style="background:#FFF3E0;border:1px solid rgba(212,101,26,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#D4651A;letter-spacing:1px">🏋️ Post-gym fuel</span>
+    <span style="background:#E8F4FD;border:1px solid rgba(37,99,235,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#1D4ED8;letter-spacing:1px">🎬 Movie night essential</span>
+    <span style="background:#F3E5F5;border:1px solid rgba(147,51,234,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#7C3AED;letter-spacing:1px">💻 Desk snack of champions</span>
+    <span style="background:#E8F5E9;border:1px solid rgba(34,197,94,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#16a34a;letter-spacing:1px">🌙 Midnight munchies solved</span>
+    <span style="background:#FFF8E1;border:1px solid rgba(234,179,8,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#B45309;letter-spacing:1px">✈️ Travel companion</span>
+  </div>
+</section>
+
+
 <!-- HAMPER -->
 <section id="hamper">
   <div class="hamper-inner">
@@ -1330,7 +1347,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <div class="why-stat-row reveal">
     <div class="wsr-item"><p class="wsr-n">₹199</p><p class="wsr-l">Per 70g Jar</p></div>
     <div class="wsr-item"><p class="wsr-n">&lt;4g</p><p class="wsr-l">Fat per Serving</p></div>
-    <div class="wsr-item"><p class="wsr-n">0</p><p class="wsr-l">Artificial Flavours</p></div>
+    <div class="wsr-item"><p class="wsr-n">10g+</p><p class="wsr-l">Protein per Pack</p></div>
   </div>
 </section>
 
