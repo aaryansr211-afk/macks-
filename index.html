@@ -256,31 +256,29 @@ section{padding:100px 60px}
    PAYMENT INFO STRIP
 ═══════════════════════════════════════════ */
 /* ===========================================
-   MACKS MOMENTS — HORIZONTAL BANNERS
+   MACKS MOMENTS — GRID
 =========================================== */
-.moment-banner{padding:80px 60px;display:flex;align-items:center;gap:80px;overflow:hidden}
-.moment-banner.flip{flex-direction:row-reverse}
-.moment-banner.gym{background:#FFF3E0}
-.moment-banner.cinema{background:#EEF2FF}
-.moment-banner.night{background:#ECFDF5}
-.moment-banner.office{background:#F5F3FF}
-.moment-banner.travel{background:#FFFBEB}
-.moment-banner.date{background:#FFF1F5}
-.mb-art{flex:0 0 320px;display:flex;align-items:center;justify-content:center}
-.mb-art svg{width:100%;max-width:280px;height:auto}
-.mb-text{flex:1;min-width:0}
-.mb-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.mb-label::before{content:'';width:20px;height:1px}
-.mb-tagline{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,48px);font-style:italic;font-weight:700;line-height:1.15;margin-bottom:16px}
-.mb-sub{font-size:15px;line-height:1.8;max-width:400px}
-@media(max-width:1024px){.moment-banner{gap:48px}.mb-art{flex:0 0 240px}}
-@media(max-width:768px){
-  .moment-banner,.moment-banner.flip{flex-direction:column;padding:56px 24px;gap:32px;text-align:center}
-  .mb-art{flex:0 0 auto;width:200px}
-  .mb-label{justify-content:center}
-  .mb-label::before{display:none}
-  .mb-sub{margin:0 auto}
+#moments{padding:100px 60px;background:#FFFDF8}
+#moments .sec-h2{margin-bottom:56px}
+.moments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.moment-card{
+  border-radius:20px;padding:40px 32px;text-align:center;
+  transition:transform 0.3s,box-shadow 0.3s;
 }
+.moment-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.1)}
+.moment-card.gym{background:#FFF3E0}
+.moment-card.cinema{background:#EEF2FF}
+.moment-card.night{background:#ECFDF5}
+.moment-card.office{background:#F5F3FF}
+.moment-card.travel{background:#FFFBEB}
+.moment-card.date{background:#FFF1F5}
+.mc-art{width:180px;height:180px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center}
+.mc-art svg{width:100%;height:100%}
+.mc-tagline{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;font-weight:700;line-height:1.2;margin-bottom:8px}
+.mc-sub{font-size:13px;line-height:1.65;opacity:0.65}
+.mc-divider{width:32px;height:2px;margin:10px auto 14px;border-radius:2px}
+@media(max-width:1024px){.moments-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.moments-grid{grid-template-columns:1fr}#moments{padding:72px 24px}}
 
 .pay-strip{
   background:var(--gold);
@@ -1015,55 +1013,6 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   </div>
 </section>
 
-
-<!-- MOMENT 2: CINEMA -->
-<div class="moment-banner cinema flip reveal">
-  <div class="mb-art">
-    <svg viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- screen -->
-      <rect x="20" y="10" width="260" height="90" rx="8" fill="none" stroke="#6366F1" stroke-width="3"/>
-      <rect x="20" y="10" width="260" height="90" rx="8" fill="#EEF2FF"/>
-      <!-- heart on screen -->
-      <path d="M150 68 C150 68 128 52 128 40 C128 32 136 26 144 30 C147 31 150 34 150 34 C150 34 153 31 156 30 C164 26 172 32 172 40 C172 52 150 68 150 68Z" fill="none" stroke="#6366F1" stroke-width="2.5"/>
-      <!-- screen stand -->
-      <rect x="144" y="100" width="12" height="16" rx="3" fill="none" stroke="#6366F1" stroke-width="2.5"/>
-      <rect x="128" y="116" width="44" height="6" rx="3" fill="none" stroke="#6366F1" stroke-width="2.5"/>
-      <!-- 3 cinema seats -->
-      <!-- seat 1 -->
-      <rect x="28" y="148" width="72" height="44" rx="8" fill="none" stroke="#6366F1" stroke-width="2.5"/>
-      <rect x="28" y="148" width="72" height="44" rx="8" fill="#EEF2FF"/>
-      <path d="M28 168 Q64 162 100 168" stroke="#6366F1" stroke-width="2" fill="none"/>
-      <rect x="22" y="158" width="8" height="28" rx="4" fill="none" stroke="#6366F1" stroke-width="2"/>
-      <rect x="100" y="158" width="8" height="28" rx="4" fill="none" stroke="#6366F1" stroke-width="2"/>
-      <!-- seat 2 -->
-      <rect x="114" y="148" width="72" height="44" rx="8" fill="none" stroke="#6366F1" stroke-width="2.5"/>
-      <rect x="114" y="148" width="72" height="44" rx="8" fill="#EEF2FF"/>
-      <path d="M114 168 Q150 162 186 168" stroke="#6366F1" stroke-width="2" fill="none"/>
-      <rect x="108" y="158" width="8" height="28" rx="4" fill="none" stroke="#6366F1" stroke-width="2"/>
-      <rect x="186" y="158" width="8" height="28" rx="4" fill="none" stroke="#6366F1" stroke-width="2"/>
-      <!-- seat 3 with macks jar -->
-      <rect x="200" y="148" width="72" height="44" rx="8" fill="none" stroke="#6366F1" stroke-width="2.5"/>
-      <rect x="200" y="148" width="72" height="44" rx="8" fill="#EEF2FF"/>
-      <path d="M200 168 Q236 162 272 168" stroke="#6366F1" stroke-width="2" fill="none"/>
-      <rect x="194" y="158" width="8" height="28" rx="4" fill="none" stroke="#6366F1" stroke-width="2"/>
-      <rect x="272" y="158" width="8" height="28" rx="4" fill="none" stroke="#6366F1" stroke-width="2"/>
-      <!-- macks jar on seat armrest -->
-      <rect x="254" y="138" width="20" height="26" rx="5" fill="none" stroke="#E8731A" stroke-width="2.5"/>
-      <rect x="251" y="134" width="26" height="7" rx="3.5" fill="none" stroke="#E8731A" stroke-width="2.5"/>
-      <text x="258" y="155" font-size="9" fill="#E8731A" font-family="serif" font-weight="bold">M</text>
-      <!-- drink cup seat 1 -->
-      <path d="M96 140 L100 160 Q98 164 94 164 Q90 164 88 160 L92 140Z" fill="none" stroke="#6366F1" stroke-width="2"/>
-      <line x1="88" y1="148" x2="100" y2="148" stroke="#6366F1" stroke-width="1.5"/>
-      <!-- ground -->
-      <line x1="20" y1="200" x2="280" y2="200" stroke="#6366F1" stroke-width="2" opacity="0.3"/>
-    </svg>
-  </div>
-  <div class="mb-text">
-    <p class="mb-label" style="color:#6366F1">— For the movie lovers</p>
-    <h2 class="mb-tagline" style="color:#4338CA">Macks.<br>The experience.</h2>
-    <p class="mb-sub" style="color:#3730A3">Better than popcorn. Don't tell the cinema.<br>A jar that makes every scene taste better.</p>
-  </div>
-</div>
 
 <!-- PAYMENT INFO STRIP -->
 <div class="pay-strip">
