@@ -854,41 +854,6 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   .hamper-pay-grid{grid-template-columns:1fr 1fr}
 }
 
-/* ═══════════════════════════════════════════
-   MACKS MOMENTS
-═══════════════════════════════════════════ */
-#moments{background:var(--warm-white);padding:100px 60px;overflow:hidden}
-#moments .sec-h2{text-align:center;margin-bottom:60px}
-.moments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.moment-card{
-  border-radius:24px;padding:48px 32px;text-align:center;
-  position:relative;overflow:hidden;
-  transition:transform 0.3s,box-shadow 0.3s;
-  cursor:default;
-}
-.moment-card:hover{transform:translateY(-8px);box-shadow:0 32px 80px rgba(0,0,0,0.12)}
-.moment-figure{
-  width:120px;height:160px;margin:0 auto 24px;
-  position:relative;
-}
-.moment-silhouette{
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-}
-.moment-tagline{
-  font-family:'Playfair Display',serif;
-  font-size:22px;font-weight:700;font-style:italic;
-  line-height:1.2;margin-bottom:10px;
-}
-.moment-sub{font-size:13px;opacity:0.65;line-height:1.6}
-.moment-card.gym{background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
-.moment-card.cinema{background:linear-gradient(135deg,#E8F4FD,#D1ECF8)}
-.moment-card.office{background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
-.moment-card.night{background:linear-gradient(135deg,#E8F5E9,#C8E6C9)}
-.moment-card.travel{background:linear-gradient(135deg,#FFF8E1,#FFECB3)}
-.moment-card.date{background:linear-gradient(135deg,#FCE4EC,#F8BBD9)}
-@media(max-width:1024px){.moments-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.moments-grid{grid-template-columns:1fr;gap:16px}#moments{padding:72px 24px}}
 </style>
 </head>
 <body>
@@ -1043,6 +1008,11 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 </section>
 
 
+<!-- PAYMENT INFO STRIP -->
+<div class="pay-strip">
+  <span class="pay-strip-icon">🛒</span>
+  <p class="pay-strip-text">Add to cart → choose UPI / Card / COD → confirm on WhatsApp → done ✓ &nbsp;·&nbsp; 🏷️ Use code <strong>MACKS10</strong> for 10% off</p>
+</div>
 <!-- MACKS MOMENTS -->
 <section id="moments">
   <div class="sec-header reveal" style="text-align:center">
@@ -1154,11 +1124,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   </div>
 </section>
 
-<!-- PAYMENT INFO STRIP -->
-<div class="pay-strip">
-  <span class="pay-strip-icon">🛒</span>
-  <p class="pay-strip-text">Add to cart → choose UPI / Card / COD → confirm on WhatsApp → done ✓ &nbsp;·&nbsp; 🏷️ Use code <strong>MACKS10</strong> for 10% off</p>
-</div>
+
 
 <!-- HAMPER -->
 <section id="hamper">
