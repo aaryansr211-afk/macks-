@@ -85,7 +85,7 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 }
 .hero-bg{
   position:absolute;inset:0;z-index:0;
-  background: linear-gradient(135deg, #FF8C00 0%, #FFA500 40%, #FFD54F 100%);
+  background: linear-gradient(160deg, #FDF6EC 0%, #F5E6CC 60%, #EDD5A8 100%);
 }
 .hero-circle{
   position:absolute;right:-120px;top:50%;transform:translateY(-50%);
@@ -96,37 +96,34 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 .hero-circle::after{content:'';position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(212,101,26,0.08)}
 .hero-content{position:relative;z-index:2;max-width:720px}
 .hero-brand-stamp{
-  display:inline-flex;align-items:baseline;gap:2px;margin-bottom:20px;
+  margin-bottom:20px;
   animation:fadeUp 0.6s ease both;
 }
-.hbs-m{
-  font-family:'Playfair Display',serif;font-size:clamp(72px,9vw,120px);
-  font-weight:900;font-style:italic;color:#FFFFFF;line-height:0.9;
-  text-shadow:4px 4px 0px rgba(0,0,0,0.15);letter-spacing:-4px;
-}
-.hbs-acks{
-  font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,52px);
-  font-weight:800;color:#FFF3CD;letter-spacing:8px;text-transform:uppercase;
-  align-self:flex-end;padding-bottom:8px;
+.hbs-macks{
+  font-family:'Pacifico',cursive;
+  font-size:clamp(56px,8vw,110px);
+  color:var(--gold);
+  line-height:1;
+  letter-spacing:2px;
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
   font-size:11px;letter-spacing:3px;text-transform:uppercase;
-  color:#FFF3CD;margin-bottom:24px;
+  color:var(--gold2);margin-bottom:24px;
   animation:fadeUp 0.8s ease both;
 }
-.hero-eyebrow::before{content:'';width:30px;height:1px;background:#FFF3CD}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold2)}
 .hero-h1{
   font-family:'Playfair Display',serif;
   font-size:clamp(52px,7vw,96px);
   line-height:0.95;letter-spacing:-3px;
-  color:#FFFFFF;margin-bottom:12px;
+  color:var(--ink);margin-bottom:12px;
   animation:fadeUp 0.8s 0.1s ease both;
 }
-.hero-h1 em{font-style:italic;color:#FFF3CD}
-.hero-h1 .stroke{-webkit-text-stroke:2px #FFFFFF;color:transparent}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-h1 .stroke{-webkit-text-stroke:2px var(--ink);color:transparent}
 .hero-tagline{
-  font-size:clamp(14px,1.5vw,17px);color:rgba(255,255,255,0.85);
+  font-size:clamp(14px,1.5vw,17px);color:rgba(44,26,14,0.65);
   max-width:480px;line-height:1.75;margin-bottom:44px;
   font-weight:300;
   animation:fadeUp 0.8s 0.2s ease both;
@@ -143,7 +140,7 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 }
 .btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,146,42,0.3)}
 .btn-ghost{
-  border:2px solid rgba(255,255,255,0.5);color:rgba(255,255,255,0.9);
+  border:2px solid rgba(44,26,14,0.2);color:rgba(44,26,14,0.7);
   font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
   padding:16px 36px;border-radius:8px;
   transition:all 0.2s;
@@ -151,12 +148,12 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
 .hero-stats{
   display:flex;gap:48px;margin-top:72px;padding-top:40px;
-  border-top:1px solid rgba(255,255,255,0.25);
+  border-top:1px solid rgba(44,26,14,0.12);
   animation:fadeUp 0.8s 0.4s ease both;
 }
 .hs{display:flex;flex-direction:column;gap:4px}
-.hs-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#FFFFFF;line-height:1}
-.hs-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.65)}
+.hs-n{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1}
+.hs-l{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(44,26,14,0.45)}
 .hero-float{
   position:absolute;right:60px;top:50%;transform:translateY(-50%);
   z-index:2;display:flex;flex-direction:column;gap:16px;align-items:center;
@@ -310,7 +307,7 @@ section{padding:100px 60px}
    HAMPER
 ═══════════════════════════════════════════ */
 #hamper{
-  background:linear-gradient(135deg,#FF6B00 0%,#FF8C00 100%);
+  background:linear-gradient(135deg,#2C1A0E 0%,#3D2410 100%);
   position:relative;overflow:hidden;
 }
 #hamper::before{
@@ -337,7 +334,7 @@ section{padding:100px 60px}
 .hj{width:36px;height:44px;border-radius:6px;border:1px solid rgba(201,146,42,0.3);font-size:20px;display:flex;align-items:center;justify-content:center}
 .hamper-content .sec-h2{margin-bottom:20px}
 .hamper-price{margin:28px 0;display:flex;align-items:baseline;gap:12px}
-.hp-new{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--gold2);line-height:1}
+.hp-new{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--gold3);line-height:1}
 .hp-old{font-size:20px;color:rgba(255,255,255,0.65);text-decoration:line-through}
 .hp-save{background:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.6);border-radius:20px;padding:4px 12px;font-size:12px;color:#FFFFFF;font-weight:700}
 .hamper-includes{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
@@ -625,7 +622,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 /* Cart checkout section */
 .cart-checkout{
   flex-shrink:0;
-  border-top:1px solid rgba(255,255,255,0.25);
+  border-top:1px solid rgba(44,26,14,0.12);
   padding:20px 24px 24px;
   background:var(--cream);
   max-height:70vh;overflow-y:auto;
@@ -927,10 +924,10 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <div class="hero-content">
     <p class="hero-eyebrow">A Fox Harvest Foods Brand</p>
     <div class="hero-brand-stamp">
-      <span class="hbs-m">M</span><span class="hbs-acks">ACKS</span>
+      <span class="hbs-macks">Macks</span>
     </div>
     <h1 class="hero-h1">
-      Snack<br><em>Smarter.</em><br>Live <span class="stroke">Louder.</span>
+      Snack<br><em>Boldly.</em><br>Live <span class="stroke">Fully.</span>
     </h1>
     <p class="hero-tagline">Premium hand-roasted foxnuts in four bold flavours. High protein, zero guilt, beautifully jarred — made for the modern Indian snacker.</p>
     <div class="hero-actions">
@@ -947,7 +944,6 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <div class="hero-float">
     <div class="hf-jar">🫙</div>
     <div class="hf-badge">Roasted, Not Fried ✦</div>
-    <div class="hf-badge">No Artificial Flavours ✦</div>
   </div>
 </section>
 
