@@ -2015,8 +2015,8 @@ function placeOrder(){
     window.open('https://wa.me/919310419066?text='+encodeURIComponent(waMsg),'_blank');
     showOrderSuccess();
   } else {
-    // Razorpay for UPI and Card
-    launchRazorpay(grand, formData, orderText, selectedPayMethod);
+    // Cashfree for UPI and Card
+    launchCashfree(grand, formData, orderText, selectedPayMethod, showOrderSuccess);
   }
 }
 
@@ -2029,46 +2029,55 @@ function showOrderSuccess(){
 }
 
 /* ════════════════════════════════════════
-   RAZORPAY
+   CASHFREE PAYMENT
 ════════════════════════════════════════ */
-var RZP_KEY = 'rzp_test_SvX4ls5zoZr4Qf';
-function launchRazorpay(amount, formData, orderText, method){
-  if(typeof Razorpay === 'undefined'){
+function launchCashfree(amount, formData, orderText, method, successCallback){
+  if(typeof Cashfree === 'undefined'){
     alert('Payment gateway failed to load. Please refresh and try again.');
     return;
   }
-  var options = {
-    key: RZP_KEY,
-    amount: amount * 100,
-    currency: 'INR',
-    name: 'Macks — Fox Harvest Foods',
-    description: 'Premium Roasted Makhana',
-    prefill: {
-      name: formData.name,
-      email: formData.email,
-      contact: formData.phone
-    },
-    notes: {
-      address: formData.flat+', '+formData.addr+', '+formData.area+', '+formData.city+' - '+formData.pin
-    },
-    theme: { color: '#D4651A' },
-    handler: function(response){
-      var successMsg = 'Hi Macks! 🎉 Payment successful!\n\n'
-        + orderText
-        + '\n\n✅ Payment ID: ' + response.razorpay_payment_id;
-      window.open('https://wa.me/919310419066?text='+encodeURIComponent(successMsg),'_blank');
-      showOrderSuccess();
+  var orderId = 'MACKS_' + Date.now();
+  var btn = document.querySelector('.place-order-btn') || document.querySelector('.hamper-place-order');
+  if(btn){ btn.disabled = true; btn.textContent = 'Processing…'; }
+
+  fetch('/.netlify/functions/create-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      amount: amount,
+      customerName: formData.name,
+      customerPhone: formData.phone,
+      customerEmail: formData.email || 'noreply@macksmakhana.com',
+      orderId: orderId
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    if(btn){ btn.disabled = false; btn.textContent = 'Place Order'; }
+    if(!data.payment_session_id){
+      alert('Could not initiate payment. Please try COD or WhatsApp order.\nError: ' + (data.error || 'Unknown'));
+      return;
     }
-  };
-  try {
-    var rzp = new Razorpay(options);
-    rzp.on('payment.failed', function(resp){
-      alert('Payment failed: ' + resp.error.description + '. Please try again or choose COD.');
+    var cashfree = Cashfree({ mode: 'production' });
+    cashfree.checkout({
+      paymentSessionId: data.payment_session_id,
+      redirectTarget: '_modal',
+    }).then(function(result){
+      if(result.error){
+        alert('Payment failed: ' + result.error.message + '. Please try again or choose COD.');
+      } else if(result.paymentDetails){
+        var successMsg = 'Hi Macks! 🎉 Payment successful!\n\n'
+          + orderText
+          + '\n\n✅ Order ID: ' + data.order_id;
+        window.open('https://wa.me/919310419066?text='+encodeURIComponent(successMsg),'_blank');
+        if(successCallback) successCallback();
+      }
     });
-    rzp.open();
-  } catch(e) {
-    alert('Could not open payment: ' + e.message);
-  }
+  })
+  .catch(function(e){
+    if(btn){ btn.disabled = false; btn.textContent = 'Place Order'; }
+    alert('Network error. Please try again.\n' + e.message);
+  });
 }
 
 /* ════════════════════════════════════════
@@ -2166,11 +2175,14 @@ function hamperPlaceOrder(){
     document.getElementById('hamper-upi-note').classList.add('show');
   } else {
     var hamperFormData={name:name,phone:phone,email:email,flat:flat,addr:addr,area:area,city:city,pin:pin};
-    launchRazorpay(total, hamperFormData, orderText, method);
+    launchCashfree(total, hamperFormData, orderText, method, function(){
+      document.getElementById('hamper-upi-note').textContent='Payment received! Order confirmed 🎉';
+      document.getElementById('hamper-upi-note').classList.add('show');
+    });
   }
 }
 </script>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
