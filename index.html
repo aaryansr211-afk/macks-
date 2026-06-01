@@ -291,7 +291,7 @@ section{padding:100px 60px}
 .mc-sub{font-size:11px;line-height:1.55;opacity:0.65}
 .mc-divider{width:32px;height:2px;margin:10px auto 14px;border-radius:2px}
 @media(max-width:1024px){.moments-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:768px){.moments-grid{grid-template-columns:repeat(3,1fr);gap:10px}#moments{padding:56px 16px}}
+@media(max-width:768px){.moments-grid{grid-template-columns:repeat(3,1fr);gap:8px}#moments{padding:48px 16px}.moment-card{border-radius:12px;padding:14px 8px}.mc-art{width:64px;height:64px;margin-bottom:8px}.mc-tagline{font-size:11px;margin-bottom:4px}.mc-sub{font-size:10px}}
 
 .pay-strip{
   background:var(--gold);
@@ -954,6 +954,111 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <span class="pay-strip-icon">🛒</span>
   <p class="pay-strip-text">Add to cart → choose UPI / Card / COD → confirm on WhatsApp → done ✓ &nbsp;·&nbsp; 🏷️ Use code <strong>MACKS10</strong> for 10% off</p>
 </div>
+
+
+<!-- FLAVOURS -->
+<section id="flavours">
+  <div class="sec-header reveal">
+    <p class="sec-eye">The Lineup</p>
+    <h2 class="sec-h2">Pick your <em>Potion.</em></h2>
+    <p class="sec-body">Four distinct flavours, all roasted in small batches. Each jar is a full 70g of pure, unapologetic snacking.</p>
+  </div>
+  <div class="flavours-grid">
+    <div class="flav-card reveal reveal-d1">
+      <span class="flav-tag">Bestseller</span>
+      <span class="flav-sold">1,000+ sold</span>
+      <div class="flav-img fc-pudina">🌿</div>
+      <div class="flav-body">
+        <p class="flav-name">Pudina</p>
+        <p class="flav-desc">One jar in. Zero left. The mint hit that haunts you at 2am.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Pudina','🌿')" aria-label="Add Pudina to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Pudina">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d2">
+      <span class="flav-sold">800+ sold</span>
+      <div class="flav-img fc-cheese">🧀</div>
+      <div class="flav-body">
+        <p class="flav-name">Smokey Cheese</p>
+        <p class="flav-desc">Creamy. Smoky. Dangerously close to actual cheese. Your diet doesn't need to know.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Smokey Cheese','🧀')" aria-label="Add Smokey Cheese to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Smokey Cheese">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d3">
+      <span class="flav-sold">1,000+ sold</span>
+      <div class="flav-img fc-peri">🔥</div>
+      <div class="flav-body">
+        <p class="flav-name">Peri Peri</p>
+        <p class="flav-desc">The burn you crave. The crunch you need. Post-gym. Pre-movie. Always.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Peri Peri','🔥')" aria-label="Add Peri Peri to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Peri Peri">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d4">
+      <span class="flav-sold">750+ sold</span>
+      <div class="flav-img fc-tadka">🫙</div>
+      <div class="flav-body">
+        <p class="flav-name">Punjabi Tadka</p>
+        <p class="flav-desc">Nani's kitchen. Bottled. Bolder. And gone before you notice.</p>
+        <div class="flav-footer">
+          <p class="flav-price">₹199 <span>/ 70g</span></p>
+          <div class="flav-add-wrap">
+            <button class="flav-add" onclick="addToCart('Punjabi Tadka','🫙')" aria-label="Add Punjabi Tadka to cart">+</button>
+            <span class="flav-add-badge hidden" id="badge-Punjabi Tadka">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d1" style="opacity:0.7;pointer-events:none;position:relative">
+      <span class="flav-tag" style="background:#F3E5F5;color:#7C3AED;border-color:rgba(147,51,234,0.3)">Coming Soon</span>
+      <div class="flav-img" style="background:linear-gradient(135deg,#FFF8E1,#FEF3C7);font-size:52px;display:flex;align-items:center;justify-content:center">🍬</div>
+      <div class="flav-body">
+        <p class="flav-name">Golden Caramel</p>
+        <p class="flav-desc">Sweet meets crunch. Caramel-glazed foxnut that's dangerously addictive.</p>
+        <div class="flav-footer">
+          <p class="flav-price" style="color:rgba(44,26,14,0.4)">Coming Soon</p>
+          <button class="flav-add" style="background:#E9D5FF;color:#7C3AED;cursor:not-allowed" disabled>✦</button>
+        </div>
+      </div>
+    </div>
+    <div class="flav-card reveal reveal-d2" style="opacity:0.7;pointer-events:none;position:relative">
+      <span class="flav-tag" style="background:#F3E5F5;color:#7C3AED;border-color:rgba(147,51,234,0.3)">Coming Soon</span>
+      <div class="flav-img" style="background:linear-gradient(135deg,#FFF8E1,#FFFDE7);font-size:52px;display:flex;align-items:center;justify-content:center">🧈</div>
+      <div class="flav-body">
+        <p class="flav-name">Butter Salt</p>
+        <p class="flav-desc">Classic done right. Buttery, lightly salted, impossibly moreish.</p>
+        <div class="flav-footer">
+          <p class="flav-price" style="color:rgba(44,26,14,0.4)">Coming Soon</p>
+          <button class="flav-add" style="background:#E9D5FF;color:#7C3AED;cursor:not-allowed" disabled>✦</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+    <span style="background:#FFF3E0;border:1px solid rgba(212,101,26,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#D4651A;letter-spacing:1px">🏋️ Post-gym fuel</span>
+    <span style="background:#E8F4FD;border:1px solid rgba(37,99,235,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#1D4ED8;letter-spacing:1px">🎬 Movie night essential</span>
+    <span style="background:#F3E5F5;border:1px solid rgba(147,51,234,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#7C3AED;letter-spacing:1px">💻 Desk snack of champions</span>
+    <span style="background:#E8F5E9;border:1px solid rgba(34,197,94,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#16a34a;letter-spacing:1px">🌙 Midnight munchies solved</span>
+    <span style="background:#FFF8E1;border:1px solid rgba(234,179,8,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#B45309;letter-spacing:1px">✈️ Travel companion</span>
+  </div>
+</section>
+
 <!-- MACKS MOMENTS -->
 <section id="moments">
   <div class="sec-header reveal" style="text-align:center">
@@ -1196,86 +1301,6 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   </div>
 </section>
 
-<!-- FLAVOURS -->
-<section id="flavours">
-  <div class="sec-header reveal">
-    <p class="sec-eye">The Lineup</p>
-    <h2 class="sec-h2">Pick your <em>Potion.</em></h2>
-    <p class="sec-body">Four distinct flavours, all roasted in small batches. Each jar is a full 70g of pure, unapologetic snacking.</p>
-  </div>
-  <div class="flavours-grid">
-    <div class="flav-card reveal reveal-d1">
-      <span class="flav-tag">Bestseller</span>
-      <span class="flav-sold">1,200+ sold</span>
-      <div class="flav-img fc-pudina">🌿</div>
-      <div class="flav-body">
-        <p class="flav-name">Pudina</p>
-        <p class="flav-desc">One jar in. Zero left. The mint hit that haunts you at 2am.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Pudina','🌿')" aria-label="Add Pudina to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Pudina">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flav-card reveal reveal-d2">
-      <span class="flav-sold">850+ sold</span>
-      <div class="flav-img fc-cheese">🧀</div>
-      <div class="flav-body">
-        <p class="flav-name">Smokey Cheese</p>
-        <p class="flav-desc">Creamy. Smoky. Dangerously close to actual cheese. Your diet doesn't need to know.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Smokey Cheese','🧀')" aria-label="Add Smokey Cheese to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Smokey Cheese">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flav-card reveal reveal-d3">
-      <span class="flav-sold">970+ sold</span>
-      <div class="flav-img fc-peri">🔥</div>
-      <div class="flav-body">
-        <p class="flav-name">Peri Peri</p>
-        <p class="flav-desc">The burn you crave. The crunch you need. Post-gym. Pre-movie. Always.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Peri Peri','🔥')" aria-label="Add Peri Peri to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Peri Peri">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flav-card reveal reveal-d4">
-      <span class="flav-sold">720+ sold</span>
-      <div class="flav-img fc-tadka">🫙</div>
-      <div class="flav-body">
-        <p class="flav-name">Punjabi Tadka</p>
-        <p class="flav-desc">Nani's kitchen. Bottled. Bolder. And gone before you notice.</p>
-        <div class="flav-footer">
-          <p class="flav-price">₹199 <span>/ 70g</span></p>
-          <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Punjabi Tadka','🫙')" aria-label="Add Punjabi Tadka to cart">+</button>
-            <span class="flav-add-badge hidden" id="badge-Punjabi Tadka">0</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-    <span style="background:#FFF3E0;border:1px solid rgba(212,101,26,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#D4651A;letter-spacing:1px">🏋️ Post-gym fuel</span>
-    <span style="background:#E8F4FD;border:1px solid rgba(37,99,235,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#1D4ED8;letter-spacing:1px">🎬 Movie night essential</span>
-    <span style="background:#F3E5F5;border:1px solid rgba(147,51,234,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#7C3AED;letter-spacing:1px">💻 Desk snack of champions</span>
-    <span style="background:#E8F5E9;border:1px solid rgba(34,197,94,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#16a34a;letter-spacing:1px">🌙 Midnight munchies solved</span>
-    <span style="background:#FFF8E1;border:1px solid rgba(234,179,8,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#B45309;letter-spacing:1px">✈️ Travel companion</span>
-  </div>
-</section>
-
-
 <!-- HAMPER -->
 <section id="hamper">
   <div class="hamper-inner">
@@ -1309,70 +1334,6 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <button class="btn-upi-hamper" onclick="openHamperModal()">
           <span style="font-size:15px">💳</span> Pay via UPI
         </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY MACKS -->
-<section id="why">
-  <div class="sec-header reveal" style="text-align:center;max-width:560px;margin:0 auto 0">
-    <p class="sec-eye" style="justify-content:center">Why Macks?</p>
-    <h2 class="sec-h2">Made from makhana.<br><em>Made for you.</em></h2>
-  </div>
-  <div class="why-grid reveal">
-    <div class="why-card" data-num="01">
-      <p class="wc-icon">💪</p>
-      <p class="wc-title">High Protein</p>
-      <p class="wc-body">Up to 10g protein per pack. Snack that works as hard as you do — before the gym, after, or during a 3-hour Netflix session.</p>
-    </div>
-    <div class="why-card" data-num="02">
-      <p class="wc-icon">🔥</p>
-      <p class="wc-title">Roasted, Not Fried</p>
-      <p class="wc-body">Air-roasted in small batches. Every foxnut gets that perfect crunch without drowning in oil. The guilt stays out of the jar.</p>
-    </div>
-    <div class="why-card" data-num="03">
-      <p class="wc-icon">🌱</p>
-      <p class="wc-title">100% Natural</p>
-      <p class="wc-body">Real ingredients. Real Indian flavour. No artificial colours, no junk preservatives — nothing you can't pronounce without a chemistry degree.</p>
-    </div>
-    <div class="why-card" data-num="04">
-      <p class="wc-icon">🫙</p>
-      <p class="wc-title">Premium Jar Format</p>
-      <p class="wc-body">Not a sad crinkly pouch. A proper jar that lives on your desk, your counter, or your gift hamper. Shareable. Refillable. Shelf-worthy.</p>
-    </div>
-  </div>
-  <div class="why-stat-row reveal">
-    <div class="wsr-item"><p class="wsr-n">₹199</p><p class="wsr-l">Per 70g Jar</p></div>
-    <div class="wsr-item"><p class="wsr-n">&lt;4g</p><p class="wsr-l">Fat per Serving</p></div>
-    <div class="wsr-item"><p class="wsr-n">10g+</p><p class="wsr-l">Protein per Pack</p></div>
-  </div>
-</section>
-
-<!-- COMING SOON -->
-<section id="coming">
-  <div class="sec-header reveal">
-    <p class="sec-eye">Up Next</p>
-    <h2 class="sec-h2">What's <em>Brewing</em> Next ✦</h2>
-    <p class="sec-body">Two new flavours dropping in the next few months. Get notified the moment they land.</p>
-  </div>
-  <div class="coming-grid">
-    <div class="coming-card reveal reveal-d1">
-      <div class="coming-emoji">🍬</div>
-      <div class="coming-info">
-        <p class="coming-label">Coming Soon</p>
-        <p class="coming-name">Golden Caramel</p>
-        <p class="coming-desc">Sweet meets crunch. A caramel-glazed foxnut that's dangerously addictive.</p>
-        <a href="https://wa.me/919310419066?text=Notify%20me%20when%20Caramel%20Macks%20launches!" class="coming-notify" target="_blank">Notify me when it drops →</a>
-      </div>
-    </div>
-    <div class="coming-card reveal reveal-d2">
-      <div class="coming-emoji">🧈</div>
-      <div class="coming-info">
-        <p class="coming-label">Coming Soon</p>
-        <p class="coming-name">Butter Salt</p>
-        <p class="coming-desc">Classic done right. Buttery, lightly salted, impossibly moreish.</p>
-        <a href="https://wa.me/919310419066?text=Notify%20me%20when%20Butter%20Salt%20Macks%20launches!" class="coming-notify" target="_blank">Notify me when it drops →</a>
       </div>
     </div>
   </div>
