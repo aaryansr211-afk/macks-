@@ -36,7 +36,7 @@ exports.handler = async (event) => {
       customer_email: customerEmail || 'noreply@macksmakhana.com',
     },
     order_meta: {
-      return_url: 'https://www.macksmakhana.com/?order_id={order_id}&order_token={order_token}',
+      return_url: 'https://www.macksmakhana.com/?order_id={order_id}',
       notify_url: 'https://www.macksmakhana.com/',
     },
   });
