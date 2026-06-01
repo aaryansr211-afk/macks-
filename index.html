@@ -33,7 +33,7 @@
   --light-orange:#FFE0B2;
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:#FFFFFF;color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
@@ -85,7 +85,7 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 }
 .hero-bg{
   position:absolute;inset:0;z-index:0;
-  background: linear-gradient(160deg, #FDF6EC 0%, #F5E6CC 60%, #EDD5A8 100%);
+  background: linear-gradient(160deg, #FFFFFF 0%, #FDFAF5 50%, #FAF5EC 100%);
 }
 .hero-circle{
   position:absolute;right:-120px;top:50%;transform:translateY(-50%);
@@ -100,11 +100,13 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
   animation:fadeUp 0.6s ease both;
 }
 .hbs-macks{
-  font-family:'Pacifico',cursive;
-  font-size:clamp(56px,8vw,110px);
-  color:var(--gold);
-  line-height:1;
-  letter-spacing:2px;
+  font-family:'Syne',sans-serif;
+  font-size:clamp(64px,10vw,130px);
+  font-weight:800;
+  color:var(--ink);
+  line-height:0.9;
+  letter-spacing:-2px;
+  text-transform:uppercase;
 }
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
@@ -273,23 +275,23 @@ section{padding:100px 60px}
 #moments .sec-h2{margin-bottom:56px}
 .moments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .moment-card{
-  border-radius:20px;padding:40px 32px;text-align:center;
+  border-radius:16px;padding:24px 16px;text-align:center;
   transition:transform 0.3s,box-shadow 0.3s;
 }
-.moment-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.1)}
+.moment-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.1)}
 .moment-card.gym{background:#FFF3E0}
 .moment-card.cinema{background:#EEF2FF}
 .moment-card.night{background:#ECFDF5}
 .moment-card.office{background:#F5F3FF}
 .moment-card.travel{background:#FFFBEB}
 .moment-card.date{background:#FFF1F5}
-.mc-art{width:180px;height:180px;margin:0 auto 24px;display:flex;align-items:center;justify-content:center}
+.mc-art{width:100px;height:100px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center}
 .mc-art svg{width:100%;height:100%}
-.mc-tagline{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;font-weight:700;line-height:1.2;margin-bottom:8px}
-.mc-sub{font-size:13px;line-height:1.65;opacity:0.65}
+.mc-tagline{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;font-weight:700;line-height:1.2;margin-bottom:6px}
+.mc-sub{font-size:11px;line-height:1.55;opacity:0.65}
 .mc-divider{width:32px;height:2px;margin:10px auto 14px;border-radius:2px}
-@media(max-width:1024px){.moments-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){.moments-grid{grid-template-columns:1fr}#moments{padding:72px 24px}}
+@media(max-width:1024px){.moments-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.moments-grid{grid-template-columns:repeat(3,1fr);gap:10px}#moments{padding:56px 16px}}
 
 .pay-strip{
   background:var(--gold);
@@ -907,13 +909,13 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 <div class="ticker" style="margin-top:0;padding-top:72px">
   <div class="ticker-inner">
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹750+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹750+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹750+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹750+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
   </div>
 </div>
 
@@ -932,7 +934,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     <p class="hero-tagline">Premium hand-roasted foxnuts in four bold flavours. High protein, zero guilt, beautifully jarred — made for the modern Indian snacker.</p>
     <div class="hero-actions">
       <a href="#flavours" class="btn-primary">Shop the Range →</a>
-      <a href="#hamper" class="btn-ghost">All-Four Hamper · ₹649</a>
+      <a href="#hamper" class="btn-ghost">All-Four Hamper · ₹749</a>
     </div>
     <div class="hero-stats">
       <div class="hs"><p class="hs-n">4</p><p class="hs-l">Bold Flavours</p></div>
@@ -1292,7 +1294,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <h2 class="sec-h2">The All-Four <em>Hamper.</em></h2>
       <p class="sec-body">Every Macks flavour, in one beautifully boxed hamper. Perfect to gift, or to stock your own shelf in serious style.</p>
       <div class="hamper-price">
-        <span class="hp-new">₹649</span>
+        <span class="hp-new">₹749</span>
         <span class="hp-old">₹796</span>
         <span class="hp-save">Save ₹147</span>
       </div>
@@ -1545,7 +1547,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <p class="cta-sub">Build your own box or grab the hamper. Your snack shelf will thank you.</p>
   <div class="cta-actions">
     <a href="#flavours" class="btn-dark">Shop All Flavours →</a>
-    <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20the%20All-Four%20Hamper." class="btn-outline-dark" target="_blank">Get the Hamper · ₹649</a>
+    <a href="https://wa.me/919310419066?text=Hi!%20I%20want%20to%20order%20the%20All-Four%20Hamper." class="btn-outline-dark" target="_blank">Get the Hamper · ₹749</a>
   </div>
 </section>
 
@@ -1722,7 +1724,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <button class="hamper-modal-close" onclick="closeHamperModal(null)" aria-label="Close">✕</button>
     </div>
     <p class="hamper-modal-sub">All-Four Macks Hamper — 4 jars</p>
-    <p class="hamper-modal-amount">₹649</p>
+    <p class="hamper-modal-amount">₹749</p>
     <p class="hamper-pay-label">Choose payment method</p>
     <div id="hamper-step-pay">
       <div class="hamper-pay-grid">
@@ -1794,7 +1796,7 @@ document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)})
 ════════════════════════════════════════ */
 var cart = {};
 var PRICE = 199;
-var DELIVERY_THRESHOLD = 750;
+var DELIVERY_THRESHOLD = 450;
 var DELIVERY_FEE = 50;
 var COD_FEE = 30;
 var couponApplied = false;
@@ -2154,7 +2156,7 @@ function hamperPlaceOrder(){
   var city=document.getElementById('hcf-city').value.trim();
   var pin=document.getElementById('hcf-pin').value.trim();
   if(!name||!phone||!email||!flat||!addr||!area||!city||!pin){alert('Please fill all fields.');return;}
-  var total=method==='cod'?679:649;
+  var total=method==='cod'?779:749;
   var addr_full=flat+', '+addr+', '+area+', '+city+' - '+pin;
   var orderText='🎁 All-Four Hamper Order\nName: '+name+'\nPhone: '+phone+'\nEmail: '+email
     +'\nAddress: '+addr_full+'\nTotal: ₹'+total+(method==='cod'?' (COD +₹30)':'')
@@ -2165,7 +2167,7 @@ function hamperPlaceOrder(){
       to_email:'aaryan@foxharvestfoods.com',customer_name:name,customer_phone:phone,
       customer_email:email,delivery_address:addr_full,order_items:'All-Four Hamper × 1',
       order_total:'₹'+total,payment_method:{upi:'UPI',card:'Card',cod:'Cash on Delivery'}[method],
-      order_subtotal:'₹649',order_delivery:'FREE',order_cod:method==='cod'?'₹30':'N/A',order_discount:'None',coupon_used:'None'
+      order_subtotal:'₹749',order_delivery:'FREE',order_cod:method==='cod'?'₹30':'N/A',order_discount:'None',coupon_used:'None'
     });
   }
 
