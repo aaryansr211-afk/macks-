@@ -101,7 +101,7 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 }
 .hbs-macks{
   font-family:'Syne',sans-serif;
-  font-size:clamp(64px,10vw,130px);
+  font-size:clamp(48px,9vw,130px);
   font-weight:800;
   color:var(--ink);
   line-height:0.9;
@@ -851,6 +851,47 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   .story-inner{grid-template-columns:1fr;gap:48px}
   .hero-float{display:none}
 }
+/* ════════════ PRODUCT MODAL ════════════ */
+.prod-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:1200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.prod-overlay.open{opacity:1;pointer-events:all}
+.prod-modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:760px;max-height:92vh;overflow-y:auto;transform:translateY(40px);transition:transform 0.35s cubic-bezier(.22,1,.36,1);padding-bottom:32px}
+.prod-overlay.open .prod-modal{transform:translateY(0)}
+.prod-modal-top{position:sticky;top:0;background:#fff;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid #f0ece6}
+.prod-modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:#2C1A0E;line-height:1;padding:4px 8px}
+.prod-modal-tag{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+.prod-slider-wrap{position:relative;height:300px;overflow:hidden;background:#f8f4ef}
+.prod-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.4s}
+.prod-slide.active{opacity:1}
+.prod-slide img{width:100%;height:100%;object-fit:cover;object-position:top}
+.prod-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(255,255,255,0.8);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:#2C1A0E}
+.prod-arr.prev{left:12px}.prod-arr.next{right:12px}
+.prod-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px}
+.prod-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.2s}
+.prod-dot.active{background:#fff}
+.prod-body{padding:20px 24px 0}
+.prod-name{font-family:'Pacifico',cursive;font-size:28px;color:var(--ink);margin-bottom:4px}
+.prod-tagline{font-size:13px;color:rgba(44,26,14,0.5);margin-bottom:16px;line-height:1.6}
+.prod-price-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.prod-price{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--ink)}
+.prod-weight{font-size:13px;color:rgba(44,26,14,0.4);background:#f5f0ea;padding:4px 10px;border-radius:20px}
+.prod-add-btn{width:100%;padding:15px;background:var(--gold);color:#fff;border:none;border-radius:14px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:24px;transition:background 0.2s}
+.prod-add-btn:hover{background:#C45A16}
+.prod-section-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(44,26,14,0.4);margin-bottom:12px}
+.prod-writeup{font-size:14px;color:rgba(44,26,14,0.65);line-height:1.75;margin-bottom:24px}
+.prod-highlights{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.prod-hl{background:#FFF8EE;border:1px solid rgba(212,101,26,0.15);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--gold2)}
+.prod-nutrition{background:#f8f4ef;border-radius:16px;padding:16px 20px;margin-bottom:24px}
+.prod-nutr-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(44,26,14,0.07);font-size:13px}
+.prod-nutr-row:last-child{border-bottom:none}
+.prod-nutr-row span:first-child{color:rgba(44,26,14,0.6)}
+.prod-nutr-row span:last-child{font-weight:600;color:var(--ink)}
+.prod-nutr-note{font-size:11px;color:rgba(44,26,14,0.35);margin-top:8px}
+.prod-others{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px}
+.prod-other-card{border:1px solid #f0ece6;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform 0.2s}
+.prod-other-card:hover{transform:translateY(-3px)}
+.prod-other-img{height:90px;overflow:hidden;background:#f8f4ef}
+.prod-other-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.prod-other-name{font-family:'Pacifico',cursive;font-size:12px;padding:8px 10px 10px;color:var(--ink)}
 @media(max-width:768px){
   nav{padding:16px 24px}
   nav.scrolled{padding:12px 24px}
@@ -971,15 +1012,15 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     <p class="sec-body">Four distinct flavours, all roasted in small batches. Each jar is a full 70g of pure, unapologetic snacking.</p>
   </div>
   <div class="flavours-grid">
-    <div class="flav-card reveal reveal-d1">
+    <div class="flav-card reveal reveal-d1" onclick="openProdModal('pudina')">
       <span class="flav-tag">Bestseller</span>
       <span class="flav-sold">1,000+ sold</span>
       <div class="flav-slider" id="slider-pudina">
         <div class="flav-slide active"><img src="images/pudina-front.jpeg" alt="Pudina front" loading="lazy"></div>
         <div class="flav-slide"><img src="images/pudina-nutrition.jpeg" alt="Pudina nutrition" loading="lazy"></div>
         <div class="flav-slide"><img src="images/pudina-back.jpeg" alt="Pudina back" loading="lazy"></div>
-        <button class="flav-arr prev" onclick="slideFlav('pudina',-1)">‹</button>
-        <button class="flav-arr next" onclick="slideFlav('pudina',1)">›</button>
+        <button class="flav-arr prev" onclick="event.stopPropagation();slideFlav('pudina',-1)">‹</button>
+        <button class="flav-arr next" onclick="event.stopPropagation();slideFlav('pudina',1)">›</button>
         <div class="flav-dots"><span class="flav-dot active"></span><span class="flav-dot"></span><span class="flav-dot"></span></div>
       </div>
       <div class="flav-body">
@@ -988,20 +1029,20 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
           <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Pudina','🌿')" aria-label="Add Pudina to cart">+</button>
+            <button class="flav-add" onclick="event.stopPropagation();addToCart('Pudina','🌿')" aria-label="Add Pudina to cart">+</button>
             <span class="flav-add-badge hidden" id="badge-Pudina">0</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="flav-card reveal reveal-d2">
+    <div class="flav-card reveal reveal-d2" onclick="openProdModal('cheese')">
       <span class="flav-sold">800+ sold</span>
       <div class="flav-slider" id="slider-cheese">
         <div class="flav-slide active"><img src="images/cheese-front.jpeg" alt="Smokey Cheese front" loading="lazy"></div>
         <div class="flav-slide"><img src="images/cheese-nutrition.jpeg" alt="Smokey Cheese nutrition" loading="lazy"></div>
         <div class="flav-slide"><img src="images/cheese-back.jpeg" alt="Smokey Cheese back" loading="lazy"></div>
-        <button class="flav-arr prev" onclick="slideFlav('cheese',-1)">‹</button>
-        <button class="flav-arr next" onclick="slideFlav('cheese',1)">›</button>
+        <button class="flav-arr prev" onclick="event.stopPropagation();slideFlav('cheese',-1)">‹</button>
+        <button class="flav-arr next" onclick="event.stopPropagation();slideFlav('cheese',1)">›</button>
         <div class="flav-dots"><span class="flav-dot active"></span><span class="flav-dot"></span><span class="flav-dot"></span></div>
       </div>
       <div class="flav-body">
@@ -1010,20 +1051,20 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
           <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Smokey Cheese','🧀')" aria-label="Add Smokey Cheese to cart">+</button>
+            <button class="flav-add" onclick="event.stopPropagation();addToCart('Smokey Cheese','🧀')" aria-label="Add Smokey Cheese to cart">+</button>
             <span class="flav-add-badge hidden" id="badge-Smokey Cheese">0</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="flav-card reveal reveal-d3">
+    <div class="flav-card reveal reveal-d3" onclick="openProdModal('peri')">
       <span class="flav-sold">1,000+ sold</span>
       <div class="flav-slider" id="slider-peri">
         <div class="flav-slide active"><img src="images/peri-front.jpeg" alt="Peri Peri front" loading="lazy"></div>
         <div class="flav-slide"><img src="images/peri-nutrition.jpeg" alt="Peri Peri nutrition" loading="lazy"></div>
         <div class="flav-slide"><img src="images/peri-back.jpeg" alt="Peri Peri back" loading="lazy"></div>
-        <button class="flav-arr prev" onclick="slideFlav('peri',-1)">‹</button>
-        <button class="flav-arr next" onclick="slideFlav('peri',1)">›</button>
+        <button class="flav-arr prev" onclick="event.stopPropagation();slideFlav('peri',-1)">‹</button>
+        <button class="flav-arr next" onclick="event.stopPropagation();slideFlav('peri',1)">›</button>
         <div class="flav-dots"><span class="flav-dot active"></span><span class="flav-dot"></span><span class="flav-dot"></span></div>
       </div>
       <div class="flav-body">
@@ -1032,13 +1073,13 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
           <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Peri Peri','🔥')" aria-label="Add Peri Peri to cart">+</button>
+            <button class="flav-add" onclick="event.stopPropagation();addToCart('Peri Peri','🔥')" aria-label="Add Peri Peri to cart">+</button>
             <span class="flav-add-badge hidden" id="badge-Peri Peri">0</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="flav-card reveal reveal-d4">
+    <div class="flav-card reveal reveal-d4" onclick="openProdModal('tadka')">
       <span class="flav-sold">750+ sold</span>
       <div class="flav-slider" id="slider-tadka">
         <div class="flav-slide active"><img src="images/tadka-front.jpeg" alt="Punjabi Tadka front" loading="lazy"></div>
@@ -1052,7 +1093,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <div class="flav-footer">
           <p class="flav-price">₹199 <span>/ 70g</span></p>
           <div class="flav-add-wrap">
-            <button class="flav-add" onclick="addToCart('Punjabi Tadka','🫙')" aria-label="Add Punjabi Tadka to cart">+</button>
+            <button class="flav-add" onclick="event.stopPropagation();addToCart('Punjabi Tadka','🫙')" aria-label="Add Punjabi Tadka to cart">+</button>
             <span class="flav-add-badge hidden" id="badge-Punjabi Tadka">0</span>
           </div>
         </div>
@@ -1060,7 +1101,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
     <div class="flav-card reveal reveal-d1" style="opacity:0.7;pointer-events:none;position:relative">
       <span class="flav-tag" style="background:#F3E5F5;color:#7C3AED;border-color:rgba(147,51,234,0.3)">Coming Soon</span>
-      <div class="flav-slider"><div class="flav-slide active"><img src="images/caramel-front.png" alt="Caramel Delight" loading="lazy"></div></div>
+      <div class="flav-slider"><div class="flav-slide active"><img src="images/caramel-front.png" alt="Caramel Delight" loading="lazy" style="object-fit:contain;background:#FFF8E1"></div></div>
       <div class="flav-body">
         <p class="flav-name">Golden Caramel</p>
         <p class="flav-desc">Sweet meets crunch. Caramel-glazed foxnut that's dangerously addictive.</p>
@@ -1072,7 +1113,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
     <div class="flav-card reveal reveal-d2" style="opacity:0.7;pointer-events:none;position:relative">
       <span class="flav-tag" style="background:#F3E5F5;color:#7C3AED;border-color:rgba(147,51,234,0.3)">Coming Soon</span>
-      <div class="flav-slider"><div class="flav-slide active"><img src="images/buttersalt-front.png" alt="Butter Salt" loading="lazy"></div></div>
+      <div class="flav-slider"><div class="flav-slide active"><img src="images/buttersalt-front.png" alt="Butter Salt" loading="lazy" style="object-fit:contain;background:#FFFDE7"></div></div>
       <div class="flav-body">
         <p class="flav-name">Butter Salt</p>
         <p class="flav-desc">Classic done right. Buttery, lightly salted, impossibly moreish.</p>
@@ -2215,6 +2256,165 @@ document.addEventListener('click', function(e) {
 <script>
 if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
   emailjs.init(EMAILJS_PUBLIC_KEY);
+}
+</script>
+
+<!-- PRODUCT MODAL -->
+<div class="prod-overlay" id="prod-overlay" onclick="closeProdModal(event)">
+  <div class="prod-modal" id="prod-modal">
+    <div class="prod-modal-top">
+      <span class="prod-modal-tag" id="prod-modal-tag"></span>
+      <button class="prod-modal-close" onclick="closeProdModal(null)">✕</button>
+    </div>
+    <div class="prod-slider-wrap" id="prod-slider-wrap">
+      <div id="prod-slides"></div>
+      <button class="prod-arr prev" onclick="slideProd(-1)">‹</button>
+      <button class="prod-arr next" onclick="slideProd(1)">›</button>
+      <div class="prod-dots" id="prod-dots"></div>
+    </div>
+    <div class="prod-body">
+      <p class="prod-name" id="prod-name"></p>
+      <p class="prod-tagline" id="prod-tagline"></p>
+      <div class="prod-price-row">
+        <span class="prod-price" id="prod-price">₹199</span>
+        <span class="prod-weight">70g</span>
+      </div>
+      <button class="prod-add-btn" id="prod-add-btn">Add to Cart →</button>
+      <p class="prod-section-title">About this flavour</p>
+      <p class="prod-writeup" id="prod-writeup"></p>
+      <div class="prod-highlights" id="prod-highlights"></div>
+      <p class="prod-section-title">Nutrition Facts <span style="font-weight:400;text-transform:none;letter-spacing:0">per 100g</span></p>
+      <div class="prod-nutrition" id="prod-nutrition"></div>
+      <p class="prod-section-title">Explore other flavours</p>
+      <div class="prod-others" id="prod-others"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var PRODUCTS = {
+  pudina: {
+    name: 'Pudina',
+    emoji: '🌿',
+    tag: 'Bestseller',
+    tagline: 'One jar in. Zero left. The mint hit that haunts you at 2am.',
+    writeup: 'Infused with garden-fresh mint and aromatic spices, every bite of Pudina delivers a burst of cool, tangy flavour with the perfect crunch. Roasted, not fried — this guilt-free snack is your ideal companion for work, travel, movie nights, or anytime cravings hit. Made with real spices, high in fibre, and rich in calcium.',
+    highlights: ['🌿 Real Mint Spices','🔥 Roasted, Not Fried','💪 High Protein','🚫 No Palm Oil','🌾 High in Fibre'],
+    slides: ['images/pudina-front.jpeg','images/pudina-nutrition.jpeg','images/pudina-back.jpeg'],
+    nutrition: [['Energy','433 kcal'],['Protein','9.72 g'],['Total Carbohydrate','67.14 g'],['Total Sugar','8.36 g'],['Dietary Fibre','7.30 g'],['Total Fat','13.96 g'],['Sodium','836 mg'],['Potassium','446 mg'],['Calcium','54 mg']]
+  },
+  cheese: {
+    name: 'Smokey Cheese',
+    emoji: '🧀',
+    tag: 'Fan Favourite',
+    tagline: 'Creamy. Smoky. Dangerously close to actual cheese.',
+    writeup: 'Crafted from premium foxnuts and seasoned with rich smokey cheese flavour, every bite delivers the perfect balance of taste and nutrition. A guilt-free snack that\'s roasted, not fried, making it ideal for work, travel, movie nights, or anytime cravings. Your diet doesn\'t need to know.',
+    highlights: ['🧀 Real Cheese Seasoning','🔥 Roasted, Not Fried','💪 High Protein','🚫 No Palm Oil','🌾 High in Fibre'],
+    slides: ['images/cheese-front.jpeg','images/cheese-nutrition.jpeg','images/cheese-back.jpeg'],
+    nutrition: [['Energy','433 kcal'],['Protein','9.72 g'],['Total Carbohydrate','67.14 g'],['Total Sugar','8.36 g'],['Dietary Fibre','7.30 g'],['Total Fat','13.96 g'],['Sodium','836 mg'],['Potassium','446 mg'],['Calcium','54 mg']]
+  },
+  peri: {
+    name: 'Peri Peri',
+    emoji: '🔥',
+    tag: 'Spice Lover\'s Pick',
+    tagline: 'The burn you crave. The crunch you need.',
+    writeup: 'Coated with bold peri peri seasoning, every bite delivers the perfect blend of spice, zest, and irresistible crunch. Roasted, not fried, this guilt-free snack is made for those who love a little heat — perfect for work, travel, movie nights, or anytime cravings hit. Post-gym. Pre-movie. Always.',
+    highlights: ['🌶️ Bold Peri Peri Spices','🔥 Roasted, Not Fried','💪 High Protein','🚫 No Palm Oil','🌾 High in Fibre'],
+    slides: ['images/peri-front.jpeg','images/peri-nutrition.jpeg','images/peri-back.jpeg'],
+    nutrition: [['Energy','434 kcal'],['Protein','9.83 g'],['Total Carbohydrate','66.91 g'],['Total Sugar','8.64 g'],['Dietary Fibre','7.40 g'],['Total Fat','14.12 g'],['Sodium','840 mg'],['Potassium','472 mg'],['Calcium','46 mg']]
+  },
+  tadka: {
+    name: 'Punjabi Tadka',
+    emoji: '🫙',
+    tag: 'Desi Favourite',
+    tagline: 'Nani\'s kitchen. Bottled. Bolder. And gone before you notice.',
+    writeup: 'Inspired by the bold, aromatic flavours of a classic Punjabi kitchen, this foxnut is seasoned with a rich blend of cumin, coriander, and desi spices. Every bite is a crunchy, flavour-packed trip back home. Roasted, not fried — guilt-free, always satisfying.',
+    highlights: ['🫙 Authentic Desi Spices','🔥 Roasted, Not Fried','💪 High Protein','🚫 No Palm Oil','🌾 High in Fibre'],
+    slides: ['images/tadka-front.jpeg'],
+    nutrition: [['Energy','433 kcal'],['Protein','9.72 g'],['Total Carbohydrate','67.14 g'],['Total Sugar','8.36 g'],['Dietary Fibre','7.30 g'],['Total Fat','13.96 g'],['Sodium','836 mg'],['Potassium','446 mg'],['Calcium','54 mg']]
+  }
+};
+
+var _prodSlide = 0;
+var _prodKey = '';
+
+function openProdModal(key) {
+  var p = PRODUCTS[key];
+  if (!p) return;
+  _prodKey = key;
+  _prodSlide = 0;
+
+  document.getElementById('prod-modal-tag').textContent = p.tag;
+  document.getElementById('prod-name').textContent = p.name;
+  document.getElementById('prod-tagline').textContent = p.tagline;
+  document.getElementById('prod-writeup').textContent = p.writeup;
+  document.getElementById('prod-add-btn').onclick = function(){ addToCart(p.name, p.emoji); closeProdModal(null); };
+
+  // highlights
+  var hlEl = document.getElementById('prod-highlights');
+  hlEl.innerHTML = p.highlights.map(function(h){ return '<span class="prod-hl">'+h+'</span>'; }).join('');
+
+  // nutrition
+  var nutrEl = document.getElementById('prod-nutrition');
+  nutrEl.innerHTML = p.nutrition.map(function(r){
+    return '<div class="prod-nutr-row"><span>'+r[0]+'</span><span>'+r[1]+'</span></div>';
+  }).join('') + '<p class="prod-nutr-note">*Per 100g serving. Values are approximate.</p>';
+
+  // slides
+  var slidesEl = document.getElementById('prod-slides');
+  var dotsEl = document.getElementById('prod-dots');
+  slidesEl.innerHTML = p.slides.map(function(src, i){
+    return '<div class="prod-slide'+(i===0?' active':'')+'"><img src="'+src+'" loading="lazy"></div>';
+  }).join('');
+  dotsEl.innerHTML = p.slides.length > 1 ? p.slides.map(function(_,i){
+    return '<span class="prod-dot'+(i===0?' active':'')+'" onclick="jumpProd('+i+')"></span>';
+  }).join('') : '';
+
+  // show/hide arrows
+  var showArr = p.slides.length > 1;
+  document.querySelector('#prod-overlay .prod-arr.prev').style.display = showArr ? '' : 'none';
+  document.querySelector('#prod-overlay .prod-arr.next').style.display = showArr ? '' : 'none';
+
+  // other flavours
+  var others = Object.keys(PRODUCTS).filter(function(k){ return k !== key; });
+  document.getElementById('prod-others').innerHTML = others.map(function(k){
+    var op = PRODUCTS[k];
+    return '<div class="prod-other-card" onclick="openProdModal(\''+k+'\')">'
+      +'<div class="prod-other-img"><img src="'+op.slides[0]+'" loading="lazy"></div>'
+      +'<p class="prod-other-name">'+op.name+'</p></div>';
+  }).join('');
+
+  document.getElementById('prod-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('prod-modal').scrollTop = 0;
+}
+
+function closeProdModal(e) {
+  if (e && e.target !== document.getElementById('prod-overlay')) return;
+  document.getElementById('prod-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function slideProd(dir) {
+  var p = PRODUCTS[_prodKey];
+  if (!p) return;
+  var slides = document.querySelectorAll('#prod-slides .prod-slide');
+  var dots = document.querySelectorAll('#prod-dots .prod-dot');
+  slides[_prodSlide].classList.remove('active');
+  if (dots[_prodSlide]) dots[_prodSlide].classList.remove('active');
+  _prodSlide = (_prodSlide + dir + slides.length) % slides.length;
+  slides[_prodSlide].classList.add('active');
+  if (dots[_prodSlide]) dots[_prodSlide].classList.add('active');
+}
+
+function jumpProd(idx) {
+  var slides = document.querySelectorAll('#prod-slides .prod-slide');
+  var dots = document.querySelectorAll('#prod-dots .prod-dot');
+  slides[_prodSlide].classList.remove('active');
+  if (dots[_prodSlide]) dots[_prodSlide].classList.remove('active');
+  _prodSlide = idx;
+  slides[_prodSlide].classList.add('active');
+  if (dots[_prodSlide]) dots[_prodSlide].classList.add('active');
 }
 </script>
 </body>
