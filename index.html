@@ -211,14 +211,21 @@ section{padding:100px 60px}
 }
 .flav-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(212,101,26,0.15)}
 .flav-img{
-  height:220px;display:flex;align-items:center;justify-content:center;
-  font-size:80px;position:relative;overflow:hidden;
-  transition:background 0.3s;
+  height:260px;position:relative;overflow:hidden;
+  background:#f8f4ef;
 }
-.flav-img::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,0.04));
-}
+.flav-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.flav-slider{position:relative;height:260px;overflow:hidden}
+.flav-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.4s ease}
+.flav-slide.active{opacity:1}
+.flav-slide img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.flav-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3}
+.flav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;transition:background 0.2s}
+.flav-dot.active{background:#fff}
+.flav-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(255,255,255,0.7);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;color:#2C1A0E;transition:background 0.2s}
+.flav-arr:hover{background:rgba(255,255,255,0.95)}
+.flav-arr.prev{left:8px}
+.flav-arr.next{right:8px}
 .flav-body{padding:20px 22px 24px}
 .flav-name{font-family:'Pacifico',cursive;font-size:20px;font-weight:400;color:var(--ink);margin-bottom:6px;line-height:1.2}
 .flav-desc{font-size:13px;color:rgba(16,12,4,0.45);margin-bottom:18px;line-height:1.5}
@@ -967,7 +974,14 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     <div class="flav-card reveal reveal-d1">
       <span class="flav-tag">Bestseller</span>
       <span class="flav-sold">1,000+ sold</span>
-      <div class="flav-img fc-pudina">🌿</div>
+      <div class="flav-slider" id="slider-pudina">
+        <div class="flav-slide active"><img src="images/pudina-front.jpeg" alt="Pudina front" loading="lazy"></div>
+        <div class="flav-slide"><img src="images/pudina-nutrition.jpeg" alt="Pudina nutrition" loading="lazy"></div>
+        <div class="flav-slide"><img src="images/pudina-back.jpeg" alt="Pudina back" loading="lazy"></div>
+        <button class="flav-arr prev" onclick="slideFlav('pudina',-1)">‹</button>
+        <button class="flav-arr next" onclick="slideFlav('pudina',1)">›</button>
+        <div class="flav-dots"><span class="flav-dot active"></span><span class="flav-dot"></span><span class="flav-dot"></span></div>
+      </div>
       <div class="flav-body">
         <p class="flav-name">Pudina</p>
         <p class="flav-desc">One jar in. Zero left. The mint hit that haunts you at 2am.</p>
@@ -982,7 +996,14 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
     <div class="flav-card reveal reveal-d2">
       <span class="flav-sold">800+ sold</span>
-      <div class="flav-img fc-cheese">🧀</div>
+      <div class="flav-slider" id="slider-cheese">
+        <div class="flav-slide active"><img src="images/cheese-front.jpeg" alt="Smokey Cheese front" loading="lazy"></div>
+        <div class="flav-slide"><img src="images/cheese-nutrition.jpeg" alt="Smokey Cheese nutrition" loading="lazy"></div>
+        <div class="flav-slide"><img src="images/cheese-back.jpeg" alt="Smokey Cheese back" loading="lazy"></div>
+        <button class="flav-arr prev" onclick="slideFlav('cheese',-1)">‹</button>
+        <button class="flav-arr next" onclick="slideFlav('cheese',1)">›</button>
+        <div class="flav-dots"><span class="flav-dot active"></span><span class="flav-dot"></span><span class="flav-dot"></span></div>
+      </div>
       <div class="flav-body">
         <p class="flav-name">Smokey Cheese</p>
         <p class="flav-desc">Creamy. Smoky. Dangerously close to actual cheese. Your diet doesn't need to know.</p>
@@ -997,7 +1018,14 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
     <div class="flav-card reveal reveal-d3">
       <span class="flav-sold">1,000+ sold</span>
-      <div class="flav-img fc-peri">🔥</div>
+      <div class="flav-slider" id="slider-peri">
+        <div class="flav-slide active"><img src="images/peri-front.jpeg" alt="Peri Peri front" loading="lazy"></div>
+        <div class="flav-slide"><img src="images/peri-nutrition.jpeg" alt="Peri Peri nutrition" loading="lazy"></div>
+        <div class="flav-slide"><img src="images/peri-back.jpeg" alt="Peri Peri back" loading="lazy"></div>
+        <button class="flav-arr prev" onclick="slideFlav('peri',-1)">‹</button>
+        <button class="flav-arr next" onclick="slideFlav('peri',1)">›</button>
+        <div class="flav-dots"><span class="flav-dot active"></span><span class="flav-dot"></span><span class="flav-dot"></span></div>
+      </div>
       <div class="flav-body">
         <p class="flav-name">Peri Peri</p>
         <p class="flav-desc">The burn you crave. The crunch you need. Post-gym. Pre-movie. Always.</p>
@@ -1012,7 +1040,12 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
     <div class="flav-card reveal reveal-d4">
       <span class="flav-sold">750+ sold</span>
-      <div class="flav-img fc-tadka">🫙</div>
+      <div class="flav-slider" id="slider-tadka">
+        <div class="flav-slide active"><img src="images/tadka-front.jpeg" alt="Punjabi Tadka front" loading="lazy"></div>
+        <button class="flav-arr prev" onclick="slideFlav('tadka',-1)" style="display:none">‹</button>
+        <button class="flav-arr next" onclick="slideFlav('tadka',1)" style="display:none">›</button>
+        <div class="flav-dots"></div>
+      </div>
       <div class="flav-body">
         <p class="flav-name">Punjabi Tadka</p>
         <p class="flav-desc">Nani's kitchen. Bottled. Bolder. And gone before you notice.</p>
@@ -1027,7 +1060,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
     <div class="flav-card reveal reveal-d1" style="opacity:0.7;pointer-events:none;position:relative">
       <span class="flav-tag" style="background:#F3E5F5;color:#7C3AED;border-color:rgba(147,51,234,0.3)">Coming Soon</span>
-      <div class="flav-img" style="background:linear-gradient(135deg,#FFF8E1,#FEF3C7);font-size:52px;display:flex;align-items:center;justify-content:center">🍬</div>
+      <div class="flav-slider"><div class="flav-slide active"><img src="images/caramel-front.png" alt="Caramel Delight" loading="lazy"></div></div>
       <div class="flav-body">
         <p class="flav-name">Golden Caramel</p>
         <p class="flav-desc">Sweet meets crunch. Caramel-glazed foxnut that's dangerously addictive.</p>
@@ -1039,7 +1072,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
     <div class="flav-card reveal reveal-d2" style="opacity:0.7;pointer-events:none;position:relative">
       <span class="flav-tag" style="background:#F3E5F5;color:#7C3AED;border-color:rgba(147,51,234,0.3)">Coming Soon</span>
-      <div class="flav-img" style="background:linear-gradient(135deg,#FFF8E1,#FFFDE7);font-size:52px;display:flex;align-items:center;justify-content:center">🧈</div>
+      <div class="flav-slider"><div class="flav-slide active"><img src="images/buttersalt-front.png" alt="Butter Salt" loading="lazy"></div></div>
       <div class="flav-body">
         <p class="flav-name">Butter Salt</p>
         <p class="flav-desc">Classic done right. Buttery, lightly salted, impossibly moreish.</p>
@@ -1305,14 +1338,8 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 <section id="hamper">
   <div class="hamper-inner">
     <div class="hamper-visual reveal">
-      <span class="hamper-badge">Best Value · Save ₹67</span>
-      <div class="hamper-emoji">🎁</div>
-      <div class="hamper-jars">
-        <div class="hj">🌿</div>
-        <div class="hj">🧀</div>
-        <div class="hj">🔥</div>
-        <div class="hj">🫙</div>
-      </div>
+      <span class="hamper-badge">Best Value · Save ₹47</span>
+      <img src="images/hamper.png" alt="Macks All-Four Hamper" style="width:100%;border-radius:20px;display:block;object-fit:cover">
     </div>
     <div class="hamper-content reveal reveal-d2">
       <p class="sec-eye">Best Value</p>
@@ -2144,6 +2171,44 @@ function hamperPlaceOrder(){
     });
   }
 }
+
+/* ════════════════════════════════════════
+   FLAVOUR IMAGE SLIDERS
+════════════════════════════════════════ */
+var _sliderState = {};
+function slideFlav(id, dir) {
+  var el = document.getElementById('slider-' + id);
+  if (!el) return;
+  var slides = el.querySelectorAll('.flav-slide');
+  var dots = el.querySelectorAll('.flav-dot');
+  if (!_sliderState[id]) _sliderState[id] = 0;
+  var cur = _sliderState[id];
+  slides[cur].classList.remove('active');
+  if (dots[cur]) dots[cur].classList.remove('active');
+  cur = (cur + dir + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  if (dots[cur]) dots[cur].classList.add('active');
+  _sliderState[id] = cur;
+}
+// Clicking dots
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('flav-dot')) {
+    var dotsEl = e.target.parentElement;
+    var slider = dotsEl.closest('.flav-slider');
+    if (!slider) return;
+    var id = slider.id.replace('slider-', '');
+    var dots = dotsEl.querySelectorAll('.flav-dot');
+    var idx = Array.from(dots).indexOf(e.target);
+    if (!_sliderState[id]) _sliderState[id] = 0;
+    var cur = _sliderState[id];
+    var slides = slider.querySelectorAll('.flav-slide');
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+    _sliderState[id] = idx;
+  }
+});
 </script>
 <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
