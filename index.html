@@ -161,12 +161,11 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
   z-index:2;display:flex;flex-direction:column;gap:16px;align-items:center;
 }
 .hf-jar{
-  width:160px;height:160px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%, rgba(201,146,42,0.25), rgba(201,146,42,0.05));
-  border:1px solid rgba(201,146,42,0.2);
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, rgba(201,146,42,0.18), rgba(201,146,42,0.04));
+  border:1px solid rgba(201,146,42,0.15);
   display:flex;align-items:center;justify-content:center;
-  font-size:72px;
-  animation:float 4s ease-in-out infinite;
+  overflow:visible;
 }
 .hf-badge{
   background:rgba(201,146,42,0.12);border:1px solid rgba(201,146,42,0.25);
@@ -175,6 +174,9 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
   animation:float 4s 0.5s ease-in-out infinite;
 }
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes mfloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes mfloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes mfloat3{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 /* ═══════════════════════════════════════════
@@ -992,7 +994,45 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
     </div>
   </div>
   <div class="hero-float">
-    <div class="hf-jar">🫙</div>
+    <div class="hf-jar">
+      <svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+        <!-- floating makhana balls -->
+        <!-- ball 1 - top centre, main -->
+        <g style="animation:mfloat1 3.5s ease-in-out infinite">
+          <circle cx="80" cy="44" r="28" fill="#F5F0E8" stroke="rgba(201,146,42,0.3)" stroke-width="1.5"/>
+          <circle cx="72" cy="37" r="9" fill="rgba(255,255,255,0.6)"/>
+          <circle cx="86" cy="52" r="5" fill="rgba(201,146,42,0.08)"/>
+          <circle cx="70" cy="50" r="4" fill="rgba(201,146,42,0.07)"/>
+          <circle cx="83" cy="38" r="3" fill="rgba(201,146,42,0.06)"/>
+        </g>
+        <!-- ball 2 - bottom left -->
+        <g style="animation:mfloat2 4s ease-in-out infinite">
+          <circle cx="46" cy="104" r="22" fill="#EDE8DE" stroke="rgba(201,146,42,0.25)" stroke-width="1.5"/>
+          <circle cx="39" cy="98" r="7" fill="rgba(255,255,255,0.55)"/>
+          <circle cx="52" cy="110" r="4" fill="rgba(201,146,42,0.07)"/>
+          <circle cx="40" cy="108" r="3" fill="rgba(201,146,42,0.06)"/>
+        </g>
+        <!-- ball 3 - bottom right -->
+        <g style="animation:mfloat3 3s ease-in-out infinite">
+          <circle cx="114" cy="108" r="24" fill="#F0EBE0" stroke="rgba(201,146,42,0.28)" stroke-width="1.5"/>
+          <circle cx="107" cy="101" r="8" fill="rgba(255,255,255,0.6)"/>
+          <circle cx="120" cy="115" r="5" fill="rgba(201,146,42,0.07)"/>
+          <circle cx="108" cy="113" r="3.5" fill="rgba(201,146,42,0.06)"/>
+        </g>
+        <!-- ball 4 - top right small -->
+        <g style="animation:mfloat2 2.8s ease-in-out infinite 0.5s">
+          <circle cx="126" cy="50" r="16" fill="#EAE4D8" stroke="rgba(201,146,42,0.2)" stroke-width="1"/>
+          <circle cx="120" cy="44" r="5" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="130" cy="55" r="3" fill="rgba(201,146,42,0.06)"/>
+        </g>
+        <!-- ball 5 - left small -->
+        <g style="animation:mfloat1 3.2s ease-in-out infinite 0.8s">
+          <circle cx="30" cy="62" r="14" fill="#EDE8DE" stroke="rgba(201,146,42,0.2)" stroke-width="1"/>
+          <circle cx="25" cy="57" r="4.5" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="34" cy="67" r="2.5" fill="rgba(201,146,42,0.06)"/>
+        </g>
+      </svg>
+    </div>
     <div class="hf-badge">Roasted, Not Fried ✦</div>
   </div>
 </section>
