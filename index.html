@@ -81,29 +81,31 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 ═══════════════════════════════════════════ */
 .hero{
   min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;padding:120px 60px 80px;
+  position:relative;overflow:hidden;padding:0;
 }
 .hero-bg{
   position:absolute;inset:0;z-index:0;
-  background: linear-gradient(160deg, #FFFFFF 0%, #FDFAF5 50%, #FAF5EC 100%);
+  background: radial-gradient(ellipse at 70% 50%, #4A2800 0%, #2C1500 40%, #1A0C00 100%);
 }
-.hero-circle{
-  position:absolute;right:-120px;top:50%;transform:translateY(-50%);
-  width:600px;height:600px;border-radius:50%;
-  border:1px solid rgba(212,101,26,0.15);
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 80%, rgba(212,101,26,0.15) 0%, transparent 60%),
+             radial-gradient(ellipse at 80% 20%, rgba(255,180,50,0.08) 0%, transparent 50%);
 }
-.hero-circle::before{content:'';position:absolute;inset:50px;border-radius:50%;border:1px solid rgba(212,101,26,0.12)}
-.hero-circle::after{content:'';position:absolute;inset:120px;border-radius:50%;border:1px solid rgba(212,101,26,0.08)}
-.hero-content{position:relative;z-index:2;max-width:720px}
-.hero-brand-stamp{
-  margin-bottom:20px;
-  animation:fadeUp 0.6s ease both;
+.hero-circle{display:none}
+.hero-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;min-height:calc(100vh - 90px);
+  padding:120px 64px 60px;gap:40px;
 }
+.hero-content{position:relative;z-index:2;max-width:560px}
+.hero-brand-stamp{margin-bottom:16px;animation:fadeUp 0.6s ease both}
 .hbs-macks{
   font-family:'Syne',sans-serif;
   font-size:clamp(48px,9vw,130px);
   font-weight:800;
-  color:var(--ink);
+  color:#fff;
   line-height:0.9;
   letter-spacing:-2px;
   text-transform:uppercase;
@@ -111,22 +113,23 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
   font-size:11px;letter-spacing:3px;text-transform:uppercase;
-  color:var(--gold2);margin-bottom:24px;
+  color:rgba(255,180,60,0.8);margin-bottom:20px;
   animation:fadeUp 0.8s ease both;
 }
-.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold2)}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:rgba(255,180,60,0.6)}
 .hero-h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(52px,7vw,96px);
-  line-height:0.95;letter-spacing:-3px;
-  color:var(--ink);margin-bottom:12px;
+  font-family:'Syne',sans-serif;
+  font-size:clamp(38px,5vw,72px);
+  font-weight:800;
+  line-height:1.05;letter-spacing:-1px;
+  color:#fff;margin-bottom:10px;
+  text-transform:uppercase;
   animation:fadeUp 0.8s 0.1s ease both;
 }
-.hero-h1 em{font-style:italic;color:var(--gold)}
-.hero-h1 .stroke{-webkit-text-stroke:2px var(--ink);color:transparent}
+.hero-h1 em{font-style:normal;color:#F5A623;display:block}
 .hero-tagline{
-  font-size:clamp(14px,1.5vw,17px);color:rgba(44,26,14,0.65);
-  max-width:480px;line-height:1.75;margin-bottom:44px;
+  font-size:clamp(14px,1.4vw,16px);color:rgba(255,255,255,0.6);
+  max-width:440px;line-height:1.75;margin-bottom:36px;
   font-weight:300;
   animation:fadeUp 0.8s 0.2s ease both;
 }
@@ -134,6 +137,48 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
   display:flex;align-items:center;gap:16px;flex-wrap:wrap;
   animation:fadeUp 0.8s 0.3s ease both;
 }
+.hero-badges{
+  display:flex;gap:20px;margin-top:36px;flex-wrap:wrap;
+  animation:fadeUp 0.8s 0.4s ease both;
+}
+.hero-badge-item{
+  display:flex;flex-direction:column;align-items:flex-start;gap:4px;
+}
+.hbi-icon{font-size:18px}
+.hbi-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:600}
+.hero-products{
+  position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center;
+  gap:-10px;padding-bottom:20px;
+}
+.hp-can{
+  position:relative;transition:transform 0.3s;cursor:pointer;
+}
+.hp-can:hover{transform:translateY(-12px) scale(1.04)}
+.hp-can img{
+  width:140px;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+  display:block;
+}
+.hp-can--l{z-index:1;margin-right:-20px}
+.hp-can--l img{width:130px}
+.hp-can--c{z-index:3;margin-bottom:30px}
+.hp-can--c img{width:175px}
+.hp-can--r{z-index:1;margin-left:-20px}
+.hp-can--r img{width:130px}
+.hero-strip{
+  position:relative;z-index:2;
+  background:rgba(255,255,255,0.07);
+  backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;gap:0;
+}
+.hs-item{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:18px 24px;border-right:1px solid rgba(255,255,255,0.08);
+  font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+}
+.hs-item:last-child{border-right:none}
+.hs-item span{font-size:18px}
 .btn-primary{
   background:var(--gold);color:var(--ink);
   font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
@@ -148,6 +193,13 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
   transition:all 0.2s;
 }
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn-ghost-dark{
+  border:2px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.8);
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  padding:16px 36px;border-radius:8px;
+  transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-ghost-dark:hover{border-color:var(--gold3);color:var(--gold3);transform:translateY(-2px)}
 .hero-stats{
   display:flex;gap:48px;margin-top:72px;padding-top:40px;
   border-top:1px solid rgba(44,26,14,0.12);
@@ -899,7 +951,18 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   nav.scrolled{padding:12px 24px}
   .nav-links{display:none}
   .nav-ham{display:flex}
-  .hero{padding:100px 24px 64px}
+  .hero-inner{grid-template-columns:1fr;padding:100px 24px 40px;min-height:auto;gap:32px}
+  .hero-products{order:2;gap:0;padding-bottom:0}
+  .hero-content{order:1;max-width:100%}
+  .hp-can--l img{width:90px}
+  .hp-can--c img{width:120px}
+  .hp-can--r img{width:90px}
+  .hp-can--l{margin-right:-14px}
+  .hp-can--r{margin-left:-14px}
+  .hp-can--c{margin-bottom:20px}
+  .hero-strip{flex-wrap:wrap}
+  .hs-item{flex:0 0 50%;font-size:10px;padding:12px 16px;border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .hero-badges{gap:14px}
   .hero-stats{gap:28px;flex-wrap:wrap}
   section{padding:72px 24px}
   .reviews-header{padding:0 24px}
@@ -972,68 +1035,46 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-circle"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">A Fox Harvest Foods Brand</p>
-    <div class="hero-brand-stamp">
-      <span class="hbs-macks">Macks</span>
+  <div class="hero-inner">
+    <!-- LEFT: text -->
+    <div class="hero-content">
+      <p class="hero-eyebrow">A Fox Harvest Foods Brand</p>
+      <div class="hero-brand-stamp">
+        <span class="hbs-macks">Macks</span>
+      </div>
+      <h1 class="hero-h1">
+        Snack<br><em>Boldly.</em><br>Live Fully.
+      </h1>
+      <p class="hero-tagline">Premium hand-roasted foxnuts in four bold flavours. High protein, zero guilt — made for the modern Indian snacker.</p>
+      <div class="hero-actions">
+        <a href="#flavours" class="btn-primary">Shop the Range →</a>
+        <a href="#hamper" class="btn-ghost-dark">Hamper · ₹749</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge-item"><span class="hbi-icon">🌿</span><span class="hbi-label">Zero Maida</span></div>
+        <div class="hero-badge-item"><span class="hbi-icon">💪</span><span class="hbi-label">High Protein</span></div>
+        <div class="hero-badge-item"><span class="hbi-icon">🔥</span><span class="hbi-label">Roasted, Not Fried</span></div>
+      </div>
     </div>
-    <h1 class="hero-h1">
-      Snack<br><em>Boldly.</em><br>Live <span class="stroke">Fully.</span>
-    </h1>
-    <p class="hero-tagline">Premium hand-roasted foxnuts in four bold flavours. High protein, zero guilt, beautifully jarred — made for the modern Indian snacker.</p>
-    <div class="hero-actions">
-      <a href="#flavours" class="btn-primary">Shop the Range →</a>
-      <a href="#hamper" class="btn-ghost">All-Four Hamper · ₹749</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hs"><p class="hs-n">4</p><p class="hs-l">Bold Flavours</p></div>
-      <div class="hs"><p class="hs-n">70g</p><p class="hs-l">Per Jar</p></div>
-      <div class="hs"><p class="hs-n">₹199</p><p class="hs-l">Per Jar</p></div>
-      <div class="hs"><p class="hs-n">10g</p><p class="hs-l">Protein / Pack</p></div>
+    <!-- RIGHT: product cans -->
+    <div class="hero-products">
+      <div class="hp-can hp-can--l" onclick="openProdModal('tadka')">
+        <img src="images/tadka-front.jpeg" alt="Punjabi Tadka">
+      </div>
+      <div class="hp-can hp-can--c" onclick="openProdModal('pudina')">
+        <img src="images/pudina-front.jpeg" alt="Pudina">
+      </div>
+      <div class="hp-can hp-can--r" onclick="openProdModal('peri')">
+        <img src="images/peri-front.jpeg" alt="Peri Peri">
+      </div>
     </div>
   </div>
-  <div class="hero-float">
-    <div class="hf-jar">
-      <svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg">
-        <!-- floating makhana balls -->
-        <!-- ball 1 - top centre, main -->
-        <g style="animation:mfloat1 3.5s ease-in-out infinite">
-          <circle cx="80" cy="44" r="28" fill="#F5F0E8" stroke="rgba(201,146,42,0.3)" stroke-width="1.5"/>
-          <circle cx="72" cy="37" r="9" fill="rgba(255,255,255,0.6)"/>
-          <circle cx="86" cy="52" r="5" fill="rgba(201,146,42,0.08)"/>
-          <circle cx="70" cy="50" r="4" fill="rgba(201,146,42,0.07)"/>
-          <circle cx="83" cy="38" r="3" fill="rgba(201,146,42,0.06)"/>
-        </g>
-        <!-- ball 2 - bottom left -->
-        <g style="animation:mfloat2 4s ease-in-out infinite">
-          <circle cx="46" cy="104" r="22" fill="#EDE8DE" stroke="rgba(201,146,42,0.25)" stroke-width="1.5"/>
-          <circle cx="39" cy="98" r="7" fill="rgba(255,255,255,0.55)"/>
-          <circle cx="52" cy="110" r="4" fill="rgba(201,146,42,0.07)"/>
-          <circle cx="40" cy="108" r="3" fill="rgba(201,146,42,0.06)"/>
-        </g>
-        <!-- ball 3 - bottom right -->
-        <g style="animation:mfloat3 3s ease-in-out infinite">
-          <circle cx="114" cy="108" r="24" fill="#F0EBE0" stroke="rgba(201,146,42,0.28)" stroke-width="1.5"/>
-          <circle cx="107" cy="101" r="8" fill="rgba(255,255,255,0.6)"/>
-          <circle cx="120" cy="115" r="5" fill="rgba(201,146,42,0.07)"/>
-          <circle cx="108" cy="113" r="3.5" fill="rgba(201,146,42,0.06)"/>
-        </g>
-        <!-- ball 4 - top right small -->
-        <g style="animation:mfloat2 2.8s ease-in-out infinite 0.5s">
-          <circle cx="126" cy="50" r="16" fill="#EAE4D8" stroke="rgba(201,146,42,0.2)" stroke-width="1"/>
-          <circle cx="120" cy="44" r="5" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="130" cy="55" r="3" fill="rgba(201,146,42,0.06)"/>
-        </g>
-        <!-- ball 5 - left small -->
-        <g style="animation:mfloat1 3.2s ease-in-out infinite 0.8s">
-          <circle cx="30" cy="62" r="14" fill="#EDE8DE" stroke="rgba(201,146,42,0.2)" stroke-width="1"/>
-          <circle cx="25" cy="57" r="4.5" fill="rgba(255,255,255,0.5)"/>
-          <circle cx="34" cy="67" r="2.5" fill="rgba(201,146,42,0.06)"/>
-        </g>
-      </svg>
-    </div>
-    <div class="hf-badge">Roasted, Not Fried ✦</div>
+  <!-- BOTTOM STRIP -->
+  <div class="hero-strip">
+    <div class="hs-item"><span>🏅</span> Premium Hand-Roasted</div>
+    <div class="hs-item"><span>🚚</span> Free Delivery ₹450+</div>
+    <div class="hs-item"><span>🧂</span> No Artificial Flavours</div>
+    <div class="hs-item"><span>🌱</span> Made in India</div>
   </div>
 </section>
 
