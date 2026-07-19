@@ -83,28 +83,50 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
   min-height:100vh;display:flex;flex-direction:column;
   position:relative;overflow:hidden;padding:0;
 }
-/* Warm celebratory food-photography background */
+/* Rich warm food-photography background */
 .hero-bg{
   position:absolute;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse at 80% 40%, rgba(220,110,10,0.7) 0%, transparent 45%),
-    radial-gradient(ellipse at 20% 70%, rgba(180,70,5,0.5) 0%, transparent 45%),
-    radial-gradient(ellipse at 55% 20%, rgba(255,200,80,0.25) 0%, transparent 40%),
-    radial-gradient(ellipse at 90% 85%, rgba(255,120,0,0.35) 0%, transparent 40%),
-    radial-gradient(ellipse at 5% 15%, rgba(255,160,30,0.2) 0%, transparent 35%),
-    linear-gradient(155deg, #4A1E00 0%, #6B2E00 30%, #3E1500 60%, #1A0800 100%);
+    /* product area warm glow */
+    radial-gradient(ellipse at 72% 45%, rgba(210,95,5,0.65) 0%, transparent 42%),
+    /* bottom surface warm light */
+    radial-gradient(ellipse at 50% 95%, rgba(180,80,5,0.5) 0%, transparent 45%),
+    /* top right bokeh source */
+    radial-gradient(ellipse at 90% 15%, rgba(255,190,60,0.4) 0%, transparent 38%),
+    /* far right warm */
+    radial-gradient(ellipse at 98% 55%, rgba(200,100,10,0.35) 0%, transparent 35%),
+    /* left dark ambient */
+    radial-gradient(ellipse at 5% 55%, rgba(120,40,0,0.4) 0%, transparent 40%),
+    /* deep base - warm dark wood */
+    linear-gradient(175deg, #1E0C00 0%, #3D1A00 25%, #5A2800 50%, #3A1400 75%, #1A0800 100%);
 }
-/* Bokeh light orbs */
+/* Wood grain + bokeh orbs */
 .hero-bg::before{
   content:'';position:absolute;inset:0;z-index:1;
+  /* subtle wood grain streaks */
   background:
-    radial-gradient(circle 80px at 82% 18%, rgba(255,200,80,0.22) 0%, transparent 100%),
-    radial-gradient(circle 50px at 70% 8%,  rgba(255,220,100,0.18) 0%, transparent 100%),
-    radial-gradient(circle 60px at 92% 35%, rgba(255,180,60,0.15) 0%, transparent 100%),
-    radial-gradient(circle 40px at 65% 25%, rgba(255,210,90,0.12) 0%, transparent 100%),
-    radial-gradient(circle 90px at 15% 5%,  rgba(255,160,50,0.1) 0%, transparent 100%),
-    radial-gradient(circle 70px at 95% 70%, rgba(240,120,20,0.2) 0%, transparent 100%),
-    radial-gradient(circle 55px at 50% 90%, rgba(220,100,10,0.18) 0%, transparent 100%);
+    repeating-linear-gradient(
+      92deg,
+      transparent 0px, transparent 60px,
+      rgba(255,180,80,0.018) 60px, rgba(255,180,80,0.018) 61px,
+      transparent 61px, transparent 130px,
+      rgba(0,0,0,0.025) 130px, rgba(0,0,0,0.025) 131px
+    );
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;z-index:1;
+  /* bokeh light clusters top-right like string lights */
+  background:
+    radial-gradient(circle 100px at 88% 12%, rgba(255,215,80,0.28) 0%, transparent 100%),
+    radial-gradient(circle 55px  at 78% 6%,  rgba(255,230,100,0.22) 0%, transparent 100%),
+    radial-gradient(circle 70px  at 96% 22%, rgba(255,200,70,0.2) 0%, transparent 100%),
+    radial-gradient(circle 40px  at 72% 18%, rgba(255,210,90,0.18) 0%, transparent 100%),
+    radial-gradient(circle 80px  at 82% 28%, rgba(255,170,50,0.14) 0%, transparent 100%),
+    radial-gradient(circle 45px  at 68% 10%, rgba(255,220,80,0.16) 0%, transparent 100%),
+    radial-gradient(circle 50px  at 94% 8%,  rgba(255,200,60,0.14) 0%, transparent 100%),
+    radial-gradient(circle 60px  at 10% 8%,  rgba(255,160,40,0.08) 0%, transparent 100%),
+    /* table surface warm pool */
+    radial-gradient(ellipse 600px 180px at 50% 100%, rgba(180,80,10,0.35) 0%, transparent 100%);
 }
 .hero-circle{display:none}
 .hero-inner{
@@ -224,7 +246,7 @@ nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);paddin
 .hp-can img{
   height:auto;display:block;
   mix-blend-mode:multiply;
-  filter:drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+  filter:drop-shadow(0 24px 48px rgba(0,0,0,0.65)) brightness(1.05) saturate(1.1);
 }
 .hp-can--l{z-index:1}
 .hp-can--l img{width:clamp(90px,11vw,155px)}
@@ -1112,117 +1134,251 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
 
-  <!-- SVG food-scene decorations: makhana in bowls, chillies, herbs -->
+  <!-- Rich SVG food scene: 3D makhana, flavoured bowls, chillies, herbs -->
   <div class="hero-deco">
     <svg width="100%" height="100%" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <!-- ── BOTTOM-LEFT BOWL with makhana ── -->
-      <g transform="translate(60,640)">
-        <!-- bowl shadow -->
-        <ellipse cx="90" cy="130" rx="95" ry="18" fill="rgba(0,0,0,0.25)"/>
-        <!-- bowl body -->
-        <path d="M10,60 Q15,140 90,148 Q165,140 170,60 Q130,20 90,18 Q50,20 10,60Z" fill="#8B4513" opacity="0.85"/>
-        <path d="M20,65 Q25,132 90,140 Q155,132 160,65 Q125,30 90,28 Q55,30 20,65Z" fill="#A0522D" opacity="0.7"/>
-        <!-- makhana balls in bowl -->
-        <circle cx="60" cy="72" r="14" fill="#F0EBE0" stroke="rgba(200,160,80,0.4)" stroke-width="1"/>
-        <circle cx="90" cy="62" r="16" fill="#EDE6D8" stroke="rgba(200,160,80,0.35)" stroke-width="1"/>
-        <circle cx="120" cy="72" r="14" fill="#F2EDE3" stroke="rgba(200,160,80,0.4)" stroke-width="1"/>
-        <circle cx="75" cy="90" r="13" fill="#ECE6DA" stroke="rgba(200,160,80,0.3)" stroke-width="1"/>
-        <circle cx="105" cy="90" r="13" fill="#F0EBE0" stroke="rgba(200,160,80,0.35)" stroke-width="1"/>
-        <circle cx="55" cy="52" r="11" fill="#EDE6D8"/>
-        <circle cx="125" cy="52" r="11" fill="#F0EBE0"/>
-        <!-- highlight on balls -->
-        <circle cx="55" cy="65" r="5" fill="rgba(255,255,255,0.5)"/>
-        <circle cx="83" cy="56" r="6" fill="rgba(255,255,255,0.5)"/>
-        <circle cx="112" cy="65" r="5" fill="rgba(255,255,255,0.5)"/>
-        <!-- spilled makhana around bowl -->
-        <circle cx="-15" cy="110" r="10" fill="#EDE6D8" opacity="0.9"/>
-        <circle cx="175" cy="105" r="9" fill="#F0EBE0" opacity="0.85"/>
-        <circle cx="185" cy="125" r="8" fill="#ECE6DA" opacity="0.8"/>
-        <circle cx="-5" cy="130" r="8" fill="#EDE6D8" opacity="0.8"/>
+      <defs>
+        <!-- 3D makhana gradients -->
+        <radialGradient id="mk" cx="32%" cy="28%" r="65%">
+          <stop offset="0%" stop-color="#FFFDF6"/>
+          <stop offset="35%" stop-color="#F5EDD8"/>
+          <stop offset="75%" stop-color="#D4C4A0"/>
+          <stop offset="100%" stop-color="#B8A07A"/>
+        </radialGradient>
+        <radialGradient id="mk-g" cx="32%" cy="28%" r="65%">
+          <stop offset="0%" stop-color="#F2FAE8"/>
+          <stop offset="35%" stop-color="#C8E0A0"/>
+          <stop offset="75%" stop-color="#8AB860"/>
+          <stop offset="100%" stop-color="#5A8830"/>
+        </radialGradient>
+        <radialGradient id="mk-o" cx="32%" cy="28%" r="65%">
+          <stop offset="0%" stop-color="#FFF4E0"/>
+          <stop offset="35%" stop-color="#F0C870"/>
+          <stop offset="75%" stop-color="#D08030"/>
+          <stop offset="100%" stop-color="#A05010"/>
+        </radialGradient>
+        <radialGradient id="mk-r" cx="32%" cy="28%" r="65%">
+          <stop offset="0%" stop-color="#FFEEE0"/>
+          <stop offset="35%" stop-color="#F0A870"/>
+          <stop offset="75%" stop-color="#C06030"/>
+          <stop offset="100%" stop-color="#903010"/>
+        </radialGradient>
+        <!-- bowl gradients -->
+        <radialGradient id="bowl-l" cx="40%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#7A4520"/>
+          <stop offset="60%" stop-color="#5A2E0E"/>
+          <stop offset="100%" stop-color="#3A1A05"/>
+        </radialGradient>
+        <radialGradient id="bowl-rim" cx="50%" cy="20%" r="80%">
+          <stop offset="0%" stop-color="#9A5525"/>
+          <stop offset="100%" stop-color="#4A2008"/>
+        </radialGradient>
+        <!-- chilli gradient -->
+        <linearGradient id="chilli" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF3A00"/>
+          <stop offset="50%" stop-color="#CC1500"/>
+          <stop offset="100%" stop-color="#8A0500"/>
+        </linearGradient>
+        <!-- table surface blur glow -->
+        <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="18" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="8"/>
+        </filter>
+        <filter id="bk" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="22"/>
+        </filter>
+      </defs>
+
+      <!-- ══ STRING LIGHT BOKEH top-right ══ -->
+      <g opacity="0.9">
+        <circle cx="1310" cy="55"  r="38" fill="rgba(255,220,80,0.55)"  filter="url(#bk)"/>
+        <circle cx="1250" cy="35"  r="28" fill="rgba(255,200,60,0.45)"  filter="url(#bk)"/>
+        <circle cx="1370" cy="90"  r="32" fill="rgba(255,210,70,0.4)"   filter="url(#bk)"/>
+        <circle cx="1180" cy="60"  r="22" fill="rgba(255,190,50,0.35)"  filter="url(#bk)"/>
+        <circle cx="1340" cy="130" r="20" fill="rgba(255,200,60,0.3)"   filter="url(#bk)"/>
+        <circle cx="1420" cy="50"  r="25" fill="rgba(255,215,75,0.35)"  filter="url(#bk)"/>
+        <circle cx="1100" cy="40"  r="18" fill="rgba(255,180,40,0.25)"  filter="url(#bk)"/>
+      </g>
+      <!-- warm ambient glow on table surface -->
+      <ellipse cx="720" cy="860" rx="700" ry="200" fill="rgba(180,80,10,0.3)" filter="url(#soft)"/>
+
+      <!-- ══ TABLE SURFACE SHADOW (depth) ══ -->
+      <rect x="0" y="580" width="1440" height="240" fill="url(#bowl-l)" opacity="0.18"/>
+
+      <!-- ════════════════════════════════
+           LARGE BOWL — bottom-left (green pudina makhana)
+           ════════════════════════════════ -->
+      <g transform="translate(-30, 540)">
+        <!-- bowl shadow on table -->
+        <ellipse cx="200" cy="310" rx="215" ry="30" fill="rgba(0,0,0,0.35)" filter="url(#soft)"/>
+        <!-- bowl outer -->
+        <path d="M30,160 Q20,290 200,310 Q380,290 370,160 Q300,60 200,55 Q100,60 30,160Z" fill="url(#bowl-l)"/>
+        <!-- bowl inner rim highlight -->
+        <path d="M55,165 Q48,275 200,293 Q352,275 345,165 Q280,80 200,76 Q120,80 55,165Z" fill="url(#bowl-rim)" opacity="0.5"/>
+        <!-- inner bowl bottom lighter -->
+        <ellipse cx="200" cy="230" rx="130" ry="55" fill="rgba(255,200,100,0.08)"/>
+        <!-- makhana in bowl — green tinted (pudina) -->
+        <!-- back row -->
+        <circle cx="130" cy="155" r="22" fill="url(#mk-g)"/><circle cx="126" cy="147" r="8" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="170" cy="140" r="24" fill="url(#mk-g)"/><circle cx="165" cy="131" r="9" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="215" cy="133" r="25" fill="url(#mk-g)"/><circle cx="209" cy="124" r="10" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="260" cy="138" r="23" fill="url(#mk-g)"/><circle cx="254" cy="129" r="8" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="300" cy="150" r="21" fill="url(#mk-g)"/><circle cx="295" cy="142" r="7" fill="rgba(255,255,255,0.4)"/>
+        <!-- mid row -->
+        <circle cx="110" cy="190" r="24" fill="url(#mk-g)"/><circle cx="104" cy="180" r="9" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="153" cy="175" r="26" fill="url(#mk-g)"/><circle cx="146" cy="164" r="10" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="200" cy="168" r="28" fill="url(#mk-g)"/><circle cx="192" cy="156" r="11" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="248" cy="173" r="26" fill="url(#mk-g)"/><circle cx="241" cy="162" r="10" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="292" cy="184" r="23" fill="url(#mk-g)"/><circle cx="286" cy="174" r="8" fill="rgba(255,255,255,0.45)"/>
+        <!-- front row -->
+        <circle cx="128" cy="228" r="23" fill="url(#mk-g)"/><circle cx="121" cy="218" r="8" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="170" cy="215" r="25" fill="url(#mk-g)"/><circle cx="162" cy="204" r="10" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="215" cy="208" r="26" fill="url(#mk-g)"/><circle cx="207" cy="197" r="10" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="260" cy="214" r="24" fill="url(#mk-g)"/><circle cx="252" cy="204" r="9" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="300" cy="224" r="22" fill="url(#mk-g)"/><circle cx="293" cy="214" r="8" fill="rgba(255,255,255,0.4)"/>
+        <!-- bowl rim highlight arc -->
+        <path d="M55,165 Q200,100 345,165" stroke="rgba(255,220,150,0.25)" stroke-width="6" fill="none" stroke-linecap="round"/>
       </g>
 
-      <!-- ── SCATTERED MAKHANA bottom centre ── -->
-      <g opacity="0.88">
-        <circle cx="550" cy="760" r="13" fill="#EDE6D8"/>
-        <circle cx="575" cy="778" r="11" fill="#F0EBE0"/>
-        <circle cx="600" cy="758" r="14" fill="#ECE6DA"/>
-        <circle cx="625" cy="775" r="12" fill="#EDE6D8"/>
-        <circle cx="648" cy="755" r="13" fill="#F2EDE3"/>
-        <circle cx="520" cy="775" r="10" fill="#EDE6D8" opacity="0.7"/>
-        <!-- highlights -->
-        <circle cx="548" cy="754" r="5" fill="rgba(255,255,255,0.55)"/>
-        <circle cx="598" cy="752" r="5" fill="rgba(255,255,255,0.5)"/>
-        <circle cx="625" cy="769" r="4" fill="rgba(255,255,255,0.5)"/>
+      <!-- ════════════════════════════════
+           SPILLED MAKHANA — bottom centre/left (spiced orange)
+           ════════════════════════════════ -->
+      <g opacity="0.95">
+        <!-- large pile -->
+        <circle cx="370" cy="740" r="20" fill="url(#mk-o)"/><circle cx="362" cy="728" r="7" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="415" cy="755" r="18" fill="url(#mk-o)"/><circle cx="407" cy="743" r="6" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="460" cy="742" r="21" fill="url(#mk-o)"/><circle cx="451" cy="729" r="8" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="505" cy="758" r="19" fill="url(#mk-o)"/><circle cx="497" cy="746" r="7" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="548" cy="745" r="20" fill="url(#mk-o)"/><circle cx="540" cy="732" r="7" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="590" cy="760" r="18" fill="url(#mk-o)"/><circle cx="582" cy="748" r="6" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="630" cy="746" r="19" fill="url(#mk-o)"/><circle cx="622" cy="734" r="7" fill="rgba(255,255,255,0.4)"/>
+        <!-- back row smaller -->
+        <circle cx="385" cy="718" r="15" fill="url(#mk-o)" opacity="0.8"/>
+        <circle cx="430" cy="728" r="14" fill="url(#mk-o)" opacity="0.8"/>
+        <circle cx="478" cy="722" r="16" fill="url(#mk-o)" opacity="0.8"/>
+        <circle cx="524" cy="730" r="15" fill="url(#mk-o)" opacity="0.8"/>
+        <circle cx="570" cy="724" r="14" fill="url(#mk-o)" opacity="0.75"/>
+        <circle cx="610" cy="730" r="13" fill="url(#mk-o)" opacity="0.7"/>
       </g>
 
-      <!-- ── RED CHILLI PEPPERS ── -->
-      <!-- chilli 1 bottom-left area -->
-      <g transform="translate(220,690) rotate(-30)">
-        <path d="M0,0 Q4,-6 8,-18 Q10,-32 8,-44 Q6,-52 4,-56 Q2,-52 0,-44 Q-2,-32 -1,-18 Q2,-6 0,0Z" fill="#CC2200" opacity="0.9"/>
-        <path d="M1,-2 Q4,-8 6,-20 Q7,-32 5,-44" stroke="rgba(255,80,0,0.4)" stroke-width="1.5" fill="none"/>
-        <!-- stem -->
-        <path d="M0,0 Q2,6 4,14 Q5,18 4,22" stroke="#3A7A00" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <path d="M4,14 Q10,10 14,8" stroke="#3A7A00" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <!-- ════════════════════════════════
+           RED CHILLI PEPPERS
+           ════════════════════════════════ -->
+      <!-- chilli cluster bottom-centre-left -->
+      <g transform="translate(310,665) rotate(-35)">
+        <path d="M0,0 Q5,-8 9,-22 Q12,-40 9,-56 Q7,-66 4,-70 Q2,-66 0,-56 Q-3,-40 -2,-22 Q1,-8 0,0Z" fill="url(#chilli)"/>
+        <path d="M1,-3 Q5,-12 7,-28 Q8,-44 6,-56" stroke="rgba(255,100,30,0.4)" stroke-width="2" fill="none"/>
+        <path d="M0,0 Q2,8 4,18 Q5,24 4,30" stroke="#2A6500" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M4,20 Q12,14 18,10" stroke="#2A6500" stroke-width="2" fill="none" stroke-linecap="round"/>
       </g>
-      <!-- chilli 2 -->
-      <g transform="translate(250,710) rotate(20)">
-        <path d="M0,0 Q4,-6 7,-16 Q9,-28 7,-38 Q5,-46 3,-50 Q1,-46 -1,-38 Q-3,-28 -2,-16 Q1,-6 0,0Z" fill="#DD1100" opacity="0.85"/>
-        <path d="M0,0 Q2,5 3,12" stroke="#3A7A00" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <g transform="translate(355,688) rotate(18)">
+        <path d="M0,0 Q4,-6 7,-18 Q9,-32 7,-44 Q5,-52 3,-56 Q1,-52 -1,-44 Q-3,-32 -2,-18 Q1,-6 0,0Z" fill="url(#chilli)" opacity="0.9"/>
+        <path d="M0,0 Q2,6 3,14" stroke="#2A6500" stroke-width="2.5" fill="none" stroke-linecap="round"/>
       </g>
-      <!-- chilli 3 top right corner area -->
-      <g transform="translate(1300,120) rotate(140)">
-        <path d="M0,0 Q4,-6 8,-18 Q10,-30 8,-40 Q6,-48 4,-52 Q2,-48 0,-40 Q-2,-30 -1,-18 Q2,-6 0,0Z" fill="#CC2200" opacity="0.7"/>
-        <path d="M0,0 Q2,5 3,12" stroke="#3A7A00" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <g transform="translate(280,700) rotate(-55)">
+        <path d="M0,0 Q3,-5 6,-14 Q8,-26 6,-36 Q4,-44 3,-47 Q1,-44 -1,-36 Q-2,-26 -1,-14 Q1,-5 0,0Z" fill="url(#chilli)" opacity="0.85"/>
+        <path d="M0,0 Q1,5 2,11" stroke="#2A6500" stroke-width="2" fill="none" stroke-linecap="round"/>
       </g>
-
-      <!-- ── MINT / HERB LEAVES ── -->
-      <!-- cluster bottom-left -->
-      <g transform="translate(160,720)" opacity="0.85">
-        <ellipse cx="0" cy="0" rx="18" ry="9" fill="#2D7A00" transform="rotate(-40)"/>
-        <line x1="0" y1="0" x2="-14" y2="-5" stroke="#1A5200" stroke-width="1" opacity="0.6"/>
-        <ellipse cx="22" cy="-12" rx="16" ry="8" fill="#3A8A00" transform="rotate(-20)"/>
-        <line x1="22" y1="-12" x2="10" y2="-16" stroke="#1A5200" stroke-width="1" opacity="0.6"/>
-        <ellipse cx="10" cy="18" rx="14" ry="7" fill="#2A7000" transform="rotate(15)"/>
-      </g>
-      <!-- herb sprig top-left -->
-      <g transform="translate(50,200)" opacity="0.5">
-        <ellipse cx="0" cy="0" rx="20" ry="10" fill="#2D7A00" transform="rotate(25)"/>
-        <ellipse cx="25" cy="-18" rx="18" ry="9" fill="#3A8A00" transform="rotate(10)"/>
-        <ellipse cx="-5" cy="-30" rx="16" ry="8" fill="#2A7000" transform="rotate(-5)"/>
-        <line x1="-5" y1="-30" x2="25" y2="-18" stroke="#1A5200" stroke-width="1.5"/>
-        <line x1="25" y1="-18" x2="0" y2="0" stroke="#1A5200" stroke-width="1.5"/>
+      <!-- single chilli top area left -->
+      <g transform="translate(30,380) rotate(70)" opacity="0.5">
+        <path d="M0,0 Q4,-6 7,-18 Q9,-30 7,-40 Q5,-48 3,-52 Q1,-48 -1,-40 Q-3,-30 -2,-18 Q1,-6 0,0Z" fill="url(#chilli)"/>
+        <path d="M0,0 Q2,6 3,14" stroke="#2A6500" stroke-width="2" fill="none" stroke-linecap="round"/>
       </g>
 
-      <!-- ── SCATTERED SPICE (like mustard/cumin seeds) ── -->
-      <g fill="rgba(255,200,80,0.6)" opacity="0.7">
-        <ellipse cx="290" cy="750" rx="5" ry="2" transform="rotate(-30,290,750)"/>
-        <ellipse cx="310" cy="765" rx="4" ry="1.5" transform="rotate(20,310,765)"/>
-        <ellipse cx="330" cy="748" rx="5" ry="2" transform="rotate(-10,330,748)"/>
-        <ellipse cx="350" cy="760" rx="4" ry="2" transform="rotate(40,350,760)"/>
-        <ellipse cx="370" cy="745" rx="5" ry="2" transform="rotate(-25,370,745)"/>
-        <ellipse cx="390" cy="758" rx="4" ry="1.5" transform="rotate(15,390,758)"/>
-        <ellipse cx="410" cy="742" rx="5" ry="2" transform="rotate(-35,410,742)"/>
-        <ellipse cx="430" cy="755" rx="4" ry="2" transform="rotate(50,430,755)"/>
+      <!-- ════════════════════════════════
+           MINT / HERB SPRIGS
+           ════════════════════════════════ -->
+      <!-- main herb cluster bottom-centre -->
+      <g transform="translate(648,680)" opacity="0.9">
+        <line x1="0" y1="60" x2="0" y2="-10" stroke="#2A6800" stroke-width="2.5"/>
+        <ellipse cx="-20" cy="30" rx="22" ry="11" fill="#348A00" transform="rotate(-30,-20,30)"/>
+        <ellipse cx="22" cy="20" rx="20" ry="10" fill="#3A9200" transform="rotate(25,22,20)"/>
+        <ellipse cx="-15" cy="8" rx="18" ry="9" fill="#2E7A00" transform="rotate(-40,-15,8)"/>
+        <ellipse cx="18" cy="0" rx="16" ry="8" fill="#3A8A00" transform="rotate(20,18,0)"/>
+        <ellipse cx="0" cy="-8" rx="14" ry="7" fill="#2E7A00" transform="rotate(5,0,-8)"/>
+        <!-- vein lines -->
+        <line x1="-20" y1="30" x2="-32" y2="24" stroke="#1A5000" stroke-width="1" opacity="0.5"/>
+        <line x1="22" y1="20" x2="34" y2="14" stroke="#1A5000" stroke-width="1" opacity="0.5"/>
+      </g>
+      <!-- herb bottom left corner -->
+      <g transform="translate(180,750)" opacity="0.8">
+        <line x1="0" y1="40" x2="0" y2="-5" stroke="#2A6800" stroke-width="2"/>
+        <ellipse cx="-16" cy="20" rx="18" ry="9" fill="#348A00" transform="rotate(-35,-16,20)"/>
+        <ellipse cx="18" cy="12" rx="16" ry="8" fill="#3A9200" transform="rotate(30,18,12)"/>
+        <ellipse cx="-10" cy="3"  rx="14" ry="7" fill="#2E7A00" transform="rotate(-20,-10,3)"/>
+      </g>
+      <!-- tiny herb top-left -->
+      <g transform="translate(50,560)" opacity="0.4">
+        <ellipse cx="0"  cy="0"  rx="16" ry="8"  fill="#2D7A00" transform="rotate(20)"/>
+        <ellipse cx="22" cy="-14" rx="14" ry="7" fill="#3A8A00" transform="rotate(5,22,-14)"/>
+        <ellipse cx="-5" cy="-22" rx="12" ry="6" fill="#2A7000" transform="rotate(-10,-5,-22)"/>
       </g>
 
-      <!-- ── MAKHANA bowl RIGHT side ── -->
-      <g transform="translate(1230,620)">
-        <ellipse cx="75" cy="120" rx="80" ry="15" fill="rgba(0,0,0,0.2)"/>
-        <path d="M8,55 Q12,125 75,132 Q138,125 142,55 Q110,18 75,16 Q40,18 8,55Z" fill="#7A3B10" opacity="0.8"/>
-        <path d="M18,60 Q22,118 75,124 Q128,118 132,60 Q104,26 75,24 Q46,26 18,60Z" fill="#8B4513" opacity="0.6"/>
-        <circle cx="50" cy="66" r="13" fill="#F0EBE0" stroke="rgba(200,160,80,0.4)" stroke-width="1"/>
-        <circle cx="76" cy="56" r="15" fill="#EDE6D8" stroke="rgba(200,160,80,0.35)" stroke-width="1"/>
-        <circle cx="102" cy="66" r="13" fill="#F2EDE3" stroke="rgba(200,160,80,0.4)" stroke-width="1"/>
-        <circle cx="63" cy="84" r="12" fill="#ECE6DA"/>
-        <circle cx="89" cy="84" r="12" fill="#F0EBE0"/>
-        <circle cx="47" cy="84" r="10" fill="#EDE6D8"/>
-        <circle cx="46" cy="59" r="4" fill="rgba(255,255,255,0.55)"/>
-        <circle cx="73" cy="50" r="6" fill="rgba(255,255,255,0.55)"/>
-        <circle cx="99" cy="59" r="4" fill="rgba(255,255,255,0.5)"/>
-        <!-- spilled -->
-        <circle cx="-10" cy="100" r="9" fill="#EDE6D8" opacity="0.85"/>
-        <circle cx="155" cy="95" r="10" fill="#F0EBE0" opacity="0.8"/>
-        <circle cx="162" cy="115" r="8" fill="#ECE6DA" opacity="0.75"/>
+      <!-- ════════════════════════════════
+           CUMIN / SPICE SEEDS
+           ════════════════════════════════ -->
+      <g fill="#D4A020" opacity="0.65">
+        <ellipse cx="670" cy="755" rx="6" ry="2.5" transform="rotate(-25,670,755)"/>
+        <ellipse cx="695" cy="768" rx="5" ry="2"   transform="rotate(30,695,768)"/>
+        <ellipse cx="718" cy="750" rx="6" ry="2.5" transform="rotate(-15,718,750)"/>
+        <ellipse cx="742" cy="762" rx="5" ry="2"   transform="rotate(40,742,762)"/>
+        <ellipse cx="760" cy="748" rx="6" ry="2.5" transform="rotate(-30,760,748)"/>
+        <ellipse cx="342" cy="730" rx="5" ry="2"   transform="rotate(20,342,730)"/>
+        <ellipse cx="360" cy="718" rx="6" ry="2.5" transform="rotate(-10,360,718)"/>
+        <ellipse cx="660" cy="738" rx="5" ry="2"   transform="rotate(15,660,738)"/>
+      </g>
+
+      <!-- ════════════════════════════════
+           SMALL BOWL — bottom-right (plain white makhana)
+           ════════════════════════════════ -->
+      <g transform="translate(1200, 590)">
+        <ellipse cx="120" cy="248" rx="135" ry="22" fill="rgba(0,0,0,0.3)" filter="url(#soft)"/>
+        <path d="M18,100 Q12,228 120,245 Q228,228 222,100 Q172,32 120,28 Q68,32 18,100Z" fill="url(#bowl-l)"/>
+        <path d="M30,105 Q26,218 120,233 Q214,218 210,105 Q164,44 120,40 Q76,44 30,105Z" fill="url(#bowl-rim)" opacity="0.45"/>
+        <!-- makhana — plain cream -->
+        <circle cx="80"  cy="105" r="18" fill="url(#mk)"/><circle cx="74"  cy="96"  r="7" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="115" cy="95"  r="20" fill="url(#mk)"/><circle cx="108" cy="85"  r="8" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="152" cy="104" r="18" fill="url(#mk)"/><circle cx="146" cy="95"  r="7" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="68"  cy="140" r="20" fill="url(#mk)"/><circle cx="61"  cy="129" r="8" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="110" cy="130" r="22" fill="url(#mk)"/><circle cx="102" cy="118" r="9" fill="rgba(255,255,255,0.6)"/>
+        <circle cx="154" cy="138" r="20" fill="url(#mk)"/><circle cx="147" cy="127" r="8" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="80"  cy="174" r="19" fill="url(#mk)"/><circle cx="73"  cy="163" r="7" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="122" cy="167" r="21" fill="url(#mk)"/><circle cx="114" cy="155" r="8" fill="rgba(255,255,255,0.55)"/>
+        <circle cx="156" cy="172" r="18" fill="url(#mk)"/><circle cx="149" cy="162" r="7" fill="rgba(255,255,255,0.5)"/>
+        <!-- rim highlight -->
+        <path d="M30,105 Q120,58 210,105" stroke="rgba(255,220,150,0.22)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- spilled beside bowl -->
+        <circle cx="-20" cy="210" r="14" fill="url(#mk)" opacity="0.9"/><circle cx="-26" cy="202" r="5" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="244" cy="205" r="13" fill="url(#mk)" opacity="0.85"/><circle cx="238" cy="197" r="5" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="255" cy="228" r="11" fill="url(#mk)" opacity="0.8"/>
+      </g>
+
+      <!-- ════════════════════════════════
+           SCATTERED PLAIN MAKHANA — far right
+           ════════════════════════════════ -->
+      <g opacity="0.85">
+        <circle cx="1390" cy="680" r="16" fill="url(#mk)"/><circle cx="1383" cy="671" r="6" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="1415" cy="700" r="14" fill="url(#mk)"/><circle cx="1408" cy="692" r="5" fill="rgba(255,255,255,0.45)"/>
+        <circle cx="1430" cy="720" r="15" fill="url(#mk)"/><circle cx="1423" cy="711" r="6" fill="rgba(255,255,255,0.45)"/>
+      </g>
+
+      <!-- ════════════════════════════════
+           CHEESE CUBE (for Smokey Cheese)
+           ════════════════════════════════ -->
+      <g transform="translate(800,728)" opacity="0.75">
+        <rect x="0" y="0" width="32" height="24" fill="#F0D060" rx="2"/>
+        <rect x="0" y="0" width="32" height="5"  fill="#E8C840" rx="2"/>
+        <rect x="32" y="0" width="12" height="24" fill="#C8A820" rx="1"/>
+        <rect x="32" y="0" width="12" height="5"  fill="#B89010"/>
+        <circle cx="10" cy="14" r="3" fill="rgba(160,120,0,0.4)"/>
+        <circle cx="22" cy="10" r="2.5" fill="rgba(160,120,0,0.35)"/>
+      </g>
+      <g transform="translate(845,740)" opacity="0.6">
+        <rect x="0" y="0" width="24" height="18" fill="#F0D060" rx="2"/>
+        <rect x="24" y="0" width="9" height="18"  fill="#C8A820" rx="1"/>
       </g>
     </svg>
   </div>
