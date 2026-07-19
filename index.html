@@ -457,9 +457,8 @@ section{padding:100px 60px}
 }
 .hamper-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .hamper-visual{
-  background:radial-gradient(circle at 40% 40%,rgba(201,146,42,0.2),rgba(201,146,42,0.04));
-  border-radius:24px;border:1px solid rgba(201,146,42,0.15);
-  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  border-radius:24px;
+  aspect-ratio:1;
   position:relative;overflow:hidden;
 }
 .hamper-emoji{font-size:100px;animation:float 5s ease-in-out infinite}
@@ -1410,13 +1409,6 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       </div>
     </div>
   </div>
-  <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
-    <span style="background:#FFF3E0;border:1px solid rgba(212,101,26,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#D4651A;letter-spacing:1px">🏋️ Post-gym fuel</span>
-    <span style="background:#E8F4FD;border:1px solid rgba(37,99,235,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#1D4ED8;letter-spacing:1px">🎬 Movie night essential</span>
-    <span style="background:#F3E5F5;border:1px solid rgba(147,51,234,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#7C3AED;letter-spacing:1px">💻 Desk snack of champions</span>
-    <span style="background:#E8F5E9;border:1px solid rgba(34,197,94,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#16a34a;letter-spacing:1px">🌙 Midnight munchies solved</span>
-    <span style="background:#FFF8E1;border:1px solid rgba(234,179,8,0.2);border-radius:40px;padding:10px 22px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#B45309;letter-spacing:1px">✈️ Travel companion</span>
-  </div>
 </section>
 
 <!-- MACKS MOMENTS -->
@@ -1666,7 +1658,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <div class="hamper-inner">
     <div class="hamper-visual reveal">
       <span class="hamper-badge">Best Value · Save ₹47</span>
-      <img src="images/hamper.png" alt="Macks All-Four Hamper" style="width:100%;border-radius:20px;display:block;object-fit:cover">
+      <img src="images/hamper.png" alt="Macks All-Four Hamper" style="width:100%;height:100%;position:absolute;inset:0;display:block;object-fit:cover;object-position:center">
     </div>
     <div class="hamper-content reveal reveal-d2">
       <p class="sec-eye">Best Value</p>
