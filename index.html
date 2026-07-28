@@ -1120,13 +1120,13 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
 <div class="ticker" style="margin-top:0;padding-top:72px">
   <div class="ticker-inner">
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>₹30 Flat Delivery</span><span>Made in India</span><span>Zero Guilt</span>
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>₹30 Flat Delivery</span><span>Made in India</span><span>Zero Guilt</span>
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>₹30 Flat Delivery</span><span>Made in India</span><span>Zero Guilt</span>
     <span>Four Flavours</span><span>Hand Roasted</span><span>High Protein</span>
-    <span>Free Delivery ₹450+</span><span>Made in India</span><span>Zero Guilt</span>
+    <span>₹30 Flat Delivery</span><span>Made in India</span><span>Zero Guilt</span>
   </div>
 </div>
 
@@ -1847,7 +1847,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <div class="cart-pay-options">
         <button class="cart-pay-btn upi" onclick="showCheckoutForm('upi')">₹ Pay Online (UPI)</button>
         <button class="cart-pay-btn card" onclick="showCheckoutForm('card')">💳 Pay by Card</button>
-        <button class="cart-pay-btn cod" onclick="showCheckoutForm('cod')">🚚 Cash on Delivery <span class="cod-fee">(+₹30)</span></button>
+        <button class="cart-pay-btn cod" onclick="showCheckoutForm('cod')">🚚 Cash on Delivery</button>
       </div>
     </div>
     <!-- Checkout form (step 2) -->
@@ -1863,7 +1863,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         </div>
         <div class="cf-row">
           <div class="cf-group"><label class="cf-label">Flat / House No. *</label><input class="cf-input" id="cf-flat" type="text" placeholder="A-204"></div>
-          <div class="cf-group"><label class="cf-label">Pincode *</label><input class="cf-input" id="cf-pin" type="text" placeholder="110001" maxlength="6"></div>
+          <div class="cf-group"><label class="cf-label">Pincode *</label><input class="cf-input" id="cf-pin" type="text" placeholder="110001" maxlength="6" oninput="checkPincode('cf-pin','cf-pin-est')"><div id="cf-pin-est" style="font-size:12px;margin-top:5px;font-weight:600;min-height:18px"></div></div>
         </div>
         <div class="cf-group"><label class="cf-label">Address Line 1 *</label><input class="cf-input" id="cf-addr" type="text" placeholder="Street / Building / Society"></div>
         <div class="cf-row">
@@ -1930,7 +1930,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <div class="hamper-pay-grid">
         <button class="hamper-pay-btn upi" onclick="hamperShowForm('upi')">₹ Pay via UPI <small style="opacity:0.8;font-size:10px">(GPay · PhonePe · Paytm)</small></button>
         <button class="hamper-pay-btn card" onclick="hamperShowForm('card')">💳 Pay by Card</button>
-        <button class="hamper-pay-btn cod" onclick="hamperShowForm('cod')">🚚 Cash on Delivery <small style="font-size:10px;opacity:0.6">(+₹30)</small></button>
+        <button class="hamper-pay-btn cod" onclick="hamperShowForm('cod')">🚚 Cash on Delivery</button>
       </div>
     </div>
     <div id="hamper-step-form" style="display:none;margin-top:16px">
@@ -1943,7 +1943,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       </div>
       <div class="hamper-cf-row">
         <div class="hamper-cf-group"><label class="hamper-cf-label">Flat / House No. *</label><input class="hamper-cf-input" id="hcf-flat" type="text" placeholder="A-204"></div>
-        <div class="hamper-cf-group"><label class="hamper-cf-label">Pincode *</label><input class="hamper-cf-input" id="hcf-pin" type="text" placeholder="110001"></div>
+        <div class="hamper-cf-group"><label class="hamper-cf-label">Pincode *</label><input class="hamper-cf-input" id="hcf-pin" type="text" placeholder="110001" maxlength="6" oninput="checkPincode('hcf-pin','hcf-pin-est')"><div id="hcf-pin-est" style="font-size:12px;margin-top:5px;font-weight:600;color:#D4651A;min-height:18px"></div></div>
       </div>
       <div class="hamper-cf-group"><label class="hamper-cf-label">Address Line 1 *</label><input class="hamper-cf-input" id="hcf-addr" type="text" placeholder="Street / Colony / Society"></div>
       <div class="hamper-cf-row">
@@ -1996,9 +1996,7 @@ document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)})
 ════════════════════════════════════════ */
 var cart = {};
 var PRICE = 199;
-var DELIVERY_THRESHOLD = 450;
-var DELIVERY_FEE = 50;
-var COD_FEE = 30;
+var DELIVERY_FEE = 30;
 var couponApplied = false;
 var selectedPayMethod = '';
 
@@ -2012,19 +2010,40 @@ function cartItemCount(){
   Object.keys(cart).forEach(function(k){ c += cart[k].qty; });
   return c;
 }
-function calcDelivery(sub, method){
-  if(!method) method = selectedPayMethod;
-  if(method !== 'cod') return 0; // UPI and Card always free
-  return sub >= DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
-}
-function calcCODFee(sub){ return selectedPayMethod==='cod' && sub < DELIVERY_THRESHOLD ? COD_FEE : 0; }
+function calcDelivery(){ return DELIVERY_FEE; }
 function calcDiscount(sub){ return couponApplied ? Math.round(sub * 0.1) : 0; }
-function calcGrandTotal(isCOD){
+function calcGrandTotal(){
   var sub = cartSubtotal();
   var disc = calcDiscount(sub);
-  var del = calcDelivery(sub - disc);
-  var codFee = calcCODFee(sub - disc);
-  return (sub - disc) + del + codFee;
+  return (sub - disc) + DELIVERY_FEE;
+}
+
+/* ── Pincode delivery estimate ── */
+function getPincodeEstimate(pin){
+  if(!pin || pin.length < 6) return null;
+  var p = parseInt(pin.substring(0,2));
+  // Delhi/NCR
+  if(p===11) return '1–2 business days';
+  // Mumbai, Pune, Goa
+  if(p>=40 && p<=43) return '1–2 business days';
+  // Bangalore, Chennai, Hyderabad, Kerala
+  if((p>=56 && p<=60)||(p>=50 && p<=53)||(p>=67 && p<=69)) return '2–3 business days';
+  // Kolkata
+  if(p>=70 && p<=74) return '2–3 business days';
+  // Gujarat, Rajasthan, MP, UP, Haryana, Punjab
+  if((p>=30 && p<=39)||(p>=20 && p<=28)||(p>=20 && p<=26)||(p>=12 && p<=13)||(p>=14 && p<=16)) return '2–4 business days';
+  // North-East, J&K, Himachal, Uttarakhand, remote areas
+  if(p>=79 || p<=9) return '4–6 business days';
+  // Everything else
+  return '3–5 business days';
+}
+function checkPincode(inputId, resultId){
+  var pin = (document.getElementById(inputId).value||'').trim();
+  var res = document.getElementById(resultId);
+  if(pin.length < 6){ res.textContent=''; return; }
+  var est = getPincodeEstimate(pin);
+  res.textContent = est ? '🚚 Estimated delivery: ' + est : '';
+  res.style.color = '#D4651A';
 }
 
 function addToCart(name, emoji){
@@ -2084,9 +2103,7 @@ function updatePriceBreakdown(){
   var sub = cartSubtotal();
   var disc = calcDiscount(sub);
   var net = sub - disc;
-  var del = calcDelivery(net);
-  var codFee = calcCODFee(net);
-  var grand = net + del + codFee;
+  var grand = net + DELIVERY_FEE;
 
   document.getElementById('cpb-subtotal').textContent='₹'+sub;
   var discRow = document.getElementById('cpb-discount-row');
@@ -2095,17 +2112,15 @@ function updatePriceBreakdown(){
 
   var delEl = document.getElementById('cpb-delivery');
   var delRow = document.getElementById('cpb-delivery-row');
-  if(del===0){ delEl.textContent='FREE 🎉'; delRow.className='cpb-row delivery-free'; }
-  else{ delEl.textContent='₹'+del; delRow.className='cpb-row'; }
+  delEl.textContent='₹'+DELIVERY_FEE; delRow.className='cpb-row';
 
   var codRow = document.getElementById('cpb-cod-row');
-  codRow.style.display = codFee > 0 ? 'flex' : 'none';
+  if(codRow) codRow.style.display='none';
 
   document.getElementById('cpb-total').textContent='₹'+grand;
 
   var hint = document.getElementById('free-del-hint');
-  if(selectedPayMethod==='cod' && del>0){ var need=DELIVERY_THRESHOLD-net; hint.textContent='Add ₹'+need+' more for free delivery & no COD fee!'; }
-  else hint.textContent='';
+  if(hint) hint.textContent='';
 }
 
 /* ════════════════════════════════════════
@@ -2356,7 +2371,7 @@ function hamperPlaceOrder(){
   var city=document.getElementById('hcf-city').value.trim();
   var pin=document.getElementById('hcf-pin').value.trim();
   if(!name||!phone||!email||!flat||!addr||!area||!city||!pin){alert('Please fill all fields.');return;}
-  var total=method==='cod'?779:749;
+  var total=749+30;
   var addr_full=flat+', '+addr+', '+area+', '+city+' - '+pin;
   var orderText='🎁 All-Four Hamper Order\nName: '+name+'\nPhone: '+phone+'\nEmail: '+email
     +'\nAddress: '+addr_full+'\nTotal: ₹'+total+(method==='cod'?' (COD +₹30)':'')
@@ -2367,7 +2382,7 @@ function hamperPlaceOrder(){
       to_email:'aaryan@foxharvestfoods.com',customer_name:name,customer_phone:phone,
       customer_email:email,delivery_address:addr_full,order_items:'All-Four Hamper × 1',
       order_total:'₹'+total,payment_method:{upi:'UPI',card:'Card',cod:'Cash on Delivery'}[method],
-      order_subtotal:'₹749',order_delivery:'FREE',order_cod:method==='cod'?'₹30':'N/A',order_discount:'None',coupon_used:'None'
+      order_subtotal:'₹749',order_delivery:'₹30',order_cod:'N/A',order_discount:'None',coupon_used:'None'
     });
   }
 
