@@ -1097,11 +1097,12 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <div class="nav-links">
     <a href="#flavours">Flavours</a>
     <a href="#hamper">Hamper</a>
+    <a href="#why">Why Macks</a>
     <a href="#find">Find Us</a>
     <a href="#story">Our Story</a>
     <a href="https://wa.me/919310419066?text=Hi%20Macks!%20I'd%20like%20to%20order." class="nav-cta" target="_blank">Order Now</a>
   </div>
-  <div class="nav-ham" id="ham" onclick="toggleMenu()">
+  <div class="nav-ham" id="ham" onclick="toggleMenu()" aria-label="Open menu" role="button">
     <span></span><span></span><span></span>
   </div>
 </nav>
@@ -1111,6 +1112,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
   <span class="mob-close" onclick="toggleMenu()">✕</span>
   <a href="#flavours" onclick="toggleMenu()">Flavours</a>
   <a href="#hamper" onclick="toggleMenu()">Hamper</a>
+  <a href="#why" onclick="toggleMenu()">Why Macks</a>
   <a href="#find" onclick="toggleMenu()">Find Us</a>
   <a href="#story" onclick="toggleMenu()">Our Story</a>
   <a href="https://wa.me/919310419066" class="btn-primary" onclick="toggleMenu()" target="_blank">Order Now →</a>
@@ -1146,7 +1148,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <span class="hbs-line3">Starts Here</span>
       </div>
       <div class="hero-divider"></div>
-      <p class="hero-tagline">Crunchy, flavorful makhanas in exciting desi and fusion flavors</p>
+      <p class="hero-tagline">India's finest foxnuts. Roasted small-batch. Four bold flavours you won't put down.</p>
       <div class="hero-actions">
         <a href="#flavours" class="btn-primary">Shop Now →</a>
         <a href="#hamper" class="btn-ghost-dark">Hamper · ₹749</a>
@@ -1236,7 +1238,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       </div>
     </div>
     <div class="flav-card reveal reveal-d3" onclick="openProdModal('peri')">
-      <span class="flav-sold">1,000+ sold</span>
+      <span class="flav-sold">500+ sold</span>
       <div class="flav-slider" id="slider-peri">
         <div class="flav-slide active"><img src="images/peri-front.jpeg" alt="Peri Peri front" loading="lazy"></div>
         <div class="flav-slide"><img src="images/peri-nutrition.jpeg" alt="Peri Peri nutrition" loading="lazy"></div>
@@ -1560,11 +1562,11 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <div class="hamper-price">
         <span class="hp-new">₹749</span>
         <span class="hp-old">₹796</span>
-        <span class="hp-save">Save ₹147</span>
+        <span class="hp-save">Save ₹47</span>
       </div>
       <div class="hamper-includes">
         <p class="hi">4 × 70g premium jars — all four flavours</p>
-        <p class="hi">Free shipping pan-India</p>
+        <p class="hi">₹30 flat delivery pan-India</p>
         <p class="hi">Gift-ready packaging</p>
         <p class="hi">Best price vs buying separately</p>
       </div>
@@ -1677,10 +1679,10 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <div class="find-icon" style="background:#E6F1FB">🏪</div>
       <p class="find-title">Premium Retail</p>
       <ul class="find-list">
-        <li>Nature's Basket</li>
+        <li>Godrej Nature's Basket</li>
         <li>Le Marché</li>
         <li>Spar Hypermarket</li>
-        <li>Godrej Nature's Basket</li>
+        <li>Foodhall</li>
         <li>Select Premium Delis, NCR</li>
       </ul>
       <span class="find-badge" style="background:#E6F1FB;color:#185FA5">Coming Soon</span>
@@ -1734,7 +1736,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <p>Foxnuts have been part of Indian cuisine for centuries. High protein, low fat, naturally gluten-free. Macks just made them impossible to put down.</p>
       </div>
       <div class="story-fact">
-        <h4>Building Toward Own Plant</h4>
+        <h4>Building Our Own Plant</h4>
         <p>We're scaling fast. A dedicated Fox Harvest Foods manufacturing plant is in the works — more control, better margins, same great product.</p>
       </div>
     </div>
@@ -1785,12 +1787,12 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <ul>
         <li><a href="https://wa.me/919310419066" target="_blank">WhatsApp Us</a></li>
         <li><a href="mailto:hello@foxharvestfoods.com">Email Us</a></li>
-        <li><a href="#" target="_blank">Instagram</a></li>
+        <li><a href="https://www.instagram.com/macks.makhana" target="_blank">Instagram</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="fb-copy">© 2025 Macks. All rights reserved. A Fox Harvest Foods brand.</p>
+    <p class="fb-copy">© 2026 Macks. All rights reserved. A Fox Harvest Foods brand.</p>
     <div class="fb-right">
       <a href="#" class="fb-link">Privacy Policy</a>
       <a href="#" class="fb-link">Terms</a>
@@ -1833,7 +1835,7 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <div class="cart-price-breakdown" id="cart-price-breakdown">
         <div class="cpb-row"><span>Subtotal</span><span id="cpb-subtotal">₹0</span></div>
         <div class="cpb-row discount" id="cpb-discount-row" style="display:none"><span>Discount (MACKS10)</span><span id="cpb-discount">-₹0</span></div>
-        <div class="cpb-row" id="cpb-delivery-row"><span>Delivery</span><span id="cpb-delivery">₹50</span></div>
+        <div class="cpb-row" id="cpb-delivery-row"><span>Delivery</span><span id="cpb-delivery">₹30</span></div>
         <div class="cpb-row" id="cpb-cod-row" style="display:none"><span>COD Charge</span><span>₹30</span></div>
         <div class="cpb-total"><span class="cpb-total-label">Grand Total</span><span class="cpb-total-amount" id="cpb-total">₹0</span></div>
       </div>
@@ -1856,14 +1858,14 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
         <button class="cf-back" onclick="hideCheckoutForm()">← Back</button>
         <p class="cf-title">Delivery Details</p>
         <p class="cf-payment-tag" id="cf-payment-tag"></p>
-        <div class="cf-group"><label class="cf-label">Full Name *</label><input class="cf-input" id="cf-name" type="text" placeholder="Aaryan Singh"></div>
+        <div class="cf-group"><label class="cf-label">Full Name *</label><input class="cf-input" id="cf-name" type="text" placeholder="Your full name"></div>
         <div class="cf-row">
-          <div class="cf-group"><label class="cf-label">Phone *</label><input class="cf-input" id="cf-phone" type="tel" placeholder="9310419066"></div>
+          <div class="cf-group"><label class="cf-label">Phone *</label><input class="cf-input" id="cf-phone" type="tel" placeholder="9876543210"></div>
           <div class="cf-group"><label class="cf-label">Email *</label><input class="cf-input" id="cf-email" type="email" placeholder="you@email.com"></div>
         </div>
         <div class="cf-row">
           <div class="cf-group"><label class="cf-label">Flat / House No. *</label><input class="cf-input" id="cf-flat" type="text" placeholder="A-204"></div>
-          <div class="cf-group"><label class="cf-label">Pincode *</label><input class="cf-input" id="cf-pin" type="text" placeholder="110001" maxlength="6" oninput="checkPincode('cf-pin','cf-pin-est')"><div id="cf-pin-est" style="font-size:12px;margin-top:5px;font-weight:600;min-height:18px"></div></div>
+          <div class="cf-group"><label class="cf-label">Pincode *</label><input class="cf-input" id="cf-pin" type="text" placeholder="110001" maxlength="6"></div>
         </div>
         <div class="cf-group"><label class="cf-label">Address Line 1 *</label><input class="cf-input" id="cf-addr" type="text" placeholder="Street / Building / Society"></div>
         <div class="cf-row">
@@ -1938,12 +1940,12 @@ footer{background:#1A0F08;border-top:1px solid rgba(201,146,42,0.08);padding:72p
       <p class="cf-payment-tag" id="hamper-payment-tag" style="font-size:12px;color:rgba(44,26,14,0.5);margin-bottom:12px;padding:8px 12px;background:rgba(212,101,26,0.06);border-radius:8px;border-left:3px solid var(--gold)"></p>
       <div class="hamper-cf-group"><label class="hamper-cf-label">Full Name *</label><input class="hamper-cf-input" id="hcf-name" type="text" placeholder="Your Name"></div>
       <div class="hamper-cf-row">
-        <div class="hamper-cf-group"><label class="hamper-cf-label">Phone *</label><input class="hamper-cf-input" id="hcf-phone" type="tel" placeholder="9310419066"></div>
+        <div class="hamper-cf-group"><label class="hamper-cf-label">Phone *</label><input class="hamper-cf-input" id="hcf-phone" type="tel" placeholder="9876543210"></div>
         <div class="hamper-cf-group"><label class="hamper-cf-label">Email *</label><input class="hamper-cf-input" id="hcf-email" type="email" placeholder="you@email.com"></div>
       </div>
       <div class="hamper-cf-row">
         <div class="hamper-cf-group"><label class="hamper-cf-label">Flat / House No. *</label><input class="hamper-cf-input" id="hcf-flat" type="text" placeholder="A-204"></div>
-        <div class="hamper-cf-group"><label class="hamper-cf-label">Pincode *</label><input class="hamper-cf-input" id="hcf-pin" type="text" placeholder="110001" maxlength="6" oninput="checkPincode('hcf-pin','hcf-pin-est')"><div id="hcf-pin-est" style="font-size:12px;margin-top:5px;font-weight:600;color:#D4651A;min-height:18px"></div></div>
+        <div class="hamper-cf-group"><label class="hamper-cf-label">Pincode *</label><input class="hamper-cf-input" id="hcf-pin" type="text" placeholder="110001" maxlength="6"></div>
       </div>
       <div class="hamper-cf-group"><label class="hamper-cf-label">Address Line 1 *</label><input class="hamper-cf-input" id="hcf-addr" type="text" placeholder="Street / Colony / Society"></div>
       <div class="hamper-cf-row">
@@ -2018,33 +2020,6 @@ function calcGrandTotal(){
   return (sub - disc) + DELIVERY_FEE;
 }
 
-/* ── Pincode delivery estimate ── */
-function getPincodeEstimate(pin){
-  if(!pin || pin.length < 6) return null;
-  var p = parseInt(pin.substring(0,2));
-  // Delhi/NCR
-  if(p===11) return '1–2 business days';
-  // Mumbai, Pune, Goa
-  if(p>=40 && p<=43) return '1–2 business days';
-  // Bangalore, Chennai, Hyderabad, Kerala
-  if((p>=56 && p<=60)||(p>=50 && p<=53)||(p>=67 && p<=69)) return '2–3 business days';
-  // Kolkata
-  if(p>=70 && p<=74) return '2–3 business days';
-  // Gujarat, Rajasthan, MP, UP, Haryana, Punjab
-  if((p>=30 && p<=39)||(p>=20 && p<=28)||(p>=20 && p<=26)||(p>=12 && p<=13)||(p>=14 && p<=16)) return '2–4 business days';
-  // North-East, J&K, Himachal, Uttarakhand, remote areas
-  if(p>=79 || p<=9) return '4–6 business days';
-  // Everything else
-  return '3–5 business days';
-}
-function checkPincode(inputId, resultId){
-  var pin = (document.getElementById(inputId).value||'').trim();
-  var res = document.getElementById(resultId);
-  if(pin.length < 6){ res.textContent=''; return; }
-  var est = getPincodeEstimate(pin);
-  res.textContent = est ? '🚚 Estimated delivery: ' + est : '';
-  res.style.color = '#D4651A';
-}
 
 function addToCart(name, emoji){
   if(!cart[name]) cart[name]={qty:0,emoji:emoji};
@@ -2077,7 +2052,7 @@ function renderCartDrawer(){
   var checkout = document.getElementById('cart-checkout');
   var keys = Object.keys(cart);
   if(keys.length===0){
-    container.innerHTML='<div class="cart-empty"><span class="cart-empty-icon">🛍️</span><span>Your cart is empty</span></div>';
+    container.innerHTML='<div class="cart-empty"><span class="cart-empty-icon">🛒</span><span>Your cart is empty</span></div>';
     checkout.style.display='none';
     return;
   }
@@ -2161,7 +2136,7 @@ function closeCart(){
 function showCheckoutForm(method){
   selectedPayMethod = method;
   updatePriceBreakdown();
-  var tags = {upi:'Payment: UPI (GPay / PhonePe / Paytm)', card:'Payment: Card — we\'ll send a payment link via WhatsApp', cod:'Payment: Cash on Delivery (+₹30)'};
+  var tags = {upi:'Payment: UPI (GPay / PhonePe / Paytm)', card:'Payment: Card — we\'ll send a payment link via WhatsApp', cod:'Payment: Cash on Delivery'};
   document.getElementById('cf-payment-tag').textContent = tags[method]||'';
   document.getElementById('cart-step-pay').style.display='none';
   document.getElementById('cart-step-form').style.display='block';
@@ -2178,13 +2153,12 @@ function buildOrderText(formData){
   var keys=Object.keys(cart);
   var lines=keys.map(function(n){return '• '+n+' × '+cart[n].qty+' — ₹'+(cart[n].qty*PRICE);});
   var sub=cartSubtotal(), disc=calcDiscount(sub), net=sub-disc;
-  var del=calcDelivery(net), codFee=calcCODFee(net);
-  var grand=net+del+codFee;
+  var del=DELIVERY_FEE;
+  var grand=net+del;
   return '🛒 Order Summary:\n'+lines.join('\n')
     +'\n\nSubtotal: ₹'+sub
     +(disc>0?'\nDiscount (MACKS10): -₹'+disc:'')
-    +'\nDelivery: '+(del===0?'FREE':'₹'+del)
-    +(codFee>0?'\nCOD Charge: ₹'+codFee:'')
+    +'\nDelivery: ₹'+del
     +'\nGrand Total: ₹'+grand
     +'\n\nPayment: '+({upi:'UPI',card:'Card (send payment link)',cod:'Cash on Delivery'}[selectedPayMethod])
     +'\n\nDelivery Address:\n'+formData.flat+', '+formData.addr+', '+formData.area+', '+formData.city+' - '+formData.pin
@@ -2206,8 +2180,8 @@ function placeOrder(){
   var formData={name:name,phone:phone,email:email,flat:flat,addr:addr,area:area,city:city,pin:pin};
   var orderText=buildOrderText(formData);
   var sub=cartSubtotal(),disc=calcDiscount(sub),net=sub-disc;
-  var del=calcDelivery(net),codFee=calcCODFee(net);
-  var grand=net+del+codFee;
+  var del=DELIVERY_FEE;
+  var grand=net+del;
 
   // 1. Send email via EmailJS
   if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
@@ -2218,8 +2192,8 @@ function placeOrder(){
       order_items:Object.keys(cart).map(function(n){return n+' × '+cart[n].qty;}).join(', '),
       order_subtotal:'₹'+sub,
       order_discount:disc>0?'-₹'+disc:'None',
-      order_delivery:del===0?'FREE':'₹'+del,
-      order_cod:codFee>0?'₹'+codFee:'N/A',
+      order_delivery:'₹'+del,
+      order_cod:'N/A',
       order_total:'₹'+grand,
       payment_method:{upi:'UPI',card:'Card',cod:'Cash on Delivery'}[selectedPayMethod],
       coupon_used:couponApplied?'MACKS10':'None'
@@ -2350,7 +2324,7 @@ function closeHamperModal(e){
   }
 }
 function hamperShowForm(method){
-  var tags={upi:'Payment: UPI (GPay / PhonePe / Paytm)',card:'Payment: Card — we\'ll send a payment link via WhatsApp',cod:'Payment: Cash on Delivery (+₹30)'};
+  var tags={upi:'Payment: UPI (GPay / PhonePe / Paytm)',card:'Payment: Card — we\'ll send a payment link via WhatsApp',cod:'Payment: Cash on Delivery'};
   document.getElementById('hamper-payment-tag').textContent=tags[method]||'';
   document.getElementById('hamper-step-pay').style.display='none';
   document.getElementById('hamper-step-form').style.display='block';
@@ -2374,7 +2348,7 @@ function hamperPlaceOrder(){
   var total=749+30;
   var addr_full=flat+', '+addr+', '+area+', '+city+' - '+pin;
   var orderText='🎁 All-Four Hamper Order\nName: '+name+'\nPhone: '+phone+'\nEmail: '+email
-    +'\nAddress: '+addr_full+'\nTotal: ₹'+total+(method==='cod'?' (COD +₹30)':'')
+    +'\nAddress: '+addr_full+'\nTotal: ₹'+total
     +'\nPayment: '+({upi:'UPI',card:'Card (send payment link)',cod:'Cash on Delivery'}[method]);
 
   if(typeof emailjs!=='undefined' && EMAILJS_PUBLIC_KEY!=='YOUR_PUBLIC_KEY'){
